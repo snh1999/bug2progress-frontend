@@ -1,0 +1,57 @@
+<h4>Login</h4>
+<mat-form-field>
+  <mat-label>Username or Email</mat-label>
+  <input matInput />
+</mat-form-field>
+
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <div>
+    <input
+      type="text"
+      id="email"
+      [formControlName]="'email'"
+      name="email"
+      placeholder="Username or Email"
+      title="username or email"
+      required
+      autofocus
+    />
+    <span
+      class="error-text-span"
+      *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.touched"
+    >
+      Provide a valid username or email
+    </span>
+  </div>
+
+  <div>
+    <input
+      type="password"
+      id="password"
+      [formControlName]="'password'"
+      placeholder="password"
+      title="password"
+      name="password"
+      required
+    />
+    <span
+      class="error-text-span"
+      *ngIf="
+        !loginForm.get('password')?.valid && loginForm.get('password')?.touched
+      "
+    >
+      Password cannot be empty
+    </span>
+  </div>
+  <div>
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      class="login"
+      [disabled]="loginForm.invalid"
+    >
+      Login
+    </button>
+  </div>
+</form>

@@ -1,0 +1,28 @@
+@hostname = localhost
+@port = 8080
+@host = http://{{hostname}}:{{port}}/api/v1
+
+## register
+POST {{host}}/register HTTP/1.1
+content-type: application/json
+
+{
+  "email": "abc@domain.com",
+  "password": "pass1234",
+  "name": "Joh",
+  "username": "hooman123",
+  "country": "Bangladesh",
+  "photo": "string"
+}
+
+# TODO- fix name with multiple words
+# TODO- fix response message
+
+### login
+POST {{host}}/login HTTP/1.1
+content-type: application/json
+
+{
+  "email": "abc@domain.com",
+  "password": "pass1234"
+}
