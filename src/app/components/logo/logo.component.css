@@ -1,0 +1,21 @@
+.login:hover {
+  opacity: 70%;
+}
+
+.auth-card-container {
+  width: 320px;
+  height: 450px;
+  margin: 60px auto;
+  align-items: center;
+}
+
+.auth-card-title-container {
+  text-align: center;
+}
+.auth-card-heading {
+  font-size: 1.3rem;
+}
+
+.disable-button {
+  pointer-events: none;
+}

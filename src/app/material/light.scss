@@ -1,0 +1,148 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+$light-background: (
+  50: #e1e3e6,
+  100: #b4b9bf,
+  200: #828a95,
+  300: #505b6b,
+  400: #2b384b,
+  500: #05152b,
+  600: #041226,
+  700: #040f20,
+  800: #030c1a,
+  900: #010610,
+  A100: #5270ff,
+  A200: #1f45ff,
+  A400: #0028eb,
+  A700: #0023d2,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #ffffff,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$light-primary: (
+  50: #e3eff9,
+  100: #bad6f1,
+  200: #8cbbe8,
+  300: #5d9fdf,
+  400: #3b8bd8,
+  500: #1876d1,
+  600: #156ecc,
+  700: #1163c6,
+  800: #0e59c0,
+  900: #0846b5,
+  A100: #e0e9ff,
+  A200: #adc6ff,
+  A400: #7aa3ff,
+  A700: #6091ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$light-accent: (
+  50: #e1e9e4,
+  100: #b4c8bb,
+  200: #82a38e,
+  300: #4f7e60,
+  400: #2a633e,
+  500: #04471c,
+  600: #034019,
+  700: #033714,
+  800: #022f11,
+  900: #012009,
+  A100: #5dff76,
+  A200: #2aff4b,
+  A400: #00f627,
+  A700: #00dc23,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$light-warn: (
+  50: #f3e1e4,
+  100: #e1b3bc,
+  200: #cd818f,
+  300: #b84f62,
+  400: #a92940,
+  500: #9a031e,
+  600: #92031a,
+  700: #880216,
+  800: #7e0212,
+  900: #6c010a,
+  A100: #ff9c9f,
+  A200: #ff696d,
+  A400: #ff363c,
+  A700: #ff1c23,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: mat.define-palette($light-primary),
+      accent: mat.define-palette($light-accent),
+      warn: mat.define-palette($light-warn),
+    ),
+  )
+);
+
+.light-theme {
+  @include mat.core-color($light-theme);
+  @include mat.button-color($light-theme);
+}

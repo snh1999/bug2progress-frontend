@@ -1,57 +1,110 @@
-<h4>Login</h4>
-<mat-form-field>
-  <mat-label>Username or Email</mat-label>
-  <input matInput />
-</mat-form-field>
+<app-auth-template [title]="'Log In'" [title_icon]="'login'">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="input-wrapper">
+      <mat-form-field appearance="outline">
+        <mat-label>Username or Email</mat-label>
+        <input matInput [formControlName]="'email'" required autofocus />
+        <mat-error *ngIf="loginForm.get('email')?.invalid">Provide a valid username or email</mat-error>
+      </mat-form-field>
+    </div>
 
-<form [formGroup]="loginForm" (ngSubmit)="login()">
-  <div>
-    <input
-      type="text"
-      id="email"
-      [formControlName]="'email'"
-      name="email"
-      placeholder="Username or Email"
-      title="username or email"
-      required
-      autofocus
-    />
-    <span
-      class="error-text-span"
-      *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.touched"
-    >
-      Provide a valid username or email
-    </span>
-  </div>
+    <div class="input-wrapper">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="passwordHide ? 'password' : 'text'" required />
+        <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
+          <mat-icon>{{
+            passwordHide ? "visibility_off" : "visibility"
+            }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password')?.invalid">Password cannot be empty</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="input-wrapper">
+      <button class="right-align" mat-flat-button color="primary" type="submit" color="accent">
+        Login
+      </button>
+    </div>
+    <app-bottom-links [selection]="'register'"></app-bottom-links>
+    <app-bottom-links [selection]="'password'"></app-bottom-links>
+  </form>
 
-  <div>
-    <input
-      type="password"
-      id="password"
-      [formControlName]="'password'"
-      placeholder="password"
-      title="password"
-      name="password"
-      required
-    />
-    <span
-      class="error-text-span"
-      *ngIf="
-        !loginForm.get('password')?.valid && loginForm.get('password')?.touched
-      "
-    >
-      Password cannot be empty
-    </span>
+</app-auth-template>
+
+
+
+
+<div class="wrapper">
+  <div class="face face-front">
+    <div class="content">
+      <h2>Forgot your password?</h2>
+      <small>Enter your email so we can send you a reset link for your password</small>
+      <form onsubmit="event.preventDefault()">
+        <div class="field-wrapper">
+          <input type="text" name="email" placeholder="email">
+          <label>e-mail</label>
+        </div>
+        <div class="field-wrapper">
+          <input type="submit" onclick="showThankYou()">
+        </div>
+      </form>
+    </div>
   </div>
-  <div>
-    <button
-      mat-flat-button
-      color="primary"
-      type="submit"
-      class="login"
-      [disabled]="loginForm.invalid"
-    >
-      Login
-    </button>
+</div>
+
+<div class="wrapper">
+  <div class="face face-front">
+    <div class="content">
+      <h2>Change Password</h2>
+      <form onsubmit="event.preventDefault()">
+        <div class="field-wrapper">
+          <input type="password" name="password" placeholder="password" autocomplete="new-password">
+          <label>password</label>
+        </div>
+        <div class="field-wrapper">
+          <input type="password" name="password" placeholder="password" autocomplete="new-password">
+          <label>new password</label>
+        </div>
+        <div class="field-wrapper">
+          <input type="password" name="password2" placeholder="password" autocomplete="new-password">
+          <label>re-enter new password</label>
+        </div>
+        <div class="field-wrapper">
+          <input type="submit" onclick="showThankYou()">
+        </div>
+        <span class="singin" onclick="showLogin()">Already a user? Sign in</span>
+      </form>
+    </div>
   </div>
-</form>
+</div>
+
+<div class="wrapper">
+  <div class="face face-front">
+    <div class="content">
+      <h2>Sign up</h2>
+      <form onsubmit="event.preventDefault()">
+        <div class="field-wrapper">
+          <input type="text" name="email" placeholder="email">
+          <label>e-mail</label>
+        </div>
+        <div class="field-wrapper">
+          <input type="password" name="password" placeholder="password" autocomplete="new-password">
+          <label>password</label>
+        </div>
+        <div class="field-wrapper">
+          <input type="password" name="password2" placeholder="password" autocomplete="new-password">
+          <label>re-enter password</label>
+        </div>
+        <div class="field-wrapper">
+          <input type="submit" onclick="showThankYou()">
+        </div>
+        <span class="singin" onclick="showLogin()">Already a user? Sign in</span>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- TODO - separate elements here -->
+<!-- TODO - separate logo -->
+<!-- TODO -  add icons here to spearated pages-->
+<!-- TODO -  -->

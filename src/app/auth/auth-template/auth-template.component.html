@@ -1,0 +1,16 @@
+<mat-card class="auth-card-container">
+    <mat-card-content>
+        <mat-card-header class="auth-card-header-container">
+            <mat-card-title class="auth-card-title-container">
+                <button mat-button color="accent" class="auth-card-heading disable-button">
+                    <mat-icon>{{title_icon}}</mat-icon> {{title}}
+                </button>
+            </mat-card-title>
+            <mat-card-subtitle class="disable-button center-align"><app-logo /></mat-card-subtitle>
+        </mat-card-header>
+    </mat-card-content>
+    <mat-card-content class="next-content-wrapper">
+        <ng-content></ng-content>
+    </mat-card-content>
+
+</mat-card>

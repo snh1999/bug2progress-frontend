@@ -1,0 +1,24 @@
+// @use "@angular/material/prebuilt-themes/purple-green.css";
+@use "./app/material/dark.scss";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-mdc-snack-bar-container {
+  &.green-snackbar {
+    --mdc-snackbar-container-color: rgb(17, 211, 17);
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+  &.red-snackbar {
+    --mdc-snackbar-container-color: rgb(255, 0, 0);
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+}

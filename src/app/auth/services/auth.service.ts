@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoginReqPayload } from '../dto/login.payload';
+import { LoginReqPayload } from '../dto/login.dto';
 import { AuthResponse } from '../dto/auth-response';
 import { Observable, map } from 'rxjs';
-import { RegisterReqPayload } from '../dto/register.payload';
+import { RegisterReqPayload } from '../dto/register.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +36,7 @@ export class AuthService {
       );
   }
 
-  resetPassword(email: string) {
+  forgotPassword(email: string) {
     return this.http.post(`${this.apiUrl}/reset-password`, { email });
   }
 

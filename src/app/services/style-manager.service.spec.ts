@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ThemeService } from './theme.service';
+import { StyleManagerService } from './style-manager.service';
 
-describe('ThemeService', () => {
-  let service: ThemeService;
+describe('StyleManagerService', () => {
+  let service: StyleManagerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ThemeService);
+    service = TestBed.inject(StyleManagerService);
   });
 
   it('should be created', () => {

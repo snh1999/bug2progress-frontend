@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { RegisterReqPayload } from '../dto/register.payload';
+import { RegisterReqPayload } from '../dto/register.dto';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  styleUrls: ['../auth-template/auth-template.common.css'],
 })
 export class RegisterComponent {
   registerReqPayload: RegisterReqPayload;
   registerForm: FormGroup;
+  passwordHide: boolean;
 
   constructor(
     private authService: AuthService,
@@ -35,6 +36,12 @@ export class RegisterComponent {
       country: new FormControl('', Validators.required),
       photo: new FormControl('', Validators.required),
     });
+
+    this.passwordHide = true;
+  }
+  register() {
+    this.registerReqPayload.email = this.registerForm.get('email')?.value;
+    this.registerReqPayload.password = this.registerForm.get('password')?.value;
   }
 
   // registerUser() {

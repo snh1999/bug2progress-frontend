@@ -1,7 +1,17 @@
 <mat-toolbar color="primary" class="navbar">
-  <div>bug2progress</div>
-  <div>
-    <span>Profile</span>
-    <button mat-flat-button color="warn">Logout</button>
-  </div>
+
+  <span>
+    <app-logo />
+  </span>
+  <span>
+    <button mat-icon-button (click)="toggleTheme()">
+      <mat-icon>{{ isDarkTheme ? "brightness_5" : "brightness_2" }}</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon aria-hidden="false" fontIcon="person" />
+    </button>
+    <button mat-icon-button>
+      <mat-icon aria-hidden="false" fontIcon="logout" />
+    </button>
+  </span>
 </mat-toolbar>

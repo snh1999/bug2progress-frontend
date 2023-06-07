@@ -2,19 +2,22 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginReqPayload } from '../dto/login.payload';
+import { LoginReqPayload } from '../dto/login.dto';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, of, tap } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: [
+    './login.component.css',
+    '../auth-template/auth-template.common.css',
+  ],
 })
 export class LoginComponent {
   loginForm: FormGroup;
   loginReqPayload: LoginReqPayload;
-  isError: boolean;
+  passwordHide: boolean;
 
   constructor(
     private authService: AuthService,
@@ -22,14 +25,14 @@ export class LoginComponent {
     private toastr: ToastrService
   ) {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
     this.loginReqPayload = {
       email: '',
       password: '',
     };
-    this.isError = false;
+    this.passwordHide = true;
   }
 
   loginUser() {
@@ -55,16 +58,17 @@ export class LoginComponent {
       .pipe(
         tap((data) => {
           this.toastr.success(data);
-          // this.utils.goToPage();
           this.toastr.info(data);
           this.router.navigate(['/']);
         }),
         catchError((error) => {
-          this.isError = true;
           this.toastr.error(error.error.detail + '. Please Try again');
           return of(error);
         })
       )
       .subscribe();
+  }
+  getErrorMessage() {
+    return this.loginForm.hasError('required') ? 'You must enter a value' : '';
   }
 }

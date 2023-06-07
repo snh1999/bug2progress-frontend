@@ -1,0 +1,163 @@
+@use "@angular/material" as mat;
+@use "sass:map";
+
+@include mat.core();
+$dark-background: (
+  50: #e1e3e6,
+  100: #b4b9bf,
+  200: #828a95,
+  300: #505b6b,
+  400: #2b384b,
+  500: #05152b,
+  600: #041226,
+  700: #040f20,
+  800: #030c1a,
+  900: #010610,
+  A100: #5270ff,
+  A200: #1f45ff,
+  A400: #0028eb,
+  A700: #0023d2,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #ffffff,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$dark-primary: (
+  50: #e3eff9,
+  100: #bad6f1,
+  200: #8cbbe8,
+  300: #5d9fdf,
+  400: #3b8bd8,
+  500: #1876d1,
+  600: #156ecc,
+  700: #1163c6,
+  800: #0e59c0,
+  900: #0846b5,
+  A100: #e0e9ff,
+  A200: #adc6ff,
+  A400: #7aa3ff,
+  A700: #6091ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$dark-accent: (
+  50: #e7ffed,
+  100: #c2ffd2,
+  200: #9affb4,
+  300: #72ff96,
+  400: #53ff80,
+  500: #35ff69,
+  600: #30ff61,
+  700: #28ff56,
+  800: #22ff4c,
+  900: #16ff3b,
+  A100: #ffffff,
+  A200: #fcfffc,
+  A400: #c9ffd0,
+  A700: #afffba,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$dark-warn: (
+  50: #ffe7e8,
+  100: #fec3c6,
+  200: #fd9ba0,
+  300: #fc7279,
+  400: #fc545d,
+  500: #fb3640,
+  600: #fa303a,
+  700: #fa2932,
+  800: #f9222a,
+  900: #f8161c,
+  A100: #ffffff,
+  A200: #fff5f5,
+  A400: #ffc2c3,
+  A700: #ffa8aa,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+// #35FF69 - sping green for light theme
+// #FB3640 - for light warn
+
+$primary: mat.define-palette($dark-primary);
+$accent: mat.define-palette($dark-accent);
+$warn: mat.define-palette($dark-warn);
+
+$my-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: mat.define-palette($dark-primary),
+      accent: mat.define-palette($dark-accent),
+      warn: mat.define-palette($dark-warn),
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+$backgroundColor: #05152c;
+$color: map.get($my-theme, "color");
+$colorBackground: map.get($color, "background");
+$colorBackground: map.set($colorBackground, "background", $backgroundColor);
+$color: map.set($color, "background", $colorBackground);
+$my-theme: map.set($my-theme, "color", $color);
+
+@include mat.all-component-themes($my-theme);
