@@ -1,7 +1,8 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { TAuthResponse, TLoginDto, TRegisterDto } from "./auth.types";
 import { api } from "../axios";
 import { setAuthCookie } from "@/components/auth/auth.actions";
+import { useRouter } from "next/navigation";
 // import { cookies } from "next/headers";
 
 export const useLogin = () => {
@@ -27,9 +28,16 @@ export const useRegister = () => {
 };
 
 export const useLogOut = () => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
   return useMutation<unknown, Error>({
     mutationFn: async () => {
-      setAuthCookie("");
+      await setAuthCookie("");
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["currentUser"] });
+      router.replace("/login");
     },
   });
 };

@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRegister } from "@/api/auth/auth";
+import { useRouter } from "next/navigation";
 
 const registerFormSchema = z.object({
   name: z.string().min(2, "Required"),
@@ -11,6 +12,7 @@ const registerFormSchema = z.object({
 });
 
 export const useRegisterForm = () => {
+  const router = useRouter();
   const form = useForm({
     defaultValues: {
       name: "",
@@ -24,7 +26,13 @@ export const useRegisterForm = () => {
   const { mutate } = useRegister();
 
   const onSubmit = (values: z.infer<typeof registerFormSchema>) => {
-    mutate(values);
+    mutate(values, {
+      onSuccess: () => {
+        router.push("/login");
+        console.log("successfully registered, redirecting to login page");
+      },
+      onError: (error) => console.log(error),
+    });
   };
 
   return { form, onSubmit };

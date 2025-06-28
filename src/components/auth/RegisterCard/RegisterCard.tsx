@@ -8,7 +8,7 @@ import { getLoginLinkText } from "../auth.helpers";
 export const RegisterCard = () => {
   const { form, onSubmit } = useRegisterForm();
   const { control, handleSubmit } = form;
-  console.log(form.formState.errors);
+
   return (
     <Card className="w-1/2 h-full border-none shadow-none">
       <CardHeader className="flex items-center justify-center text-center p-5">
