@@ -4,7 +4,7 @@ import { AUTH_TOKEN_KEY } from "@/app.constants";
 import { cookies } from "next/headers";
 
 export async function setAuthCookie(token: string) {
-  cookies().set({
+  (await cookies()).set({
     name: AUTH_TOKEN_KEY,
     value: token,
     // httpOnly: true,
@@ -16,5 +16,5 @@ export async function setAuthCookie(token: string) {
 }
 
 export async function getBearerToken() {
-  return `Bearer ${cookies().get(AUTH_TOKEN_KEY)?.value ?? ""}`;
+  return `Bearer ${(await cookies()).get(AUTH_TOKEN_KEY)?.value ?? ""}`;
 }

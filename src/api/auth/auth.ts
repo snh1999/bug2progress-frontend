@@ -37,7 +37,7 @@ export const useLogOut = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["currentUser"] });
-      router.replace("/login");
+      router.refresh();
     },
   });
 };
