@@ -3,7 +3,6 @@ import { TAuthResponse, TLoginDto, TRegisterDto } from "./auth.types";
 import { api } from "../axios";
 import { setAuthCookie } from "@/components/auth/auth.actions";
 import { useRouter } from "next/navigation";
-// import { cookies } from "next/headers";
 
 export const useLogin = () => {
   return useMutation<TAuthResponse, Error, TLoginDto>({
@@ -35,8 +34,8 @@ export const useLogOut = () => {
     mutationFn: async () => {
       await setAuthCookie("");
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["currentUser"] });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["currentUser"] });
       router.refresh();
     },
   });

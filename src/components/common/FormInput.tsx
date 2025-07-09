@@ -1,13 +1,8 @@
-import { Control } from "react-hook-form";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { HTMLInputTypeAttribute } from "react";
+import {Control} from "react-hook-form";
+import {FormControl, FormField, FormItem, FormLabel, FormMessage,} from "../ui/form";
+import {Input} from "../ui/input";
+import {Textarea} from "../ui/textarea";
+import {HTMLInputTypeAttribute} from "react";
 
 type TFormFieldProps = {
   name: string;
@@ -15,26 +10,31 @@ type TFormFieldProps = {
   placeholder?: string;
   type?: HTMLInputTypeAttribute;
   control?: Control<any>;
+  required?: boolean;
+  textarea?: boolean
 };
 
 export const FormInput = ({
   label = "",
   name,
   placeholder = "",
-  type,
+  type = "text",
   control,
+  required = false,
+  textarea = false
 }: TFormFieldProps) => {
   return (
     <FormField
       name={name}
       control={control}
-      render={({ field }) => (
+      render={({field}) => (
         <FormItem className="text-left space-y-0">
           <FormLabel className="font-bold">{label}</FormLabel>
           <FormControl>
-            <Input {...field} type={type} placeholder={placeholder} />
+            {textarea ? <Textarea {...field} placeholder={placeholder} required={required}/> :
+              <Input {...field} type={type} placeholder={placeholder} required={required}/>}
           </FormControl>
-          <FormMessage />
+          <FormMessage/>
         </FormItem>
       )}
     />

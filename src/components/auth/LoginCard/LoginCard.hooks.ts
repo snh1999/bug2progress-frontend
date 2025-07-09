@@ -1,9 +1,9 @@
 "use client";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useLogin } from "@/api/auth/auth";
-import { useRouter } from "next/navigation";
+import {z} from "zod";
+import {useLogin} from "@/api/auth/auth";
+import {useRouter} from "next/navigation";
+import {useFormHooksWrapper} from "@/components/FormHooksWrapper";
+import {TAuthResponse, TLoginDto} from "@/api/auth/auth.types";
 
 const loginFormSchema = z.object({
   email: z.string().email(),
@@ -12,22 +12,20 @@ const loginFormSchema = z.object({
 
 export const useLoginForm = () => {
   const router = useRouter();
-  const form = useForm({
+  const onSuccess = () => {
+    router.push("/")
+    console.log("Logged in successfully")
+  };
+  const onError = (error: any) => console.log(error);
+
+  return useFormHooksWrapper<TLoginDto, TAuthResponse>({
+    formSchema: loginFormSchema,
+    useFormMutation: useLogin,
     defaultValues: {
       email: "",
       password: "",
     },
-    resolver: zodResolver(loginFormSchema),
+    onSuccess,
+    onError,
   });
-
-  const { mutate } = useLogin();
-
-  const onSubmit = (values: z.infer<typeof loginFormSchema>) => {
-    mutate(values, {
-      onSuccess: () => router.push("/"),
-      onError: (error) => console.log(error),
-    });
-  };
-
-  return { form, onSubmit };
 };
