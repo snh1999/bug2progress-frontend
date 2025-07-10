@@ -1,9 +1,10 @@
 "use client";
-import {z} from "zod";
-import {useLogin} from "@/api/auth/auth";
-import {useRouter} from "next/navigation";
-import {useFormHooksWrapper} from "@/components/FormHooksWrapper";
-import {TAuthResponse, TLoginDto} from "@/api/auth/auth.types";
+import { z } from "zod";
+import { useLogin } from "@/api/auth/auth";
+import { useRouter } from "next/navigation";
+import { useFormHooksWrapper } from "@/components/FormHooksWrapper";
+import { TAuthResponse, TLoginDto } from "@/api/auth/auth.types";
+import { toast } from "sonner";
 
 const loginFormSchema = z.object({
   email: z.string().email(),
@@ -12,11 +13,6 @@ const loginFormSchema = z.object({
 
 export const useLoginForm = () => {
   const router = useRouter();
-  const onSuccess = () => {
-    router.push("/")
-    console.log("Logged in successfully")
-  };
-  const onError = (error: any) => console.log(error);
 
   return useFormHooksWrapper<TLoginDto, TAuthResponse>({
     formSchema: loginFormSchema,
@@ -25,7 +21,10 @@ export const useLoginForm = () => {
       email: "",
       password: "",
     },
-    onSuccess,
-    onError,
+    onSuccess: () => {
+      router.push("/");
+      toast.success("Logged in successfully");
+    },
+    onError: (error: any) => toast.error(error.message ?? "Failed to login"),
   });
 };

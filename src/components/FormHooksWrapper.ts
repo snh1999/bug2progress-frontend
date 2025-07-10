@@ -1,7 +1,8 @@
-import {DefaultValues, FieldValues, SubmitHandler, useForm} from "react-hook-form";
-import {z} from "zod";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {UseMutationResult} from "@tanstack/react-query";
+import { DefaultValues, FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { UseMutationResult } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 type TUseFormWrapperArgs<TDto, TData> = {
   formSchema: z.ZodType<TDto>;
@@ -27,8 +28,8 @@ export const useFormHooksWrapper = <TDto extends FieldValues, TData>({
 
   const onSubmit: SubmitHandler<TDto> = (values) => {
     mutate(values, {
-      onSuccess: onSuccess ? onSuccess : () => console.log("Request performed successfully"),
-      onError: onError ? onError : (error) => console.log(error),
+      onSuccess: onSuccess ? onSuccess : () => toast.success("Request performed successfully"),
+      onError: onError ? onError : (error) => toast.error(error?.message ?? "Failed to perform request"),
     });
   };
 

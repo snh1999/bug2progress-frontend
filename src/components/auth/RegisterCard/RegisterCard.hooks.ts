@@ -1,8 +1,10 @@
-import {z} from "zod";
-import {useRegister} from "@/api/auth/auth";
-import {useRouter} from "next/navigation";
-import {useFormHooksWrapper} from "@/components/FormHooksWrapper";
-import {TAuthResponse, TRegisterDto} from "@/api/auth/auth.types";
+import { z } from "zod";
+import { useRegister } from "@/api/auth/auth";
+import { useRouter } from "next/navigation";
+import { useFormHooksWrapper } from "@/components/FormHooksWrapper";
+import { TAuthResponse, TRegisterDto } from "@/api/auth/auth.types";
+import { toast } from "sonner";
+import { LOGIN_PATH } from "@/app.constants";
 
 const registerFormSchema = z.object({
   name: z.string().min(2, "Required"),
@@ -12,14 +14,7 @@ const registerFormSchema = z.object({
 });
 
 export const useRegisterForm = () => {
-
-
   const router = useRouter();
-  const onSuccess= () => {
-      router.push("/login");
-      console.log("successfully registered, redirecting to login page");
-    }
-    const onError = (error: any) => console.log(error);
 
   return useFormHooksWrapper<TRegisterDto, TAuthResponse>({
     formSchema: registerFormSchema,
@@ -30,7 +25,10 @@ export const useRegisterForm = () => {
       email: "",
       password: "",
     },
-    onSuccess,
-    onError,
+    onSuccess: () => {
+      router.push(LOGIN_PATH);
+      toast.success("Registered successfully, redirecting to login page");
+    },
+    onError: (error: any) => toast.error(error),
   });
 };
