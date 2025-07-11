@@ -44,7 +44,7 @@ export const SidebarMenu = () => {
   const pathname = usePathname();
 
   return (
-    <ul className="flex flex-col">
+    <ul className="flex flex-col pt-5">
       {menuItems.map((item) => {
         const fullHref = `/workspaces/${workspaceId}${item.href}`;
         const isActive = pathname === fullHref;
@@ -54,7 +54,7 @@ export const SidebarMenu = () => {
           <Link key={item.href} href={fullHref}>
             <div
               className={cn(
-                "flex items-center gap-2.5 p-2.5 rounded-md font-medium hover:text-primary transition text-neutral-500",
+                "flex items-center gap-3 p-3 rounded-md font-medium hover:text-primary transition text-neutral-500",
                 isActive && "bg-white shadow-sm hover:opacity-100 text-primary"
               )}
             >

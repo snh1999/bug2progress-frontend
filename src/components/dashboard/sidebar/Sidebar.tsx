@@ -3,7 +3,7 @@ import { SidebarMenu } from "./SidebarMenu";
 
 export const Sidebar = () => {
   return (
-    <aside className="h-full bg-neutral-100 p-4 w-full">
+    <aside className="h-full bg-neutral-50 p-4 w-full">
       <LogoLink />
       <SidebarMenu />
     </aside>
