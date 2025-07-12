@@ -1,4 +1,5 @@
 import { jwtVerify } from "jose";
+import { toast } from "sonner";
 
 export async function verifyJwtToken(token: string) {
   const secret = new TextEncoder().encode(
@@ -8,8 +9,8 @@ export async function verifyJwtToken(token: string) {
   try {
     const { payload } = await jwtVerify(token, secret);
     return payload;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    toast.error(error?.response?.data?.message ?? error?.message ?? "Failed to verify token");
     return null;
   }
 }

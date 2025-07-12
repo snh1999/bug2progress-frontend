@@ -35,7 +35,7 @@ export const useLogOut = () => {
       await setAuthCookie("");
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["currentUser"] });
+      await queryClient.invalidateQueries({ queryKey: ["currentUser", "projects"] });
       router.refresh();
     },
   });

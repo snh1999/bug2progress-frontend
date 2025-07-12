@@ -21,9 +21,8 @@ export const useCreateProjectForm = () =>
     defaultValues: {
       title: "",
       summary: "",
-      urlid: "",
       isPublic: false,
     },
     onSuccess: () => toast.success("Project created"),
-    onError: (error: any) => toast.error(error?.message ?? "Failed to create project"),
+
   });

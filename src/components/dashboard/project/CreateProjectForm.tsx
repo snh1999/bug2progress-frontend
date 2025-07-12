@@ -1,11 +1,10 @@
-import {Button} from "@/components/ui/button";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import {Form} from "@/components/ui/form";
-import {FormInput} from "@/components/common/FormComponent/FormInput";
-import {useCreateProjectForm} from "@/components/dashboard/project/CreateProjectForm.hooks";
-import {RequestWrapper} from "@/components/common/RequestWrapper";
-import {FormSelect} from "@/components/common/FormComponent/FormSelect";
-import {ProjectStatus} from "@/api/projects/projects.types";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Form } from "@/components/ui/form";
+import { FormInput } from "@/components/common/FormComponent/FormInput";
+import { useCreateProjectForm } from "@/components/dashboard/project/CreateProjectForm.hooks";
+import { FormSelect } from "@/components/common/FormComponent/FormSelect";
+import { ProjectStatus } from "@/api/projects/projects.types";
 
 interface CreateProjectFormProps {
   onCancel?: () => void;
@@ -16,8 +15,6 @@ export const CreateProjectForm = ({onCancel}: CreateProjectFormProps) => {
   const {control, handleSubmit} = form;
 
   return (
-    <RequestWrapper isLoading={isPending}>
-
       <Card className=" h-full border-none shadow-none m-5">
         <CardHeader className="flex items-center justify-center text-center p-5">
           <CardTitle className="text-2xl">Create a New Project</CardTitle>
@@ -80,7 +77,5 @@ export const CreateProjectForm = ({onCancel}: CreateProjectFormProps) => {
           </CardContent>
         </CardHeader>
       </Card>
-    </RequestWrapper>
-
   );
 };

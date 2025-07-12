@@ -29,7 +29,8 @@ export const useFormHooksWrapper = <TDto extends FieldValues, TData>({
   const onSubmit: SubmitHandler<TDto> = (values) => {
     mutate(values, {
       onSuccess: onSuccess ? onSuccess : () => toast.success("Request performed successfully"),
-      onError: onError ? onError : (error) => toast.error(error?.message ?? "Failed to perform request"),
+      onError: onError ? onError : (error: any) =>
+        toast.error(error?.response?.data?.message ?? "Failed to create project"),
     });
   };
 
