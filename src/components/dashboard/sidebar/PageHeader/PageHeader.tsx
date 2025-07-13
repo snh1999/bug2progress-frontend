@@ -3,15 +3,13 @@
 import { useLogOut } from "@/api/auth/auth";
 import { Sidebar } from "@/components/dashboard/sidebar/Sidebar";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger, } from "@/components/ui/sheet";
 import { MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { RiAddCircleFill } from "react-icons/ri";
+import { useOpenModal } from "@/hooks/useModalHook";
+import { OPEN_CREATE_PROJECT_MODAL_KEY } from "@/app.constants";
 
 const pathnameMap = {
   home: {
@@ -40,12 +38,12 @@ const MobileSidebar = () => {
     <Sheet modal={false} open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button variant="secondary" className="lg:hidden">
-          <MenuIcon className="size-4 text-neutral-500" />
+          <MenuIcon className="size-4 text-neutral-500"/>
         </Button>
       </SheetTrigger>
       <SheetTitle></SheetTitle>
       <SheetContent side="left" className="p-0">
-        <Sidebar />
+        <Sidebar/>
       </SheetContent>
     </Sheet>
   );
@@ -55,27 +53,34 @@ export const PageHeader = () => {
   const pathname = usePathname();
   const pathnameParts = pathname.split("/");
   const pathnameKey = pathnameParts[3] as keyof typeof pathnameMap;
+  const {openModal} = useOpenModal(OPEN_CREATE_PROJECT_MODAL_KEY);
 
-  const { title, description } = pathnameMap[pathnameKey] || pathnameMap.home;
-  const { mutate: logOut, isPending } = useLogOut();
+
+  const {title, description} = pathnameMap[pathnameKey] || pathnameMap.home;
+  const {mutate: logOut, isPending} = useLogOut();
 
   return (
     <nav className="pt-4 px-6 flex items-center justify-between">
       <div className="flex items-center gap-4">
-        <MobileSidebar />
+        <MobileSidebar/>
         <div className="flex-col flex">
           <h1 className="text-2xl font-semibold">{title}</h1>
           <p className="text-muted-foreground">{description}</p>
         </div>
       </div>
 
-      <Button
-        variant="destructive"
-        disabled={isPending}
-        onClick={() => logOut()}
-      >
-        Log Out
-      </Button>
+      <div className="flex items-center gap-2">
+        <Button onClick={openModal} size="sm" variant="primary"> New Project
+          <RiAddCircleFill className="size-5  cursor-pointer hover:opacity-75 transition"/>
+        </Button>
+        <Button
+          variant="destructive"
+          disabled={isPending}
+          onClick={() => logOut()}
+        >
+          Log Out
+        </Button>
+      </div>
     </nav>
   );
 };

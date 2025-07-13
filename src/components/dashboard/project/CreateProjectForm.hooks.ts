@@ -3,6 +3,8 @@ import { ProjectStatus, TCreateProjectDto, TProject, } from "@/api/projects/proj
 import { useCreateProject } from "@/api/projects/projects";
 import { useFormHooksWrapper } from "@/components/FormHooksWrapper";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { PROJECTS_PATH } from "@/app.constants";
 
 const createProjectFormSchema: z.ZodType<TCreateProjectDto> = z.object({
   title: z.string(),
@@ -14,8 +16,9 @@ const createProjectFormSchema: z.ZodType<TCreateProjectDto> = z.object({
   slug: z.string().optional(),
 });
 
-export const useCreateProjectForm = () =>
-  useFormHooksWrapper<TCreateProjectDto, TProject>({
+export const useCreateProjectForm = () => {
+  const router = useRouter();
+  return useFormHooksWrapper<TCreateProjectDto, TProject>({
     formSchema: createProjectFormSchema,
     useFormMutation: useCreateProject,
     defaultValues: {
@@ -23,6 +26,9 @@ export const useCreateProjectForm = () =>
       summary: "",
       isPublic: false,
     },
-    onSuccess: () => toast.success("Project created"),
-
+    onSuccess: (test) => {
+      router.push(test ? `${PROJECTS_PATH}/${test.id}` : `/`);
+      toast.success("Project created");
+    },
   });
+};

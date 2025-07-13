@@ -8,7 +8,7 @@ type TUseFormWrapperArgs<TDto, TData> = {
   formSchema: z.ZodType<TDto>;
   useFormMutation: () => UseMutationResult<TData, Error, TDto, unknown>;
   defaultValues: DefaultValues<TDto> | undefined,
-  onSuccess?: () => void,
+  onSuccess?: (data?: TData) => void,
   onError?: (error: unknown) => void
 }
 
@@ -28,7 +28,12 @@ export const useFormHooksWrapper = <TDto extends FieldValues, TData>({
 
   const onSubmit: SubmitHandler<TDto> = (values) => {
     mutate(values, {
-      onSuccess: onSuccess ? onSuccess : () => toast.success("Request performed successfully"),
+      onSuccess: () => {
+        form.reset();
+        if (onSuccess) onSuccess();
+        else
+          toast.success("Request performed successfully");
+      },
       onError: onError ? onError : (error: any) =>
         toast.error(error?.response?.data?.message ?? "Failed to create project"),
     });

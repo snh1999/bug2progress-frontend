@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { cn, getContrastColor, getInitials, getRandomColor } from "@/lib/utils";
 import Image from "next/image";
 
-interface WorkspaceAvatarProps {
+interface ImageOrAvatarProps {
   image?: string;
   name: string;
   className?: string;
@@ -13,15 +13,13 @@ export const ImageOrAvatar = ({
   image,
   name,
   className,
-  bgColor = getRandomColor()
-}: WorkspaceAvatarProps) => {
+  bgColor = getRandomColor(),
+}: ImageOrAvatarProps) => {
   if (image) {
     return (
-      <div className={cn(
-        "size-9 relative overflow-hidden",
-        className,
-      )}>
-        <Image src={image} alt={name} fill className="object-cover"/>...
+      <div className={cn("size-9 relative overflow-hidden", className)}>
+        <Image src={image} alt={name} fill className="object-cover" />
+        ...
       </div>
     );
   }
@@ -29,7 +27,7 @@ export const ImageOrAvatar = ({
   return (
     <Avatar className={cn("size-9 rounded-md", className)}>
       <AvatarFallback
-        style={{backgroundColor: bgColor, color: getContrastColor(bgColor)}}
+        style={{ backgroundColor: bgColor, color: getContrastColor(bgColor) }}
         className="font-semibold text-lg uppercase rounded-md "
       >
         {getInitials(name)}
@@ -37,4 +35,3 @@ export const ImageOrAvatar = ({
     </Avatar>
   );
 };
-

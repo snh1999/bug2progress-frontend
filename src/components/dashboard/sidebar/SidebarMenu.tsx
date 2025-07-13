@@ -11,6 +11,8 @@ import {
 } from "react-icons/go";
 
 import { cn } from "@/lib/utils";
+import { useProjectId } from "@/hooks/useProjectId";
+import { PROJECTS_PATH } from "@/app.constants";
 
 const menuItems = [
   {
@@ -40,18 +42,18 @@ const menuItems = [
 ];
 
 export const SidebarMenu = () => {
-  const workspaceId = 1; //useWorkspaceId();
+  const projectId = useProjectId();
   const pathname = usePathname();
 
   return (
     <ul className="flex flex-col pt-5">
-      {menuItems.map((item) => {
-        const fullHref = `/workspaces/${workspaceId}${item.href}`;
+      {menuItems.map((menuItem) => {
+        const fullHref = `${PROJECTS_PATH}/${projectId}${menuItem.href}`;
         const isActive = pathname === fullHref;
-        const Icon = isActive ? item.activeIcon : item.icon;
+        const Icon = isActive ? menuItem.activeIcon : menuItem.icon;
 
         return (
-          <Link key={item.href} href={fullHref}>
+          <Link key={menuItem.href} href={fullHref}>
             <div
               className={cn(
                 "flex items-center gap-3 p-3 rounded-md font-medium hover:text-primary transition text-neutral-500",
@@ -59,7 +61,7 @@ export const SidebarMenu = () => {
               )}
             >
               <Icon className="size-5 text-neutral-500" />
-              {item.label}
+              {menuItem.label}
             </div>
           </Link>
         );
