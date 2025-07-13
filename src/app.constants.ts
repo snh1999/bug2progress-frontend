@@ -5,4 +5,4 @@ export const BASE_URL =
 export const LOGIN_PATH = "/login";
 export const REGISTER_PATH = "/register";
 export const PROJECTS_PATH = "/projects";
-export const getProjectPathByID = (id: string) => `/PROJECTS_PATH/${id}`;
+export const OPEN_CREATE_PROJECT_MODAL_KEY = "create-project";

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import QueryProvider from "./providers";
 import { Toaster } from "@/components/ui/sonner";
+import { ReactNode } from "react";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 export const metadata: Metadata = {
   title: "Bug2Progress",
@@ -11,15 +13,15 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
       <body>
-        <QueryProvider>
-          <Toaster />
-          {children}
-        </QueryProvider>
+      <QueryProvider>
+        <Toaster/>
+        <NuqsAdapter>{children}</NuqsAdapter>
+      </QueryProvider>
       </body>
     </html>
   );
