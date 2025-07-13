@@ -1,3 +1,16 @@
+Features: 
+
+- [x] Dark mode theming
+- [x] Authentication
+- [ ] Use cookies for authentication
+- [x] Project dashboards page
+- [x] Project creation, editing, and deletion
+- [x] Project settings page
+- [x] Member invitation
+
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

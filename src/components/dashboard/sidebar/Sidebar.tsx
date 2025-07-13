@@ -4,7 +4,7 @@ import { ProjectSwitcher } from "@/components/dashboard/project/ProjectSwitcher"
 
 export const Sidebar = () => {
   return (
-    <aside className="h-full bg-neutral-50 p-4 w-full">
+    <aside className="h-full bg-neutral-50 dark:bg-neutral-900 p-4 w-full">
       <LogoLink />
       <ProjectSwitcher/>
       <SidebarMenu />

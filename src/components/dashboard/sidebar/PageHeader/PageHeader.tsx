@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { RiAddCircleFill } from "react-icons/ri";
 import { useOpenModal } from "@/hooks/useModalHook";
 import { OPEN_CREATE_PROJECT_MODAL_KEY } from "@/app.constants";
+import { ThemeToggle } from "@/components/common/ThemeToggle";
 
 const pathnameMap = {
   home: {
@@ -70,6 +71,7 @@ export const PageHeader = () => {
       </div>
 
       <div className="flex items-center gap-2">
+        <ThemeToggle/>
         <Button onClick={openModal} size="sm" variant="primary"> New Project
           <RiAddCircleFill className="size-5  cursor-pointer hover:opacity-75 transition"/>
         </Button>

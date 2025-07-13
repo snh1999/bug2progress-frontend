@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useRegisterForm } from "./RegisterCard.hooks";
 import { Form } from "@/components/ui/form";
-import { FormInput } from "@/components/common/FormComponent/FormInput";
+import { FormInput } from "@/components/common/form/FormComponent/FormInput";
 import { getLoginLinkText } from "../auth.helpers";
 
 export const RegisterCard = () => {

@@ -3,13 +3,7 @@
 import { useRouter } from "next/navigation";
 import { RiAddCircleFill } from "react-icons/ri";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select";
 import { useGetProjects } from "@/api/projects/projects";
 import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
 import { getRandomColor } from "@/lib/utils";
@@ -36,19 +30,17 @@ export const ProjectSwitcher = () => {
 
   return (
     <div className="flex flex-col gap-y-2">
-      <div className="flex items-center py-2 justify-between">
-        <p className="text-md font-semibold uppercase text-neutral-500">
+      <div className="flex items-center py-3 justify-between">
+        <p className="text-md font-semibold uppercase text-neutral-600 dark:text-neutral-300">
           Projects
         </p>
-        '
         <Button onClick={openModal} size="sm" variant="primary">
-          {" "}
           New
           <RiAddCircleFill className="size-5  cursor-pointer hover:opacity-75 transition" />
         </Button>
       </div>
       <Select onValueChange={onSelect} value={projectId}>
-        <SelectTrigger className="w-full  font-medium p-1">
+        <SelectTrigger className="w-full font-medium p-1">
           <SelectValue placeholder="No project selected" />
         </SelectTrigger>
         <SelectContent>

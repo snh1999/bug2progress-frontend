@@ -3,12 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SettingsIcon, UsersIcon } from "lucide-react";
-import {
-  GoCheckCircle,
-  GoCheckCircleFill,
-  GoHome,
-  GoHomeFill,
-} from "react-icons/go";
+import { GoCheckCircle, GoCheckCircleFill, GoHome, GoHomeFill, } from "react-icons/go";
 
 import { cn } from "@/lib/utils";
 import { useProjectId } from "@/hooks/useProjectId";
@@ -46,7 +41,7 @@ export const SidebarMenu = () => {
   const pathname = usePathname();
 
   return (
-    <ul className="flex flex-col pt-5">
+    <ul className="flex flex-col pt-2">
       {menuItems.map((menuItem) => {
         const fullHref = `${PROJECTS_PATH}/${projectId}${menuItem.href}`;
         const isActive = pathname === fullHref;
@@ -56,11 +51,12 @@ export const SidebarMenu = () => {
           <Link key={menuItem.href} href={fullHref}>
             <div
               className={cn(
-                "flex items-center gap-3 p-3 rounded-md font-medium hover:text-primary transition text-neutral-500",
-                isActive && "bg-white shadow-sm hover:opacity-100 text-primary"
+                "flex items-center gap-3 p-3 rounded-md font-medium hover:font-semibold transition text-neutral-600 dark:text-neutral-400",
+                isActive &&
+                  "bg-neutral-200 dark:bg-neutral-700 font-bold shadow-sm hover:opacity-100 text-primary"
               )}
             >
-              <Icon className="size-5 text-neutral-500" />
+              <Icon className="size-5 text-neutral-600 dark:text-neutral-400" />
               {menuItem.label}
             </div>
           </Link>

@@ -4,6 +4,7 @@ import QueryProvider from "./providers";
 import { Toaster } from "@/components/ui/sonner";
 import { ReactNode } from "react";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { ThemeProvider } from "@/components/common/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Bug2Progress",
@@ -18,10 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-      <QueryProvider>
-        <Toaster/>
-        <NuqsAdapter>{children}</NuqsAdapter>
-      </QueryProvider>
+        <QueryProvider>
+          <ThemeProvider>
+            <Toaster />
+            <NuqsAdapter>{children}</NuqsAdapter>
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );

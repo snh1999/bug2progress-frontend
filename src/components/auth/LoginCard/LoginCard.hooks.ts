@@ -2,7 +2,7 @@
 import { z } from "zod";
 import { useLogin } from "@/api/auth/auth";
 import { useRouter } from "next/navigation";
-import { useFormHooksWrapper } from "@/components/FormHooksWrapper";
+import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 import { TAuthResponse, TLoginDto } from "@/api/auth/auth.types";
 import { toast } from "sonner";
 
