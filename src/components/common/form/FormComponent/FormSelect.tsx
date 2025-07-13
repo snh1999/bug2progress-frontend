@@ -1,8 +1,8 @@
 "use client";
 
-import {FormControl, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue,} from "@/components/ui/select";
-import {TFormComponentProps} from "@/components/common/FormComponent/FormComponent.types.ts";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage, } from "@/components/ui/form";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select";
+import { TFormComponentProps } from "@/components/common/form/FormComponent/FormComponent.types.ts.tsx";
 
 type TFormSelectProps = TFormComponentProps & {
   options: string[];
