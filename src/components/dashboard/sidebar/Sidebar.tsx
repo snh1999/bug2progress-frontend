@@ -1,10 +1,12 @@
 import { LogoLink } from "../../common/header/LogoLink";
 import { SidebarMenu } from "./SidebarMenu";
+import { ProjectSwitcher } from "@/components/dashboard/project/ProjectSwitcher";
 
 export const Sidebar = () => {
   return (
     <aside className="h-full bg-neutral-50 p-4 w-full">
       <LogoLink />
+      <ProjectSwitcher/>
       <SidebarMenu />
     </aside>
   );
