@@ -1,3 +1,5 @@
+import { TPost } from "../posts/posts.types";
+
 export enum ProjectStatus {
   PROPOSED = "PROPOSED",
   IN_DEVELOPMENT = "IN_DEVELOPMENT",
@@ -17,6 +19,11 @@ export type TCreateProjectDto = {
   slug?: string;
 };
 
+export type TUpdateProjectDto = Partial<TCreateProjectDto> & {
+  id: string;
+  ownerId: string;
+};
+
 export type TProject = {
   id: string;
   urlid?: string;
@@ -30,3 +37,5 @@ export type TProject = {
   basePostId: string;
   ownerId: string;
 };
+
+export type TProjectWithPost = TProject & {basePost: TPost};
