@@ -25,6 +25,5 @@ export const useLoginForm = () => {
       router.push("/");
       toast.success("Logged in successfully");
     },
-    onError: (error: any) => toast.error(error.message ?? "Failed to login"),
   });
 };

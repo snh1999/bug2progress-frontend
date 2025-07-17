@@ -4,9 +4,9 @@ import { PageHeader } from "@/components/dashboard/sidebar/PageHeader/PageHeader
 import { Sidebar } from "@/components/dashboard/sidebar/Sidebar";
 import { ReactNode } from "react";
 import { ResponsiveModal } from "@/components/common/ResponsiveModal";
-import { CreateProjectForm } from "@/components/dashboard/project/CreateProjectForm";
 import { useOpenModal } from "@/hooks/useModalHook";
 import { OPEN_CREATE_PROJECT_MODAL_KEY } from "@/app.constants";
+import { CreateProjectForm } from "@/components/dashboard/project/CreateProjectForm/CreateProjectForm";
 
 interface IDashboardLayoutProps {
   children: ReactNode;

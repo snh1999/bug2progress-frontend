@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { FormInput } from "@/components/common/form/FormComponent/FormInput";
-import { useCreateProjectForm } from "@/components/dashboard/project/CreateProjectForm.hooks";
+import { useCreateProjectForm } from "@/components/dashboard/project/CreateProjectForm/CreateProjectForm.hooks";
 import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
 import { ProjectStatus } from "@/api/projects/projects.types";
 
@@ -16,8 +16,9 @@ export const CreateProjectForm = ({onCancel}: CreateProjectFormProps) => {
 
   return (
       <Card className=" h-full border-none shadow-none m-5" >
-        <CardHeader className="flex items-center justify-center text-center p-5" onAbort={onCancel}>
+        <CardHeader className="flex items-center justify-center text-center p-5" >
           <CardTitle className="text-2xl">Create a New Project</CardTitle>
+        </CardHeader>
 
           <CardContent className="w-full p-7">
             <Form {...form}>
@@ -55,14 +56,6 @@ export const CreateProjectForm = ({onCancel}: CreateProjectFormProps) => {
                   required
                 />
 
-                <FormInput
-                  name="postContent"
-                  label="Description"
-                  control={control}
-                  placeholder="Description for project"
-                  textarea
-                />
-
                 <div className="flex items-center justify-end gap-3 pt-2">
                   <Button size="lg" onClick={onCancel} variant="secondary">
                     Cancel
@@ -75,7 +68,6 @@ export const CreateProjectForm = ({onCancel}: CreateProjectFormProps) => {
               </form>
             </Form>
           </CardContent>
-        </CardHeader>
       </Card>
   );
 };

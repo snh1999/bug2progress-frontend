@@ -25,6 +25,7 @@ export const useCreateProjectForm = () => {
       title: "",
       summary: "",
       isPublic: false,
+      urlid: "",
     },
     onSuccess: (test) => {
       router.push(test ? `${PROJECTS_PATH}/${test.id}` : `/`);
