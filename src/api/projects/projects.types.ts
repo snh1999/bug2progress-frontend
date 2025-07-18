@@ -21,7 +21,9 @@ export type TCreateProjectDto = {
 
 export type TUpdateProjectDto = Partial<TCreateProjectDto> & {
   id: string;
-  ownerId: string;
+  ownerId?: string;
+  inviteCode?: string,
+  updateInviteCode? : boolean
 };
 
 export type TProject = {
@@ -36,6 +38,7 @@ export type TProject = {
   isPublic: boolean;
   basePostId: string;
   ownerId: string;
+  inviteCode: string
 };
 
-export type TProjectWithPost = TProject & {basePost: TPost};
+export type TProjectWithPost = TProject & { basePost: TPost };

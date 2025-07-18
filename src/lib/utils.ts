@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { toast } from "sonner";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -28,4 +29,10 @@ export const getInitials = (name: string) => {
     .join("")
     .toUpperCase();
   return initials.length > 2 ? initials.slice(0, 2) : initials;
+};
+
+export const copyToClipboard = (text: string) => {
+  navigator.clipboard.writeText(text).then(() => {
+    toast.success("Copied to clipboard");
+  });
 };

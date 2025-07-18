@@ -15,6 +15,7 @@ const updateProjectFormSchema: z.ZodType<TUpdateProjectDto> = z.object({
   isPublic: z.boolean().optional(),
   status: z.nativeEnum(ProjectStatus),
   slug: z.string().optional(),
+  inviteCode: z.string(),
 });
 
 export const useUpdateProjectForm = (defaultValues: TUpdateProjectDto) => {

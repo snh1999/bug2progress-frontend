@@ -15,6 +15,7 @@ import {
 } from "@/api/projects/projects.types";
 import { useUpdateProjectForm } from "@/components/dashboard/project/UpdateProjectForm/UpdateProjectForm.hooks";
 import LoadingComponent from "@/components/common/LoadingComponent";
+import UpdateInviteCode from "@/components/dashboard/project/UpdateProjectForm/UpdateInviteCode";
 
 interface UpdateProjectFormProps {
   onDelete: () => void;
@@ -81,6 +82,8 @@ export const UpdateProjectForm = ({
               textarea
               required
             />
+
+            <UpdateInviteCode form={form} id={initialValues.id} />
           </CardContent>
         </Card>
 
