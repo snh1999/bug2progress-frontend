@@ -10,7 +10,12 @@ export async function verifyJwtToken(token: string) {
     const { payload } = await jwtVerify(token, secret);
     return payload;
   } catch (error: any) {
-    toast.error(error?.response?.data?.message ?? error?.message ?? "Failed to verify token");
+    console.error(error);
+    console.error(
+      error?.response?.data?.message ??
+        error?.message ??
+        "Failed to verify token"
+    );
     return null;
   }
 }

@@ -6,4 +6,5 @@ export type TFormComponentProps = {
   placeholder?: string;
   control?: Control<any>;
   required?: boolean;
+  disabled?: boolean;
 };

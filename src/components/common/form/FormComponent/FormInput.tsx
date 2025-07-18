@@ -17,6 +17,7 @@ export const FormInput = ({
   control,
   required = false,
   textarea = false,
+  disabled = false
 }: TFormInputProps) => {
   return (
     <FormField
@@ -31,6 +32,7 @@ export const FormInput = ({
                 {...field}
                 placeholder={placeholder}
                 required={required}
+                disabled={disabled}
               />
             ) : (
               <Input
@@ -38,6 +40,7 @@ export const FormInput = ({
                 type={type}
                 placeholder={placeholder}
                 required={required}
+                disabled={disabled}
               />
             )}
           </FormControl>

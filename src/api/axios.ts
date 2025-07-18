@@ -22,7 +22,8 @@ export const GetRequest = async (url: string, config?: any) => {
 
 export const PostRequest = async (url: string, data: any, config?: any) => {
   const api = await apiWithAuth();
-  return api.post(url, data, config);
+  const response = await api.post(url, data, config);
+  return response.data;
 };
 
 export const PutRequest = async (url: string, data: any, config?: any) => {

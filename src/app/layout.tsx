@@ -21,8 +21,8 @@ export default function RootLayout({
       <body>
         <QueryProvider>
           <ThemeProvider>
-            <Toaster />
             <NuqsAdapter>{children}</NuqsAdapter>
+            <Toaster />
           </ThemeProvider>
         </QueryProvider>
       </body>
