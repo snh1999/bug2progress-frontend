@@ -11,6 +11,8 @@ import {
   TProjectWithPost,
   TUpdateProjectDto,
 } from "@/api/projects/projects.types";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export const useCreateProject = () => {
   const queryClient = useQueryClient();
@@ -48,6 +50,21 @@ export const useUpdateProject = () => {
     onSuccess: ({ id }) => {
       queryClient.invalidateQueries({ queryKey: ["project", id] });
       queryClient.invalidateQueries({ queryKey: ["projects"] });
+    },
+  });
+};
+
+export const useDeleteProject = () => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  return useMutation<unknown, Error, string>({
+    mutationFn: async (id: string) => DeleteRequest(`/projects/${id}`),
+    onSuccess: (_, id) => {
+      toast.success("Project deleted");
+      queryClient.invalidateQueries({ queryKey: ["project", id] });
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+      router.push("/");
     },
   });
 };
