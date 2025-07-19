@@ -5,8 +5,12 @@ import { Sidebar } from "@/components/dashboard/sidebar/Sidebar";
 import { ReactNode } from "react";
 import { ResponsiveModal } from "@/components/common/ResponsiveModal";
 import { useOpenModal } from "@/hooks/useModalHook";
-import { OPEN_CREATE_PROJECT_MODAL_KEY } from "@/app.constants";
+import {
+  OPEN_CREATE_PROJECT_MODAL_KEY,
+  OPEN_JOIN_PROJECT_MODAL_KEY,
+} from "@/app.constants";
 import { CreateProjectForm } from "@/components/dashboard/project/CreateProjectForm/CreateProjectForm";
+import JoinProject from "@/components/dashboard/project/JoinProject";
 
 interface IDashboardLayoutProps {
   children: ReactNode;
@@ -14,10 +18,17 @@ interface IDashboardLayoutProps {
 
 const DashboardLayout = ({ children }: IDashboardLayoutProps) => {
   const { closeModal, isOpen } = useOpenModal(OPEN_CREATE_PROJECT_MODAL_KEY);
+  const { closeModal: closeJoinModal, isOpen: isJoinModalOpen } = useOpenModal(
+    OPEN_JOIN_PROJECT_MODAL_KEY
+  );
   return (
     <div className="bg-neutral-100  dark:bg-neutral-800 min-h-screen">
       <ResponsiveModal open={isOpen} onOpenChange={closeModal}>
         <CreateProjectForm onCancel={closeModal} />
+      </ResponsiveModal>
+
+      <ResponsiveModal open={isJoinModalOpen} onOpenChange={closeJoinModal}>
+        <JoinProject />
       </ResponsiveModal>
       <div className="flex w-full h-full lg:pl-[300px]">
         <div className="fixed left-0 top-0 hidden lg:block lg:w-[300px] h-full overflow-y-auto">

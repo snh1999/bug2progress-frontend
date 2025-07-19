@@ -6,3 +6,4 @@ export const LOGIN_PATH = "/login";
 export const REGISTER_PATH = "/register";
 export const PROJECTS_PATH = "/projects";
 export const OPEN_CREATE_PROJECT_MODAL_KEY = "create-project";
+export const OPEN_JOIN_PROJECT_MODAL_KEY = "join-project";

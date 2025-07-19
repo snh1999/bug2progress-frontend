@@ -22,8 +22,8 @@ export type TCreateProjectDto = {
 export type TUpdateProjectDto = Partial<TCreateProjectDto> & {
   id: string;
   ownerId?: string;
-  inviteCode?: string,
-  updateInviteCode? : boolean
+  inviteCode?: string;
+  updateInviteCode?: boolean;
 };
 
 export type TProject = {
@@ -38,7 +38,19 @@ export type TProject = {
   isPublic: boolean;
   basePostId: string;
   ownerId: string;
-  inviteCode: string
+  inviteCode: string;
 };
 
 export type TProjectWithPost = TProject & { basePost: TPost };
+
+enum EProjectRole {
+  MANAGER = "MANAGER",
+  LEAD = "LEAD",
+  DEVELOPER = "DEVELOPER",
+}
+
+export type TProjectContributor = {
+  projectId: string;
+  userId: string;
+  role: EProjectRole;
+};

@@ -3,7 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SettingsIcon, UsersIcon } from "lucide-react";
-import { GoCheckCircle, GoCheckCircleFill, GoHome, GoHomeFill, } from "react-icons/go";
+import {
+  GoCheckCircle,
+  GoCheckCircleFill,
+  GoHome,
+  GoHomeFill,
+} from "react-icons/go";
 
 import { cn } from "@/lib/utils";
 import { useProjectId } from "@/hooks/useProjectId";
@@ -29,8 +34,8 @@ const menuItems = [
     activeIcon: SettingsIcon,
   },
   {
-    label: "Members",
-    href: "/members",
+    label: "Contributors",
+    href: "/contributors",
     icon: UsersIcon,
     activeIcon: UsersIcon,
   },
