@@ -5,10 +5,10 @@ import { CardList } from "@/components/common/DataView/CardList/CardList";
 import LoadingComponent from "@/components/common/LoadingComponent";
 
 export default function Home() {
-  const {data} = useGetProjects();
+  const { data } = useGetProjects();
 
   if (!data) {
-    return <LoadingComponent/>;
+    return <LoadingComponent />;
   }
 
   const cardListData = data.map((item) => ({
@@ -17,7 +17,9 @@ export default function Home() {
     id: item.id,
   }));
 
-  return <>
-    <CardList listItems={cardListData}/>
-  </>;
+  return (
+    <>
+      <CardList listItems={cardListData} />
+    </>
+  );
 }

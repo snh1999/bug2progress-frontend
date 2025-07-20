@@ -1,6 +1,6 @@
-import { LogoLink } from "../../common/header/LogoLink";
+import { LogoLink } from "../common/header/LogoLink";
 import { SidebarMenu } from "./SidebarMenu";
-import { ProjectSwitcher } from "@/components/dashboard/project/ProjectSwitcher";
+import { ProjectSwitcher } from "@/components/project/ProjectSwitcher";
 
 export const Sidebar = () => {
   return (

@@ -1,16 +1,13 @@
 "use client";
 
-import { PageHeader } from "@/components/dashboard/sidebar/PageHeader/PageHeader";
-import { Sidebar } from "@/components/dashboard/sidebar/Sidebar";
+import { PageHeader } from "@/components/sidebar/PageHeader/PageHeader";
+import { Sidebar } from "@/components/sidebar/Sidebar";
 import { ReactNode } from "react";
 import { ResponsiveModal } from "@/components/common/ResponsiveModal";
 import { useOpenModal } from "@/hooks/useModalHook";
-import {
-  OPEN_CREATE_PROJECT_MODAL_KEY,
-  OPEN_JOIN_PROJECT_MODAL_KEY,
-} from "@/app.constants";
-import { CreateProjectForm } from "@/components/dashboard/project/CreateProjectForm/CreateProjectForm";
-import JoinProject from "@/components/dashboard/project/JoinProject";
+import { OPEN_CREATE_PROJECT_MODAL_KEY, OPEN_JOIN_PROJECT_MODAL_KEY, } from "@/app.constants";
+import { CreateProjectForm } from "@/components/project/CreateProjectForm/CreateProjectForm";
+import JoinProject from "@/components/project/JoinProject";
 
 interface IDashboardLayoutProps {
   children: ReactNode;

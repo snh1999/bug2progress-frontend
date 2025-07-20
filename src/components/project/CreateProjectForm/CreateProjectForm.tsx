@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { FormInput } from "@/components/common/form/FormComponent/FormInput";
-import { useCreateProjectForm } from "@/components/dashboard/project/CreateProjectForm/CreateProjectForm.hooks";
+import { useCreateProjectForm } from "@/components/project/CreateProjectForm/CreateProjectForm.hooks";
 import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
 import { ProjectStatus } from "@/api/projects/projects.types";
 

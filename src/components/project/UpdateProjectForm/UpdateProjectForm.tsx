@@ -1,21 +1,12 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { FormInput } from "@/components/common/form/FormComponent/FormInput";
 import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
-import {
-  ProjectStatus,
-  TUpdateProjectDto,
-} from "@/api/projects/projects.types";
-import { useUpdateProjectForm } from "@/components/dashboard/project/UpdateProjectForm/UpdateProjectForm.hooks";
+import { ProjectStatus, TUpdateProjectDto, } from "@/api/projects/projects.types";
+import { useUpdateProjectForm } from "@/components/project/UpdateProjectForm/UpdateProjectForm.hooks";
 import LoadingComponent from "@/components/common/LoadingComponent";
-import UpdateInviteCode from "@/components/dashboard/project/UpdateProjectForm/UpdateInviteCode";
+import UpdateInviteCode from "@/components/project/UpdateProjectForm/UpdateInviteCode";
 
 interface UpdateProjectFormProps {
   onDelete: () => void;

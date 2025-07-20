@@ -1,7 +1,7 @@
 "use client";
 import { useDeleteProject, useGetProject } from "@/api/projects/projects";
 import LoadingComponent from "@/components/common/LoadingComponent";
-import { UpdateProjectForm } from "@/components/dashboard/project/UpdateProjectForm/UpdateProjectForm";
+import { UpdateProjectForm } from "@/components/project/UpdateProjectForm/UpdateProjectForm";
 import { useProjectId } from "@/hooks/useProjectId";
 import { useConfirm } from "@/hooks/useConfirm";
 
