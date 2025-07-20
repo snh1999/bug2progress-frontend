@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger, } from "@/components/ui/
 import { MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { ThemeToggle } from "@/components/common/ThemeToggle";
+import { ThemeToggle } from "@/components/common/themes/ThemeToggle";
 
 const pathnameMap = {
   home: {

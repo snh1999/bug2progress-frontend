@@ -4,7 +4,7 @@ import Header from "@/components/common/header/header";
 import { ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { getHeaderButtonLink } from "@/components/auth/auth.helpers";
-import { ThemeToggle } from "@/components/common/ThemeToggle";
+import { ThemeToggle } from "@/components/common/themes/ThemeToggle";
 
 interface AuthLayoutProps {
   children: ReactNode;
