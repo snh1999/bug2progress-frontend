@@ -1,4 +1,5 @@
 import { TPost } from "../posts/posts.types";
+import { TProfile, TUser } from "@/api/users/users.types";
 
 export enum ProjectStatus {
   PROPOSED = "PROPOSED",
@@ -43,7 +44,7 @@ export type TProject = {
 
 export type TProjectWithPost = TProject & { basePost: TPost };
 
-enum EProjectRole {
+export enum EProjectRole {
   MANAGER = "MANAGER",
   LEAD = "LEAD",
   DEVELOPER = "DEVELOPER",
@@ -54,3 +55,21 @@ export type TProjectContributor = {
   userId: string;
   role: EProjectRole;
 };
+
+export type TProjectContributorWithUser = TProjectContributor & {
+  user: TUser & {
+    profile: TProfile
+  }
+}
+
+
+export type TContributorDto = {
+  userId: string;
+  role: EProjectRole;
+  projectId: string;
+}
+
+export type TDeleteProjectDto = {
+  projectId: string;
+  userId: string;
+}
