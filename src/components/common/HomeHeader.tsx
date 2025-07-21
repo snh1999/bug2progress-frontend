@@ -4,7 +4,7 @@ import { CgEnter } from "react-icons/cg";
 import React from "react";
 import { useOpenModal } from "@/hooks/useModalHook";
 import { OPEN_CREATE_PROJECT_MODAL_KEY, OPEN_JOIN_PROJECT_MODAL_KEY, } from "@/app.constants";
-import { ThemeToggle } from "@/components/common/ThemeToggle";
+import { ThemeToggle } from "@/components/common/themes/ThemeToggle";
 import { LogoLink } from "@/components/common/header/LogoLink";
 import { useLogOut } from "@/api/auth/auth";
 

@@ -4,5 +4,5 @@ import { GetRequest } from "@/api/axios";
 export const useGetCurrentUser = () =>
   useQuery({
     queryKey: ["currentUser"],
-    queryFn: async () => GetRequest("/users/me"),
+    queryFn: async () => GetRequest("/user/me"),
   });

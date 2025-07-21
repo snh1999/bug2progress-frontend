@@ -4,14 +4,15 @@ import { Button, type ButtonProps } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from "@/components/ui/card";
 import { ResponsiveModal } from "@/components/common/ResponsiveModal";
 
-type TUseConfirm = { title: string, message: string, variant?: ButtonProps["variant"] };
+type TUseConfirm = { title: string, message: string, variant?: ButtonProps["variant"], onConfirm?: () => void };
 
 export const useConfirm = ({
     title,
     message,
-    variant
+    variant,
+    onConfirm
   }: TUseConfirm
-) : [()=>ReactNode, () => Promise<unknown>] => {
+): [() => ReactNode, () => Promise<unknown>] => {
   const [promise, setPromise] = useState<{ resolve: (value: boolean) => void } | null>(null);
 
   const confirm = () => {
@@ -26,6 +27,7 @@ export const useConfirm = ({
 
   const handleConfirm = () => {
     promise?.resolve(true);
+    if(onConfirm) onConfirm();
     handleClose();
   };
 
