@@ -28,7 +28,6 @@ const UpdateInviteCode = ({form, id}: TUpdateProjectForm) => {
       updateInviteCode: true,
     }, {
       onSuccess: (data) => {
-        console.log(data);
         setValue("inviteCode", data.inviteCode);
         toast.success("Invite code updated");
       },

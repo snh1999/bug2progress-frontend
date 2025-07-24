@@ -1,5 +1,9 @@
 import { z } from "zod";
-import { ProjectStatus, TCreateProjectDto, TProject, } from "@/api/projects/projects.types";
+import {
+  ProjectStatus,
+  TCreateProjectDto,
+  TProject,
+} from "@/api/projects/projects.types";
 import { useCreateProject } from "@/api/projects/projects";
 import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 import { toast } from "sonner";
@@ -27,8 +31,8 @@ export const useCreateProjectForm = () => {
       isPublic: false,
       urlid: "",
     },
-    onSuccess: (test) => {
-      router.push(test ? `${PROJECTS_PATH}/${test.id}` : `/`);
+    onSuccess: (data) => {
+      router.push(data ? `${PROJECTS_PATH}/${data.id}` : `/`);
       toast.success("Project created");
     },
   });
