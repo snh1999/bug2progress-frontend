@@ -1,6 +1,8 @@
 import { LogoLink } from "../common/header/LogoLink";
 import { SidebarMenu } from "./SidebarMenu";
 import { ProjectSwitcher } from "@/components/project/ProjectSwitcher";
+import { Separator } from "@/components/ui/separator";
+import FeaturesView from "@/components/features/FeaturesView";
 
 export const Sidebar = () => {
   return (
@@ -8,6 +10,8 @@ export const Sidebar = () => {
       <LogoLink />
       <ProjectSwitcher/>
       <SidebarMenu />
+      <Separator className="my-3" />
+      <FeaturesView />
     </aside>
   );
 };
