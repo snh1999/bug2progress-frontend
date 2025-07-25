@@ -2,6 +2,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { DeleteRequest, GetRequest, PatchRequest, PostRequest } from "@/api/axios";
 import { TCreateFeatureDto, TDeleteFeatureDto, TFeature, TUpdateFeatureDto } from "@/api/features/features.types";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { PROJECTS_PATH } from "@/app.constants";
 
 export const useCreateFeature = () => {
   const queryClient = useQueryClient();
@@ -45,6 +47,7 @@ export const useUpdateFeature = () => {
 
 export const useDeleteFeature = () => {
   const queryClient = useQueryClient();
+  const router = useRouter()
 
   return useMutation<unknown, Error, TDeleteFeatureDto>({
     mutationFn: async (id: TDeleteFeatureDto) => {
@@ -55,6 +58,7 @@ export const useDeleteFeature = () => {
       toast.success("Feature deleted");
       queryClient.invalidateQueries({queryKey: ["feature", projectId, id]});
       queryClient.invalidateQueries({queryKey: ["features", projectId]});
+      router.push(`${PROJECTS_PATH}/${projectId}`)
     },
   });
 };
