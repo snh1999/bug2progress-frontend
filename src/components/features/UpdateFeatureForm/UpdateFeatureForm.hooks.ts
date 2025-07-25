@@ -1,35 +1,30 @@
 import { z } from "zod";
-import { ProjectStatus, TProject, TUpdateProjectDto, } from "@/api/projects/projects.types";
-import { useUpdateProject } from "@/api/projects/projects";
 import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { PROJECTS_PATH } from "@/app.constants";
+import { FeatureType, TFeature, TUpdateFeatureDto } from "@/api/features/features.types";
+import { useUpdateFeature } from "@/api/features/features";
 
-const updateProjectFormSchema: z.ZodType<TUpdateProjectDto> = z.object({
+const updateFeatureFormSchema: z.ZodType<TUpdateFeatureDto> = z.object({
   id: z.string(),
   title: z.string(),
-  urlid: z.string().optional(),
-  ownerId: z.string(),
-  summary: z.string(),
-  isPublic: z.boolean().optional(),
-  status: z.nativeEnum(ProjectStatus),
-  slug: z.string().optional(),
-  inviteCode: z.string(),
+  description: z.string().optional(),
+  featureType: z.nativeEnum(FeatureType),
+  projectId: z.string(),
 });
 
-export const useUpdateProjectForm = (defaultValues: TUpdateProjectDto) => {
-  const router = useRouter();
-  return useFormHooksWrapper<TUpdateProjectDto, TProject>({
-    formSchema: updateProjectFormSchema,
-    useFormMutation: useUpdateProject,
+export const useUpdateFeatureForm = ({defaultValues, onSuccess}: {
+  defaultValues: TUpdateFeatureDto,
+  onSuccess?: () => void
+}) => {
+  return useFormHooksWrapper<TUpdateFeatureDto, TFeature>({
+    formSchema: updateFeatureFormSchema,
+    useFormMutation: useUpdateFeature,
     defaultValues: {
       ...defaultValues,
-      urlid: defaultValues.urlid ?? "",
     },
     onSuccess: (data) => {
-      router.push(data ? `${PROJECTS_PATH}/${data.id}` : `/`);
-      toast.success("Project updated");
+      toast.success("Feature updated");
+      if(onSuccess) onSuccess();
     },
   });
 };

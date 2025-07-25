@@ -7,11 +7,11 @@ import { useCreateFeatureForm } from "@/components/features/CreateFeatureForm/Cr
 import { FeatureType } from "@/api/features/features.types";
 
 interface CreateFeatureFormProps {
-  onCancel?: () => void;
+  onCancel: () => void;
 }
 
 export const CreateFeatureForm = ({onCancel}: CreateFeatureFormProps) => {
-  const {form, onSubmit, isPending} = useCreateFeatureForm();
+  const {form, onSubmit, isPending} = useCreateFeatureForm(onCancel);
   const {control, handleSubmit} = form;
 
   return (

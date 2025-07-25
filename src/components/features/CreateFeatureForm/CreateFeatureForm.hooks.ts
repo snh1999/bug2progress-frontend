@@ -12,7 +12,7 @@ const createProjectFormSchema: z.ZodType<TCreateFeatureDto> = z.object({
   projectId: z.string(),
 });
 
-export const useCreateFeatureForm = () => {
+export const useCreateFeatureForm = (onSuccess: () => void) => {
   const projectId = useProjectId();
   return useFormHooksWrapper<TCreateFeatureDto, TFeature>({
     formSchema: createProjectFormSchema,
@@ -25,6 +25,7 @@ export const useCreateFeatureForm = () => {
     },
     onSuccess: () => {
       toast.success("Feature created");
+      onSuccess();
     },
   });
 };

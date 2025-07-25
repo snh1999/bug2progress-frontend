@@ -8,23 +8,33 @@ import { MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/common/themes/ThemeToggle";
+import EditFeatureButton from "@/components/features/EditFeatureButton";
 
 const pathnameMap = {
   home: {
     title: "Home",
     description: "Monitor all of your projects and tasks here",
+    component: <></>
   },
   settings: {
     title: "Settings",
     description: "View all of your settings here",
+    component: <></>
   },
   tasks: {
     title: "My Tasks",
     description: "View all of your tasks here",
+    component: <></>
   },
-  projects: {
+  contributors: {
     title: "Contributors",
     description: "View all the contributing members of your projects here",
+    component: <></>
+  },
+  features: {
+    title: "Features",
+    description: "View all of your features for the project here",
+    component: <EditFeatureButton/>
   },
 };
 
@@ -56,7 +66,7 @@ export const PageHeader = () => {
   const pathnameParts = pathname.split("/");
   const pathnameKey = pathnameParts[3] as keyof typeof pathnameMap;
 
-  const { title, description } =
+  const { title, description, component } =
     pathnameMap[pathnameKey] || pathnameMap.home;
   const { mutate: logOut, isPending } = useLogOut();
 
@@ -72,6 +82,7 @@ export const PageHeader = () => {
 
       <div className="flex items-center gap-2">
         <ThemeToggle />
+        {component}
         <Button
           variant="destructive"
           disabled={isPending}

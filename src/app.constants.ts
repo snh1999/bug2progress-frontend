@@ -8,3 +8,4 @@ export const PROJECTS_PATH = "/projects";
 export const OPEN_CREATE_PROJECT_MODAL_KEY = "create-project";
 export const OPEN_JOIN_PROJECT_MODAL_KEY = "join-project";
 export const OPEN_CREATE_FEATURE_MODAL_KEY = "create-feature";
+export const OPEN_UPDATE_FEATURE_MODAL_KEY = "update-feature";
