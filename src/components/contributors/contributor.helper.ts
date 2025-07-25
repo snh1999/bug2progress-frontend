@@ -6,13 +6,15 @@ export enum EContributorAction {
   INVITE = "INVITE",
   REMOVE = "REMOVE",
   EDIT_ROLE = "EDIT_ROLE",
+  VIEW_SETTINGS = "VIEW_SETTINGS"
 }
 
 export const EContributorPermission : Record<string, EContributorAction[]> = {
   OWNER: [
     EContributorAction.INVITE,
     EContributorAction.REMOVE,
-    EContributorAction.EDIT_ROLE
+    EContributorAction.EDIT_ROLE,
+    EContributorAction.VIEW_SETTINGS
   ]
 }
 
