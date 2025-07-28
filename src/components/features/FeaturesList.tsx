@@ -11,7 +11,7 @@ import LoadingComponent from "@/components/common/LoadingComponent";
 import { usePathname } from "next/navigation";
 import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
 
-const FeaturesView = () => {
+const FeaturesList = () => {
   const projectId = useProjectId();
   const {data: features} = useGetFeatures(projectId);
   const { openModal: openFeatureModal } = useOpenModal(OPEN_CREATE_FEATURE_MODAL_KEY);
@@ -60,4 +60,4 @@ const FeaturesView = () => {
   </div>;
 };
 
-export default FeaturesView;
+export default FeaturesList;

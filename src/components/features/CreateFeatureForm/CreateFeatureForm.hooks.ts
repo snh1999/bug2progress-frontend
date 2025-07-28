@@ -1,11 +1,15 @@
 import { z } from "zod";
 import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 import { toast } from "sonner";
-import { FeatureType, TCreateFeatureDto, TFeature } from "@/api/features/features.types";
+import {
+  FeatureType,
+  TCreateFeatureDto,
+  TFeature,
+} from "@/api/features/features.types";
 import { useProjectId } from "@/hooks/useProjectId";
 import { useCreateFeature } from "@/api/features/features";
 
-const createProjectFormSchema: z.ZodType<TCreateFeatureDto> = z.object({
+const createFeatureFormSchema: z.ZodType<TCreateFeatureDto> = z.object({
   title: z.string(),
   description: z.string(),
   featureType: z.nativeEnum(FeatureType),
@@ -15,13 +19,13 @@ const createProjectFormSchema: z.ZodType<TCreateFeatureDto> = z.object({
 export const useCreateFeatureForm = (onSuccess: () => void) => {
   const projectId = useProjectId();
   return useFormHooksWrapper<TCreateFeatureDto, TFeature>({
-    formSchema: createProjectFormSchema,
+    formSchema: createFeatureFormSchema,
     useFormMutation: useCreateFeature,
     defaultValues: {
       title: "",
       description: "",
       featureType: FeatureType.ACTIVE,
-      projectId
+      projectId,
     },
     onSuccess: () => {
       toast.success("Feature created");

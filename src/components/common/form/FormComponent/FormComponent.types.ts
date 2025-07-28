@@ -8,3 +8,13 @@ export type TFormComponentProps = {
   required?: boolean;
   disabled?: boolean;
 };
+
+
+export type TFormInputProps = {
+  value?: Date
+  onChange: (date: Date) => void,
+  placeholder?: string,
+  className?: string,
+  required?: boolean;
+  disabled?: boolean;
+}
