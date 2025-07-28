@@ -6,6 +6,7 @@ import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
 import LoadingComponent from "@/components/common/LoadingComponent";
 import { useUpdateFeatureForm } from "@/components/features/UpdateFeatureForm/UpdateFeatureForm.hooks";
 import { FeatureType, TUpdateFeatureDto } from "@/api/features/features.types";
+import { convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 interface UpdateProjectFormProps {
   onCancel?: () => void;
@@ -58,7 +59,10 @@ export const UpdateFeatureForm = ({
               placeholder="Select the current type for the feature"
               control={control}
               required
-              options={Object.values(FeatureType)}
+              options={Object.values(FeatureType).map((featureType) => ({
+                value: featureType,
+                label: convertSnakeCaseToTitleCase(featureType),
+              }))}
             />
 
             <FormInput

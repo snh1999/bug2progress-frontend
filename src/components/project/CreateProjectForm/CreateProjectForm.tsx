@@ -5,6 +5,7 @@ import { FormInput } from "@/components/common/form/FormComponent/FormInput";
 import { useCreateProjectForm } from "@/components/project/CreateProjectForm/CreateProjectForm.hooks";
 import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
 import { ProjectStatus } from "@/api/projects/projects.types";
+import { convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 interface CreateProjectFormProps {
   onCancel?: () => void;
@@ -44,7 +45,10 @@ export const CreateProjectForm = ({onCancel}: CreateProjectFormProps) => {
                   placeholder="Select the current project status"
                   control={control}
                   required
-                  options={Object.values(ProjectStatus)}
+                  options={Object.values(ProjectStatus).map((status) => ({
+                    value: status,
+                    label: convertSnakeCaseToTitleCase(status),
+                  }))}
                 />
 
                 <FormInput

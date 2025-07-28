@@ -7,6 +7,7 @@ import { ProjectStatus, TUpdateProjectDto, } from "@/api/projects/projects.types
 import { useUpdateProjectForm } from "@/components/project/UpdateProjectForm/UpdateProjectForm.hooks";
 import LoadingComponent from "@/components/common/LoadingComponent";
 import UpdateInviteCode from "@/components/project/UpdateProjectForm/UpdateInviteCode";
+import { convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 interface UpdateProjectFormProps {
   onDelete: () => void;
@@ -62,7 +63,10 @@ export const UpdateProjectForm = ({
               placeholder="Select the current project status"
               control={control}
               required
-              options={Object.values(ProjectStatus)}
+              options={Object.values(ProjectStatus).map((status) => ({
+                value: status,
+                label: convertSnakeCaseToTitleCase(status),
+              }))}
             />
 
             <FormInput

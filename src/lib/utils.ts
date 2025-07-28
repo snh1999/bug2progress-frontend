@@ -11,7 +11,7 @@ export const getRandomColor = () => {
   const r = getRandomValue();
   const g = getRandomValue();
   const b = getRandomValue();
-  return `#${[r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('')}`;
+  return `#${[r, g, b].map((v) => v.toString(16).padStart(2, "0")).join("")}`;
 };
 
 export const getContrastColor = (hex: string) => {
@@ -35,4 +35,12 @@ export const copyToClipboard = (text: string) => {
   navigator.clipboard.writeText(text).then(() => {
     toast.success("Copied to clipboard");
   });
+};
+
+export const convertSnakeCaseToTitleCase = (str: string) => {
+  return str
+    .toLowerCase()
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 };

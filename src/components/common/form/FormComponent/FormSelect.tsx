@@ -4,8 +4,12 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage, } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select";
 import { TFormComponentProps } from "@/components/common/form/FormComponent/FormComponent.types";
 
+type TOptions = {
+  value: string;
+  label: string;
+}
 type TFormSelectProps = TFormComponentProps & {
-  options: string[];
+  options: TOptions[];
 };
 
 export function FormSelect({
@@ -13,8 +17,9 @@ export function FormSelect({
   name,
   placeholder = "",
   control,
-  required = false,
   options,
+  required = false,
+  disabled = false
 }: TFormSelectProps) {
   return (
     <FormField
@@ -27,6 +32,7 @@ export function FormSelect({
             onValueChange={field.onChange}
             defaultValue={field.value}
             required={required}
+            disabled={disabled}
           >
             <FormControl>
               <SelectTrigger>
@@ -34,9 +40,9 @@ export function FormSelect({
               </SelectTrigger>
             </FormControl>
             <SelectContent>
-              {options.map((option) => (
-                <SelectItem key={option} value={option}>
-                  {option}
+              {options.map(({label, value}) => (
+                <SelectItem key={value} value={value}>
+                  {label}
                 </SelectItem>
               ))}
             </SelectContent>

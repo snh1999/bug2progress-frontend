@@ -5,6 +5,7 @@ import { FormInput } from "@/components/common/form/FormComponent/FormInput";
 import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
 import { useCreateFeatureForm } from "@/components/features/CreateFeatureForm/CreateFeatureForm.hooks";
 import { FeatureType } from "@/api/features/features.types";
+import { convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 interface CreateFeatureFormProps {
   onCancel: () => void;
@@ -37,7 +38,10 @@ export const CreateFeatureForm = ({onCancel}: CreateFeatureFormProps) => {
                   placeholder="Select the current type for the feature"
                   control={control}
                   required
-                  options={Object.values(FeatureType)}
+                  options={Object.values(FeatureType).map((featureType) => ({
+                    value: featureType,
+                    label: convertSnakeCaseToTitleCase(featureType),
+                  }))}
                 />
 
                 <FormInput
