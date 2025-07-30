@@ -7,12 +7,14 @@ interface ImageOrAvatarProps {
   name: string;
   className?: string;
   bgColor?: string;
+  size?: number;
 }
 
 export const ImageOrAvatar = ({
   image,
   name,
   className,
+  size = 9,
   bgColor = getRandomColor(),
 }: ImageOrAvatarProps) => {
   if (image) {
@@ -25,10 +27,10 @@ export const ImageOrAvatar = ({
   }
 
   return (
-    <Avatar className={cn("size-9 rounded-md", className)}>
+    <Avatar  className={cn("rounded-md", size && `size-${size}`,  className)}>
       <AvatarFallback
         style={{ backgroundColor: bgColor, color: getContrastColor(bgColor) }}
-        className="font-semibold text-lg uppercase rounded-md "
+        className={cn("font-semibold p-1 uppercase rounded-md", size && size >= 9 ? "text-lg" : "text-sm")}
       >
         {getInitials(name)}
       </AvatarFallback>
