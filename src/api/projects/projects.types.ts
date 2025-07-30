@@ -1,5 +1,5 @@
 import { TPost } from "../posts/posts.types";
-import { TProfile, TUser } from "@/api/users/users.types";
+import { TUserWithProfile } from "@/api/users/users.types";
 
 export enum ProjectStatus {
   PROPOSED = "PROPOSED",
@@ -57,10 +57,8 @@ export type TProjectContributor = {
 };
 
 export type TProjectContributorWithUser = TProjectContributor & {
-  user: TUser & {
-    profile: TProfile
-  }
-}
+  user: TUserWithProfile
+};
 
 
 export type TContributorDto = {

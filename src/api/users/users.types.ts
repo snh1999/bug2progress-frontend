@@ -18,6 +18,10 @@ export type TUser = {
   isActive: boolean;
 };
 
+export type TUserWithProfile = TUser & {
+    profile: TProfile
+}
+
 export enum ERole {
   ADMIN = "ADMIN",
   USER = "USER",
