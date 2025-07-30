@@ -16,11 +16,29 @@ export const useCreateTicket = () => {
   });
 };
 
-export const useGetTickets = ({featureId, projectId}: TGetTickets) =>
-  useQuery<TFeature[], Error>({
-    queryKey: ["tickets", featureId],
-    queryFn: async () => (await GetRequest(`/projects/${projectId}/features/${featureId}/tickets`)).data,
+export const useGetTickets = ({
+  featureId,
+  projectId,
+  ticketPriority,
+  ticketStatus,
+  ticketType,
+  dueAt,
+  assignedContributorId,
+  verifierId
+}: TGetTickets) => {
+  const params = new URLSearchParams();
+  if (dueAt) params.append('dueAt', dueAt);
+  if (verifierId) params.append('verifierId', verifierId);
+  if (ticketType) params.append('ticketType', ticketType);
+  if (ticketStatus) params.append('ticketStatus', ticketStatus);
+  if (ticketPriority) params.append('ticketPriority', ticketPriority);
+  if (assignedContributorId) params.append('assignedContributorId', assignedContributorId);
+
+  return useQuery<TTicket[], Error>({
+    queryKey: ["tickets", featureId, ticketPriority, ticketStatus, ticketType, dueAt, assignedContributorId, verifierId],
+    queryFn: async () => (await GetRequest(`/projects/${projectId}/features/${featureId}/tickets?${params.toString()}`)).data,
   });
+};
 
 export const useGetTicket = ({id, featureId, projectId}: TGetTicket) =>
   useQuery<TFeature, Error>({

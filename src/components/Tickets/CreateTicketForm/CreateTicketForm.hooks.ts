@@ -15,7 +15,8 @@ const createTicketFormSchema: z.ZodType<TCreateTicketDto> = z.object({
   ticketPriority: z.nativeEnum(ETicketPriority).optional(),
   ticketStatus: z.nativeEnum(ETicketStatus),
   position: z.number(),
-});
+  dueAt: z.date().optional(),
+})
 
 export const useCreateTicketForm = (onSuccess: () => void) => {
   const projectId = useProjectId();

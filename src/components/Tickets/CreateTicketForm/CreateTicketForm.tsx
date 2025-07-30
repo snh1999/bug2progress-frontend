@@ -124,7 +124,6 @@ export const CreateTicketForm = ({onCancel, features = [], contributors = []}: C
                 Create
               </Button>
             </div>
-
           </form>
         </Form>
       </CardContent>

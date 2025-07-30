@@ -1,3 +1,6 @@
+import { TFeature } from "../features/features.types";
+import { TUserWithProfile } from "@/api/users/users.types";
+
 export enum ETicketType {
   BUG = "BUG",
   FEATURE = "FEATURE",
@@ -43,7 +46,7 @@ export type TCreateTicketDto = {
   ticketStatus: ETicketStatus;
   position: number;
   assignedContributorId?: string;
-  dueAt?: string;
+  dueAt?: Date;
 }
 
 export type TUpdateTicketDto = Partial<TCreateTicketDto> & TGetTicket & {
@@ -53,6 +56,13 @@ export type TUpdateTicketDto = Partial<TCreateTicketDto> & TGetTicket & {
 export type TGetTickets = {
   featureId: string;
   projectId: string;
+  assignedContributorId?: string | null;
+  dueAt?: string | null;
+  ticketType?: ETicketType | null;
+  ticketPriority?: ETicketPriority | null;
+  ticketStatus?: ETicketStatus | null;
+  verifierId?: string | null;
+  creatorId?: string | null;
 }
 
 export type TGetTicket = TGetTickets & {
@@ -65,11 +75,17 @@ export type TTicket = {
   description: string;
   projectId: string;
   featureId: string;
+  feature: TFeature;
   creatorId: string;
+  creator: TUserWithProfile;
   position: number;
   ticketType: ETicketType;
   ticketPriority?: ETicketPriority;
   assignedContributorId?: string;
+  assignedContributor?: TUserWithProfile;
+  dueAt?: string;
+  createdAt: string;
   verifierId?: string;
+  verifiedBy?: TUserWithProfile
   ticketStatus: ETicketStatus;
 }
