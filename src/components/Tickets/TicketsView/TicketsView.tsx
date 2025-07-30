@@ -9,6 +9,8 @@ import { useFeatureId } from "@/hooks/useFeatureId";
 import { ETicketView } from "@/components/Tickets/TicketsView/TicketsView.types";
 import { useGetTickets } from "@/api/tickets/tickets";
 import LoadingComponent from "@/components/common/LoadingComponent";
+import { Separator } from "@/components/ui/separator";
+import { TicketFilters } from "@/components/Tickets/TicketsView/DataTableColumns/filters/TicketFilters";
 import { useTicketFilters } from "@/hooks/useTicketFilters";
 import { ticketColumns } from "@/components/Tickets/TicketsView/DataTableColumns/ticketColumns";
 import { DataTable } from "@/components/common/DataTable";
@@ -82,7 +84,9 @@ export const TicketsView = ({hideFeatureFilter}: TicketsViewProps) => {
             </TabsList>
             <CreateTicketButton/>
           </div>
-
+          <Separator className="my-2"/>
+          <TicketFilters hideFeatureFilter={hideFeatureFilter}/>
+          <Separator className="my-2"/>
           {isLoadingTickets ? (
             <LoadingComponent/>
           ) : (
