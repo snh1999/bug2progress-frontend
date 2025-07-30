@@ -4,22 +4,25 @@ import { useProjectId } from "@/hooks/useProjectId";
 import { useGetFeature } from "@/api/features/features";
 import LoadingComponent from "@/components/common/LoadingComponent";
 import { toast } from "sonner";
+import { TicketsView } from "@/components/Tickets/TicketsView/TicketsView";
 
 const FeaturePage = () => {
   const projectId = useProjectId();
   const featureId = useFeatureId();
 
-  const { data: feature, isLoading, error } = useGetFeature(projectId, featureId);
+  const {data: feature, isLoading, error} = useGetFeature(projectId, featureId);
 
-  if(error) {
+  if (error) {
     toast.error(error.message);
   }
 
   if (!feature || isLoading) {
-    return <LoadingComponent />
+    return <LoadingComponent/>;
   }
 
-  return <div>{feature.title}</div>;
+  return <div>{feature.title}
+    <TicketsView/>
+  </div>;
 };
 
 export default FeaturePage;
