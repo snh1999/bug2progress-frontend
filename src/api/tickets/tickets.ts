@@ -42,7 +42,7 @@ export const useGetTickets = ({
 
 export const useGetTicket = ({id, featureId, projectId}: TGetTicket) =>
   useQuery<TFeature, Error>({
-    queryKey: ["feature", featureId, id],
+    queryKey: ["ticket", featureId, id],
     queryFn: async () => (await GetRequest(`/projects/${projectId}/features/${featureId}/tickets/${id}`)).data,
   });
 
@@ -56,13 +56,13 @@ export const useUpdateTicket = () => {
     },
     onSuccess: (_, {id, featureId,}) => {
       toast.success("Feature updated");
-      queryClient.invalidateQueries({queryKey: ["feature", featureId, id]});
-      queryClient.invalidateQueries({queryKey: ["features", featureId]});
+      queryClient.invalidateQueries({queryKey: ["ticket", featureId, id]});
+      queryClient.invalidateQueries({queryKey: ["tickets", featureId]});
     },
   });
 };
 
-export const useDeleteFeature = () => {
+export const useDeleteTicket = () => {
   const queryClient = useQueryClient();
   return useMutation<unknown, Error, TGetTicket>({
     mutationFn: async (data: TGetTicket) => {
@@ -71,8 +71,8 @@ export const useDeleteFeature = () => {
     },
     onSuccess: (_, {id, featureId}) => {
       toast.success("Feature deleted");
-      queryClient.invalidateQueries({queryKey: ["feature", featureId, id]});
-      queryClient.invalidateQueries({queryKey: ["features", featureId]});
+      queryClient.invalidateQueries({queryKey: ["ticket", featureId, id]});
+      queryClient.invalidateQueries({queryKey: ["tickets", featureId]});
     },
   });
 };

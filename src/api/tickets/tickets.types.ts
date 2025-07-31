@@ -49,8 +49,9 @@ export type TCreateTicketDto = {
   dueAt?: Date;
 }
 
-export type TUpdateTicketDto = Partial<TCreateTicketDto> & TGetTicket & {
+export type TUpdateTicketDto = Partial<TCreateTicketDto> & {
   verifierId?: string;
+  id: string;
 }
 
 export type TGetTickets = {
