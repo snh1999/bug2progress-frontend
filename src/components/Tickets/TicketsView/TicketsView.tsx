@@ -10,9 +10,9 @@ import { ETicketView } from "@/components/Tickets/TicketsView/TicketsView.types"
 import { useGetTickets } from "@/api/tickets/tickets";
 import LoadingComponent from "@/components/common/LoadingComponent";
 import { Separator } from "@/components/ui/separator";
-import { TicketFilters } from "@/components/Tickets/TicketsView/DataTableColumns/filters/TicketFilters";
+import { TicketFilters } from "@/components/Tickets/TicketsView/DataTable/filters/TicketFilters";
 import { useTicketFilters } from "@/hooks/useTicketFilters";
-import { ticketColumns } from "@/components/Tickets/TicketsView/DataTableColumns/ticketColumns";
+import { ticketColumns } from "@/components/Tickets/TicketsView/DataTable/ticketColumns";
 import { DataTable } from "@/components/common/DataTable";
 
 

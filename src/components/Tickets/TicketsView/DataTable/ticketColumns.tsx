@@ -4,16 +4,16 @@ import { ColumnDef } from "@tanstack/react-table";
 import { TTicket } from "@/api/tickets/tickets.types";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown, MoreVertical } from "lucide-react";
-import { TicketViewDueHeader } from "@/components/Tickets/TicketsView/DataTableColumns/date/TicketViewDueHeader";
+import { TicketViewDueHeader } from "@/components/Tickets/TicketsView/DataTable/date/TicketViewDueHeader";
 import {
   TicketViewContributorHover
-} from "@/components/Tickets/TicketsView/DataTableColumns/contributors/TicketViewContributorHover";
-import { TicketViewFeatureHover } from "@/components/Tickets/TicketsView/DataTableColumns/feature/TicketViewFeature";
+} from "@/components/Tickets/TicketsView/DataTable/contributors/TicketViewContributorHover";
+import { TicketViewFeatureHover } from "@/components/Tickets/TicketsView/DataTable/feature/TicketViewFeature";
 import {
   TicketPriority,
   TicketStatus,
   TicketType
-} from "@/components/Tickets/TicketsView/DataTableColumns/enums/TicketViewEnums";
+} from "@/components/Tickets/TicketsView/DataTable/enums/TicketViewEnums";
 import { TicketRowContextMenu } from "@/components/Tickets/TicketsView/TicketRowContextMenu";
 
 
@@ -34,7 +34,9 @@ export const ticketColumns: ColumnDef<TTicket>[] = [
     cell: ({row}) =>
         <div className="flex items-center justify-between">
           <p className="flex line-clamp-1">{row.original.title}</p>
-
+          <TicketRowContextMenu id={row.original.id} featureId={row.original.featureId}>
+            <Button variant="ghost" className="ml-2"><MoreVertical className="size-4 p-0"/></Button>
+          </TicketRowContextMenu>
         </div>
   },
 
@@ -130,11 +132,11 @@ export const ticketColumns: ColumnDef<TTicket>[] = [
     cell: ({row}) =>
       <TicketViewContributorHover user={row.original.creator}/>
   },
-  {
-    accessorKey: "description",
-    header: "",
-    cell: ({row}) => ""
-  },
+  // {
+  //   accessorKey: "description",
+  //   header: "",
+  //   cell: ({row}) => ""
+  // },
   {
     accessorKey: "feature",
     header: "Feature",
