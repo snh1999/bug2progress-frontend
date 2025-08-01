@@ -54,6 +54,18 @@ export type TUpdateTicketDto = Partial<TCreateTicketDto> & {
   id: string;
 }
 
+export type UpdateTicketPositionData = {
+  id: string;
+  position: number;
+  ticketStatus: ETicketStatus;
+}
+
+export type TUpdateTicketRearrangeDto = {
+  data: UpdateTicketPositionData[];
+  featureId: string;
+  projectId: string;
+}
+
 export type TGetTickets = {
   featureId: string;
   projectId: string;

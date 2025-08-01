@@ -2,7 +2,14 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { DeleteRequest, GetRequest, PatchRequest, PostRequest } from "@/api/axios";
 import { TFeature } from "@/api/features/features.types";
 import { toast } from "sonner";
-import { TCreateTicketDto, TGetTicket, TGetTickets, TTicket, TUpdateTicketDto } from "@/api/tickets/tickets.types";
+import {
+  TCreateTicketDto,
+  TGetTicket,
+  TGetTickets,
+  TTicket,
+  TUpdateTicketDto,
+  TUpdateTicketRearrangeDto
+} from "@/api/tickets/tickets.types";
 
 export const useCreateTicket = () => {
   const queryClient = useQueryClient();
@@ -55,12 +62,29 @@ export const useUpdateTicket = () => {
       return response.data;
     },
     onSuccess: (_, {id, featureId,}) => {
-      toast.success("Feature updated");
+      toast.success("Ticket updated");
       queryClient.invalidateQueries({queryKey: ["ticket", featureId, id]});
       queryClient.invalidateQueries({queryKey: ["tickets", featureId]});
     },
   });
 };
+
+export const useRearrangeTickets = () => {
+  const queryClient = useQueryClient();
+  return useMutation<unknown, Error, TUpdateTicketRearrangeDto>({
+    mutationFn: async (data: TGetTickets) => {
+      const {projectId, featureId, ...dto} = data;
+      await PatchRequest(`/projects/${projectId}/features/${featureId}/tickets`, dto);
+    },
+    onSuccess: (_, {featureId}) => {
+      queryClient.invalidateQueries({queryKey: ["tickets", featureId]});
+    },
+    onError: () => {
+      toast.error("Error reordering tickets, please refresh the page and try again");
+    },
+  });
+}
+
 
 export const useDeleteTicket = () => {
   const queryClient = useQueryClient();
@@ -70,7 +94,7 @@ export const useDeleteTicket = () => {
       await DeleteRequest(`/projects/${projectId}/features/${featureId}/tickets/${id}`);
     },
     onSuccess: (_, {id, featureId}) => {
-      toast.success("Feature deleted");
+      toast.success("Ticket deleted");
       queryClient.invalidateQueries({queryKey: ["ticket", featureId, id]});
       queryClient.invalidateQueries({queryKey: ["tickets", featureId]});
     },
