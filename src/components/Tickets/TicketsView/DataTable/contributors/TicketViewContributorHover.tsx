@@ -5,25 +5,27 @@ import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
 import { format } from "date-fns";
 
 type Props = {
-  user: TUserWithProfile
+  contributor?: TUserWithProfile
 }
 
-export function TicketViewContributorHover({user} : Props) {
+export function TicketViewContributorHover({contributor} : Props) {
+  if (!contributor) return <span className="text-muted-foreground italic">Unassigned</span>;
+
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <Button variant="secondary">@{user.profile.username}</Button>
+        <Button variant="ghost" size="sm">@{contributor.profile.username}</Button>
       </HoverCardTrigger>
       <HoverCardContent className="min-w-100 w-max">
         <div className="flex justify-between gap-4">
-            <ImageOrAvatar name={user.profile.name} />
+            <ImageOrAvatar name={contributor.profile.name} />
           <div className="space-y-1">
-            <h4 className="text-sm italic">@{user.profile.username}</h4>
+            <h4 className="text-sm italic">@{contributor.profile.username}</h4>
             <p className="text-sm font-semibold">
-              {user.profile.name}
+              {contributor.profile.name}
             </p>
             <div className="text-muted-foreground text-xs">
-              Joined at {format(user.joinedAt, "PP")}
+              Joined at {format(contributor.joinedAt, "PP")}
             </div>
           </div>
         </div>

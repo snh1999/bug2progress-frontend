@@ -11,7 +11,7 @@ export function TicketViewFeatureHover({feature}: Props) {
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <Button variant="secondary" className="flex items-center gap-2">
+        <Button variant="ghost" size="sm" className="flex items-center gap-2 truncate">
           <ImageOrAvatar name={feature.title} size={7}/>{feature.title}
         </Button>
       </HoverCardTrigger>

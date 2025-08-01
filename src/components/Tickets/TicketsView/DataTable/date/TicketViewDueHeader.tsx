@@ -2,12 +2,12 @@ import { differenceInDays, format } from "date-fns";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  date: string;
+  date?: string;
   className?: string;
 };
 
 export const TicketViewDueHeader = ({date, className}: Props) => {
-  console.log("dueAt", date);
+  if (!date) return <span className="text-muted-foreground italic truncate">No Due Date</span>;
 
   const now = new Date();
   const dueDate = new Date(date);

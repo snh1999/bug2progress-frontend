@@ -3,7 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { TTicket } from "@/api/tickets/tickets.types";
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown, MoreVertical } from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 import { TicketViewDueHeader } from "@/components/Tickets/TicketsView/DataTable/date/TicketViewDueHeader";
 import {
   TicketViewContributorHover
@@ -15,6 +15,7 @@ import {
   TicketType
 } from "@/components/Tickets/TicketsView/DataTable/enums/TicketViewEnums";
 import { TicketRowContextMenu } from "@/components/Tickets/TicketsView/TicketRowContextMenu";
+import { Badge } from "@/components/ui/badge";
 
 
 export const ticketColumns: ColumnDef<TTicket>[] = [
@@ -32,12 +33,10 @@ export const ticketColumns: ColumnDef<TTicket>[] = [
       );
     },
     cell: ({row}) =>
-        <div className="flex items-center justify-between">
-          <p className="flex line-clamp-1">{row.original.title}</p>
-          <TicketRowContextMenu id={row.original.id} featureId={row.original.featureId}>
-            <Button variant="ghost" className="ml-2"><MoreVertical className="size-4 p-0"/></Button>
-          </TicketRowContextMenu>
-        </div>
+      <div className="flex items-center justify-between">
+        <p className="flex line-clamp-1">{row.original.title}</p>
+        <TicketRowContextMenu id={row.original.id}/>
+      </div>
   },
 
   {
@@ -53,21 +52,13 @@ export const ticketColumns: ColumnDef<TTicket>[] = [
         </Button>
       );
     },
-    cell: ({row}) => {
-      const dueAt = row.original.dueAt;
-      console.log(row.original);
-      if (!dueAt) return <span className="text-muted-foreground italic">No due date</span>;
-      return <TicketViewDueHeader date={dueAt}/>;
-    }
+    cell: ({row}) => <TicketViewDueHeader date={row.original.dueAt}/>
+
   },
   {
     accessorKey: "assignedContributor",
     header: "Assigned To",
-    cell: ({row}) => {
-      const assignedContributor = row.original.assignedContributor;
-      if (!assignedContributor) return <span className="text-muted-foreground italic">Unassigned</span>;
-      return <TicketViewContributorHover user={assignedContributor}/>;
-    }
+    cell: ({row}) => <TicketViewContributorHover contributor={row.original.assignedContributor}/>
   },
   {
     accessorKey: "ticketStatus",
@@ -98,8 +89,12 @@ export const ticketColumns: ColumnDef<TTicket>[] = [
         </Button>
       );
     },
-    cell: ({row}) =>
-      <TicketPriority priority={row.original.ticketPriority}/>
+    cell: ({row}) => {
+      const ticketPriority = row.original.ticketPriority;
+      if (!ticketPriority)
+        return <Badge className="bg-gray-500 text-gray-200 rounded-full">Not set</Badge>;
+      return <TicketPriority priority={ticketPriority}/>;
+    }
   },
   {
     accessorKey: "ticketType",
@@ -114,8 +109,12 @@ export const ticketColumns: ColumnDef<TTicket>[] = [
         </Button>
       );
     },
-    cell: ({row}) =>
-      <TicketType type={row.original.ticketType}/>
+    cell: ({row}) => {
+      const ticketType = row.original.ticketType;
+      if (!ticketType)
+        return <Badge className="bg-gray-500 text-gray-200 rounded-full">Not set</Badge>;
+      return <TicketType type={row.original.ticketType}/>;
+    }
   },
   {
     accessorKey: "verifiedBy",
@@ -123,14 +122,14 @@ export const ticketColumns: ColumnDef<TTicket>[] = [
     cell: ({row}) => {
       const verifier = row.original.verifiedBy;
       if (!verifier) return <span className="text-muted-foreground italic">Unverified</span>;
-      return <TicketViewContributorHover user={verifier}/>;
+      return <TicketViewContributorHover contributor={verifier}/>;
     }
   },
   {
     accessorKey: "creator",
     header: "Created By",
     cell: ({row}) =>
-      <TicketViewContributorHover user={row.original.creator}/>
+      <TicketViewContributorHover contributor={row.original.creator}/>
   },
   // {
   //   accessorKey: "description",

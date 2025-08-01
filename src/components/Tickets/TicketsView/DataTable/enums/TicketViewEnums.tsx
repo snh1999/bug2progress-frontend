@@ -2,47 +2,42 @@ import { Badge } from "@/components/ui/badge";
 import { cn, convertSnakeCaseToTitleCase } from "@/lib/utils";
 import { ETicketPriority, ETicketStatus, ETicketType } from "@/api/tickets/tickets.types";
 
+export const getTicketStatusStyle = (status: ETicketStatus) => {
+  switch (status) {
+    case ETicketStatus.BACKLOG:
+      return "bg-blue-500 text-gray-100";
+    case ETicketStatus.TODO:
+      return "bg-orange-700 text-white";
+    case ETicketStatus.IN_PROGRESS:
+      return "bg-green-700 text-white";
+    case ETicketStatus.CANCELED:
+      return "bg-gray-700 text-white";
+    case ETicketStatus.IN_REVIEW:
+      return "bg-pink-400 text-gray-100";
+    case ETicketStatus.IN_QA:
+      return "bg-amber-500 text-white";
+    case ETicketStatus.BLOCKED:
+      return "bg-red-700 text-white";
+    case ETicketStatus.DEPLOYED:
+      return "bg-yellow-400 text-gray-700";
+    case ETicketStatus.ARCHIVED:
+      return "bg-gray-400 text-white";
+    case ETicketStatus.DONE:
+      return "bg-green-700 text-white";
+  }
+}
+
 export const TicketStatus = ({status}: {
   status: ETicketStatus;
 }) => {
-  let className = "";
-  switch (status) {
-    case ETicketStatus.BACKLOG:
-      className = "bg-blue-500 text-gray-100";
-      break;
-    case ETicketStatus.TODO:
-      className = "bg-orange-700 text-white";
-      break;
-    case ETicketStatus.IN_PROGRESS:
-      className = "bg-green-700 text-white";
-      break;
-    case ETicketStatus.CANCELED:
-      className = "bg-gray-700 text-white";
-      break;
-    case ETicketStatus.IN_REVIEW:
-      className = "bg-pink-400 text-gray-100";
-      break;
-    case ETicketStatus.IN_QA:
-      className = "bg-amber-500 text-white";
-      break;
-    case ETicketStatus.BLOCKED:
-      className = "bg-red-700 text-white";
-      break;
-    case ETicketStatus.DEPLOYED:
-      className = "bg-yellow-400 text-gray-700";
-      break;
-    case ETicketStatus.ARCHIVED:
-      className = "bg-gray-400 text-white";
-      break;
-    case ETicketStatus.DONE:
-      className = "bg-green-700 text-white";
-      break;
-  }
 
+  const className = getTicketStatusStyle(status);
   return <Badge className={cn(className, "rounded-full")}>{convertSnakeCaseToTitleCase(status)}</Badge>;
 };
 
 export const TicketPriority = ({priority}: { priority?: ETicketPriority }) => {
+  if(!priority) return null;
+
   let className = "";
   switch (priority) {
     case ETicketPriority.LOW:
@@ -64,10 +59,12 @@ export const TicketPriority = ({priority}: { priority?: ETicketPriority }) => {
       className = "bg-gray-500 text-gray-200";
       break;
   }
-  return <Badge className={cn(className, "rounded-full")}>{convertSnakeCaseToTitleCase(priority ?? "Not set")}</Badge>;
+  return <Badge className={cn(className, "rounded-full")}>{convertSnakeCaseToTitleCase(priority)}</Badge>;
 };
 
 export const TicketType = ({type}: { type?: ETicketType }) => {
+  if(!type) return null;
+
   let className = "";
   switch (type) {
     case ETicketType.BUG:
@@ -101,5 +98,5 @@ export const TicketType = ({type}: { type?: ETicketType }) => {
       className = "bg-gray-500 text-gray-200";
       break;
   }
-  return <Badge className={cn(className, "rounded-full")}>{convertSnakeCaseToTitleCase(type ?? "Not set")}</Badge>;
+  return <Badge className={cn(className, "rounded-full")}>{convertSnakeCaseToTitleCase(type)}</Badge>;
 };
