@@ -13,13 +13,15 @@ import { convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 interface CreateFeatureFormProps {
   onCancel: () => void;
-  features?: TFeature[];
-  contributors?: TProjectContributorWithUser[];
+  features: TFeature[];
+  contributors: TProjectContributorWithUser[];
+  defaultStatus?: ETicketStatus
 }
 
-export const CreateTicketForm = ({onCancel, features = [], contributors = []}: CreateFeatureFormProps) => {
-  const {form, onSubmit, isPending} = useCreateTicketForm(onCancel);
+export const CreateTicketForm = ({onCancel, defaultStatus = ETicketStatus.BACKLOG, features = [], contributors = []}: CreateFeatureFormProps) => {
+  const {form, onSubmit, isPending} = useCreateTicketForm(defaultStatus, onCancel);
   const {control, handleSubmit} = form;
+
 
   return (
     <Card className=" h-full border-none shadow-none m-5">

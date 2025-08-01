@@ -2,7 +2,13 @@ import { z } from "zod";
 import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 import { toast } from "sonner";
 import { useProjectId } from "@/hooks/useProjectId";
-import { ETicketPriority, ETicketStatus, ETicketType, TCreateTicketDto, TTicket } from "@/api/tickets/tickets.types";
+import {
+  ETicketPriority,
+  ETicketStatus,
+  ETicketType,
+  TCreateTicketDto,
+  TTicket,
+} from "@/api/tickets/tickets.types";
 import { useCreateTicket } from "@/api/tickets/tickets";
 import { useFeatureId } from "@/hooks/useFeatureId";
 
@@ -16,9 +22,13 @@ const createTicketFormSchema: z.ZodType<TCreateTicketDto> = z.object({
   ticketStatus: z.nativeEnum(ETicketStatus),
   position: z.number(),
   dueAt: z.date().optional(),
-})
+});
 
-export const useCreateTicketForm = (onSuccess: () => void) => {
+export const useCreateTicketForm = (
+  defaultStatus: ETicketStatus,
+  onSuccess: () => void,
+  position: number = 0
+) => {
   const projectId = useProjectId();
   const featureId = useFeatureId();
   return useFormHooksWrapper<TCreateTicketDto, TTicket>({
@@ -28,8 +38,8 @@ export const useCreateTicketForm = (onSuccess: () => void) => {
       title: "",
       description: "",
       assignedContributorId: "",
-      ticketStatus: ETicketStatus.BACKLOG,
-      position: 0,
+      ticketStatus: defaultStatus,
+      position,
       projectId,
       featureId,
     },
