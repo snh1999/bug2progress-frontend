@@ -7,13 +7,15 @@ import CreateTicketButton from "@/components/Tickets/CreateTicketButton";
 import { useProjectId } from "@/hooks/useProjectId";
 import { useFeatureId } from "@/hooks/useFeatureId";
 import { ETicketView } from "@/components/Tickets/TicketsView/TicketsView.types";
-import { useGetTickets } from "@/api/tickets/tickets";
+import { useGetTickets, useRearrangeTickets } from "@/api/tickets/tickets";
 import LoadingComponent from "@/components/common/LoadingComponent";
 import { Separator } from "@/components/ui/separator";
 import { TicketFilters } from "@/components/Tickets/TicketsView/DataTable/filters/TicketFilters";
 import { useTicketFilters } from "@/hooks/useTicketFilters";
 import { ticketColumns } from "@/components/Tickets/TicketsView/DataTable/ticketColumns";
 import { DataTable } from "@/components/common/DataTable";
+import { KanbanView } from "@/components/Tickets/TicketsView/kanbanView/KanbanView";
+import { UpdateTicketPositionData } from "@/api/tickets/tickets.types";
 
 
 interface TicketsViewProps {
@@ -51,6 +53,12 @@ export const TicketsView = ({hideFeatureFilter}: TicketsViewProps) => {
     // searchFeatureId,
     creatorId
   });
+
+  const {mutate: rearrangeTickets} = useRearrangeTickets();
+
+  const handleRearrange = (data: UpdateTicketPositionData[]) => {
+    rearrangeTickets({data, projectId, featureId});
+  }
 
 
   return (
@@ -95,7 +103,7 @@ export const TicketsView = ({hideFeatureFilter}: TicketsViewProps) => {
                 <DataTable columns={ticketColumns} data={tickets ?? []} />
               </TabsContent>
               <TabsContent value={ETicketView.KANBAN} className="mt-0">
-                {/*<DataKanban onChange={onKanbanChange} data={tasks?.documents ?? []} />*/}
+                <KanbanView data={tickets ?? []} onChange={handleRearrange} />
               </TabsContent>
               <TabsContent value={ETicketView.CALENDAR} className="mt-0 h-full pb-4">
                 {/*<DataCalendar data={tasks?.documents ?? []} />*/}

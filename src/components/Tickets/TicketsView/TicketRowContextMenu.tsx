@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { ExternalLinkIcon, PencilIcon, TrashIcon } from "lucide-react";
+import { ExternalLinkIcon, MoreVertical, PencilIcon, TrashIcon } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,7 +7,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useProjectId } from "@/hooks/useProjectId";
-import { ReactNode } from "react";
 import { useFeatureId } from "@/hooks/useFeatureId";
 import { useOpenModal } from "@/hooks/useModalHook";
 import { OPEN_UPDATE_TICKET_MODAL_KEY, PROJECTS_PATH } from "@/app.constants";
@@ -17,13 +16,13 @@ import { toast } from "sonner";
 import LoadingComponent from "@/components/common/LoadingComponent";
 import { ResponsiveModal } from "@/components/common/ResponsiveModal";
 import { UpdateTicketForm } from "@/components/Tickets/UpdateTicketForm/UpdateTicketForm";
+import { Button } from "@/components/ui/button";
 
 interface TaskActionsProps {
   id: string;
-  children: ReactNode;
 }
 
-export const TicketRowContextMenu = ({ id, children }: TaskActionsProps) => {
+export const TicketRowContextMenu = ({ id }: TaskActionsProps) => {
   const featureId = useFeatureId();
   const projectId = useProjectId();
   const router = useRouter();
@@ -73,7 +72,7 @@ export const TicketRowContextMenu = ({ id, children }: TaskActionsProps) => {
 
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
-          {children}
+          <Button variant="ghost" className="ml-2"><MoreVertical className="size-4 p-0"/></Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48">
           <DropdownMenuItem
