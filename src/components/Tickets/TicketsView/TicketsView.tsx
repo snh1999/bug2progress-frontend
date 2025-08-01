@@ -16,23 +16,25 @@ import { ticketColumns } from "@/components/Tickets/TicketsView/DataTable/ticket
 import { DataTable } from "@/components/common/DataTable";
 import { KanbanView } from "@/components/Tickets/TicketsView/kanbanView/KanbanView";
 import { UpdateTicketPositionData } from "@/api/tickets/tickets.types";
-
+import { CalendarView } from "@/components/Tickets/TicketsView/CalendarView/CalendarView";
 
 interface TicketsViewProps {
   hideFeatureFilter?: boolean;
 }
 
-export const TicketsView = ({hideFeatureFilter}: TicketsViewProps) => {
-  const [{
-    dueAt,
-    ticketType,
-    ticketStatus,
-    ticketPriority,
-    assignedContributorId,
-    verifierId,
-    featureId: searchFeatureId,
-    creatorId
-  }] = useTicketFilters();
+export const TicketsView = ({ hideFeatureFilter }: TicketsViewProps) => {
+  const [
+    {
+      dueAt,
+      ticketType,
+      ticketStatus,
+      ticketPriority,
+      assignedContributorId,
+      verifierId,
+      featureId: searchFeatureId,
+      creatorId,
+    },
+  ] = useTicketFilters();
 
   const [view, setView] = useQueryState("task-view", {
     defaultValue: ETicketView.TABLE,
@@ -41,7 +43,7 @@ export const TicketsView = ({hideFeatureFilter}: TicketsViewProps) => {
   const projectId = useProjectId();
   const featureId = useFeatureId();
 
-  const {data: tickets, isLoading: isLoadingTickets} = useGetTickets({
+  const { data: tickets, isLoading: isLoadingTickets } = useGetTickets({
     featureId,
     projectId,
     dueAt,
@@ -51,15 +53,14 @@ export const TicketsView = ({hideFeatureFilter}: TicketsViewProps) => {
     assignedContributorId,
     verifierId,
     // searchFeatureId,
-    creatorId
+    creatorId,
   });
 
-  const {mutate: rearrangeTickets} = useRearrangeTickets();
+  const { mutate: rearrangeTickets } = useRearrangeTickets();
 
   const handleRearrange = (data: UpdateTicketPositionData[]) => {
-    rearrangeTickets({data, projectId, featureId});
-  }
-
+    rearrangeTickets({ data, projectId, featureId });
+  };
 
   return (
     <>
@@ -90,13 +91,13 @@ export const TicketsView = ({hideFeatureFilter}: TicketsViewProps) => {
                 Calendar
               </TabsTrigger>
             </TabsList>
-            <CreateTicketButton/>
+            <CreateTicketButton />
           </div>
-          <Separator className="my-2"/>
-          <TicketFilters hideFeatureFilter={hideFeatureFilter}/>
-          <Separator className="my-2"/>
+          <Separator className="my-2" />
+          <TicketFilters hideFeatureFilter={hideFeatureFilter} />
+          <Separator className="my-2" />
           {isLoadingTickets ? (
-            <LoadingComponent/>
+            <LoadingComponent />
           ) : (
             <>
               <TabsContent value={ETicketView.TABLE} className="mt-0">
@@ -105,16 +106,16 @@ export const TicketsView = ({hideFeatureFilter}: TicketsViewProps) => {
               <TabsContent value={ETicketView.KANBAN} className="mt-0">
                 <KanbanView data={tickets ?? []} onChange={handleRearrange} />
               </TabsContent>
-              <TabsContent value={ETicketView.CALENDAR} className="mt-0 h-full pb-4">
-                {/*<DataCalendar data={tasks?.documents ?? []} />*/}
+              <TabsContent
+                value={ETicketView.CALENDAR}
+                className="mt-0 h-full pb-4"
+              >
+                <CalendarView data={tickets ?? []} />
               </TabsContent>
             </>
           )}
         </div>
       </Tabs>
     </>
-
   );
 };
-
-
