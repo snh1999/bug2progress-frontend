@@ -8,6 +8,7 @@ interface ImageOrAvatarProps {
   className?: string;
   bgColor?: string;
   size?: number;
+  rounded?: boolean;
 }
 
 export const ImageOrAvatar = ({
@@ -16,6 +17,7 @@ export const ImageOrAvatar = ({
   className,
   size = 9,
   bgColor = getRandomColor(),
+  rounded = false,
 }: ImageOrAvatarProps) => {
   if (image) {
     return (
@@ -30,7 +32,7 @@ export const ImageOrAvatar = ({
     <Avatar  className={cn("rounded-md", size && `size-${size}`,  className)}>
       <AvatarFallback
         style={{ backgroundColor: bgColor, color: getContrastColor(bgColor) }}
-        className={cn("font-semibold p-1 uppercase rounded-md", size && size >= 9 ? "text-lg" : "text-sm")}
+        className={cn("font-semibold p-1 uppercase rounded-md", size && size >= 9 ? "text-lg" : "text-xs", rounded && "rounded-full")}
       >
         {getInitials(name)}
       </AvatarFallback>

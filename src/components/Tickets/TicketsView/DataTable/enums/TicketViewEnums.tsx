@@ -1,6 +1,10 @@
 import { Badge } from "@/components/ui/badge";
 import { cn, convertSnakeCaseToTitleCase } from "@/lib/utils";
-import { ETicketPriority, ETicketStatus, ETicketType } from "@/api/tickets/tickets.types";
+import {
+  ETicketPriority,
+  ETicketStatus,
+  ETicketType,
+} from "@/api/tickets/tickets.types";
 
 export const getTicketStatusStyle = (status: ETicketStatus) => {
   switch (status) {
@@ -25,78 +29,81 @@ export const getTicketStatusStyle = (status: ETicketStatus) => {
     case ETicketStatus.DONE:
       return "bg-green-700 text-white";
   }
-}
-
-export const TicketStatus = ({status}: {
-  status: ETicketStatus;
-}) => {
-
-  const className = getTicketStatusStyle(status);
-  return <Badge className={cn(className, "rounded-full")}>{convertSnakeCaseToTitleCase(status)}</Badge>;
 };
 
-export const TicketPriority = ({priority}: { priority?: ETicketPriority }) => {
-  if(!priority) return null;
+export const TicketStatus = ({ status }: { status: ETicketStatus }) => {
+  const className = getTicketStatusStyle(status);
+  return (
+    <Badge className={cn(className, "rounded-full")}>
+      {convertSnakeCaseToTitleCase(status)}
+    </Badge>
+  );
+};
 
-  let className = "";
+export const getTicketPriorityStyle = (priority: ETicketPriority) => {
   switch (priority) {
     case ETicketPriority.LOW:
-      className = "bg-blue-500 text-white";
-      break;
+      return "bg-blue-500 text-white";
     case ETicketPriority.MEDIUM:
-      className = "bg-yellow-500 text-gray-700";
-      break;
+      return "bg-yellow-500 text-gray-700";
     case ETicketPriority.HIGH:
-      className = "bg-red-800 text-white";
-      break;
+      return "bg-red-800 text-white";
     case ETicketPriority.URGENT:
-      className = "bg-orange-500 text-white";
-      break;
+      return "bg-orange-500 text-white";
     case ETicketPriority.CRITICAL:
-      className = "bg-red-500 text-white";
-      break;
+      return "bg-red-500 text-white";
     default:
-      className = "bg-gray-500 text-gray-200";
-      break;
+      return "bg-gray-500 text-gray-200";
   }
-  return <Badge className={cn(className, "rounded-full")}>{convertSnakeCaseToTitleCase(priority)}</Badge>;
 };
 
-export const TicketType = ({type}: { type?: ETicketType }) => {
-  if(!type) return null;
+export const TicketPriority = ({
+  priority,
+}: {
+  priority?: ETicketPriority;
+}) => {
+  if (!priority) return null;
 
-  let className = "";
+  let className = getTicketPriorityStyle(priority);
+  return (
+    <Badge className={cn(className, "rounded-full")}>
+      {convertSnakeCaseToTitleCase(priority)}
+    </Badge>
+  );
+};
+
+export const getTicketTypeStyle = (type: ETicketType) => {
   switch (type) {
     case ETicketType.BUG:
-      className = "bg-red-500 text-white";
-      break;
+      return "bg-red-500 text-white";
     case ETicketType.FEATURE:
-      className = "bg-green-600 text-gray-100";
-      break;
+      return "bg-green-600 text-gray-100";
     case ETicketType.TASK:
-      className = "bg-blue-500 text-white";
-      break;
+      return "bg-blue-500 text-white";
     case ETicketType.EPIC:
-      className = "bg-indigo-500 text-white";
-      break;
+      return "bg-indigo-500 text-white";
     case ETicketType.SPIKE:
-      className = "bg-pink-600 text-white";
-      break;
+      return "bg-pink-600 text-white";
     case ETicketType.TECH_DEBT:
-      className = "bg-teal-600 text-white";
-      break;
+      return "bg-teal-600 text-white";
     case ETicketType.ENHANCEMENT:
-      className = "bg-green-800 text-white";
-      break;
+      return "bg-green-800 text-white";
     case ETicketType.TEST:
-      className = "bg-yellow-600 text-white";
-      break;
+      return "bg-yellow-600 text-white";
     case ETicketType.STORY:
-      className = "bg-purple-800 text-white";
-      break;
+      return "bg-purple-800 text-white";
     default:
-      className = "bg-gray-500 text-gray-200";
-      break;
+      return "bg-gray-500 text-gray-200";
   }
-  return <Badge className={cn(className, "rounded-full")}>{convertSnakeCaseToTitleCase(type)}</Badge>;
+};
+
+export const TicketType = ({ type }: { type?: ETicketType }) => {
+  if (!type) return null;
+
+  let className = getTicketTypeStyle(type);
+  return (
+    <Badge className={cn(className, "rounded-full")}>
+      {convertSnakeCaseToTitleCase(type)}
+    </Badge>
+  );
 };
