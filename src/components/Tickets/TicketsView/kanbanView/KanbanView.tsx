@@ -1,10 +1,18 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { DragDropContext, Draggable, Droppable, type DropResult, } from "@hello-pangea/dnd";
-import { ETicketStatus, TTicket, UpdateTicketPositionData } from "@/api/tickets/tickets.types";
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  type DropResult,
+} from "@hello-pangea/dnd";
+import {
+  ETicketStatus,
+  TTicket,
+  UpdateTicketPositionData,
+} from "@/api/tickets/tickets.types";
 import { toast } from "sonner";
 import { KanbanHeader } from "@/components/Tickets/TicketsView/kanbanView/KanbanHeader";
 import { KanbanCard } from "@/components/Tickets/TicketsView/kanbanView/KanbanCard";
-
 
 const boards: ETicketStatus[] = Object.values(ETicketStatus);
 
@@ -19,16 +27,12 @@ const getInitialTicketValues = (): TicketStatus => {
   }, {} as TicketStatus);
 };
 
-
 interface DataKanbanProps {
   data: TTicket[];
   onChange: (data: UpdateTicketPositionData[]) => void;
 }
 
-export const KanbanView = ({
-  data,
-  onChange,
-}: DataKanbanProps) => {
+export const KanbanView = ({ data, onChange }: DataKanbanProps) => {
   const [tickets, setTickets] = useState<TicketStatus>(() => {
     const initialTickets: TicketStatus = getInitialTicketValues();
 
@@ -37,7 +41,9 @@ export const KanbanView = ({
     });
 
     Object.keys(initialTickets).forEach((status) => {
-      initialTickets[status as ETicketStatus].sort((a, b) => a.position - b.position);
+      initialTickets[status as ETicketStatus].sort(
+        (a, b) => a.position - b.position
+      );
     });
 
     return initialTickets;
@@ -51,91 +57,99 @@ export const KanbanView = ({
     });
 
     Object.keys(newTickets).forEach((status) => {
-      newTickets[status as ETicketStatus].sort((a, b) => a.position - b.position);
+      newTickets[status as ETicketStatus].sort(
+        (a, b) => a.position - b.position
+      );
     });
 
     setTickets(newTickets);
   }, [data]);
 
-  const onDragEnd = useCallback((result: DropResult) => {
-    if (!result.destination) return;
+  const onDragEnd = useCallback(
+    (result: DropResult) => {
+      if (!result.destination) return;
 
-    const {source, destination} = result;
-    const sourceStatus = source.droppableId as ETicketStatus;
-    const destStatus = destination.droppableId as ETicketStatus;
+      const { source, destination } = result;
+      const sourceStatus = source.droppableId as ETicketStatus;
+      const destStatus = destination.droppableId as ETicketStatus;
 
-    let updatesPayload: UpdateTicketPositionData[] = [];
+      let updatesPayload: UpdateTicketPositionData[] = [];
 
-    setTickets((prevTickets) => {
-      const newTicket = {...prevTickets};
+      setTickets((prevTickets) => {
+        const newTicket = { ...prevTickets };
 
-      const sourceColumn = [...newTicket[sourceStatus]];
-      const [movedTicket] = sourceColumn.splice(source.index, 1);
+        const sourceColumn = [...newTicket[sourceStatus]];
+        const [movedTicket] = sourceColumn.splice(source.index, 1);
 
-      if (!movedTicket) {
-        toast.error("No Ticket found at the source index");
-        return prevTickets;
-      }
-
-      const updatedMovedTicket = sourceStatus !== destStatus
-        ? {...movedTicket, status: destStatus}
-        : movedTicket;
-
-      newTicket[sourceStatus] = sourceColumn;
-
-      const destColumn = [...newTicket[destStatus]];
-      destColumn.splice(destination.index, 0, updatedMovedTicket);
-      newTicket[destStatus] = destColumn;
-
-      updatesPayload = [];
-
-      updatesPayload.push({
-        id: updatedMovedTicket.id,
-        ticketStatus: destStatus,
-        position: Math.min((destination.index + 1) * 1000, 1_000_000)
-      });
-
-      newTicket[destStatus].forEach((ticket, index) => {
-        if (ticket && ticket.id !== updatedMovedTicket.id) {
-          const newPosition = Math.min((index + 1) * 1000, 1_000_000);
-          if (ticket.position !== newPosition) {
-            updatesPayload.push({
-              id: ticket.id,
-              ticketStatus: destStatus,
-              position: newPosition,
-            });
-          }
+        if (!movedTicket) {
+          toast.error("No Ticket found at the source index");
+          return prevTickets;
         }
-      });
 
-      if (sourceStatus !== destStatus) {
-        newTicket[sourceStatus].forEach((ticket, index) => {
-          if (ticket) {
+        const updatedMovedTicket =
+          sourceStatus !== destStatus
+            ? { ...movedTicket, status: destStatus }
+            : movedTicket;
+
+        newTicket[sourceStatus] = sourceColumn;
+
+        const destColumn = [...newTicket[destStatus]];
+        destColumn.splice(destination.index, 0, updatedMovedTicket);
+        newTicket[destStatus] = destColumn;
+
+        updatesPayload = [];
+
+        updatesPayload.push({
+          id: updatedMovedTicket.id,
+          ticketStatus: destStatus,
+          position: Math.min((destination.index + 1) * 1000, 1_000_000),
+        });
+
+        newTicket[destStatus].forEach((ticket, index) => {
+          if (ticket && ticket.id !== updatedMovedTicket.id) {
             const newPosition = Math.min((index + 1) * 1000, 1_000_000);
             if (ticket.position !== newPosition) {
               updatesPayload.push({
                 id: ticket.id,
-                ticketStatus: sourceStatus,
+                ticketStatus: destStatus,
                 position: newPosition,
               });
             }
           }
         });
-      }
 
-      return newTicket;
-    });
-    onChange(updatesPayload);
-  }, [onChange]);
+        if (sourceStatus !== destStatus) {
+          newTicket[sourceStatus].forEach((ticket, index) => {
+            if (ticket) {
+              const newPosition = Math.min((index + 1) * 1000, 1_000_000);
+              if (ticket.position !== newPosition) {
+                updatesPayload.push({
+                  id: ticket.id,
+                  ticketStatus: sourceStatus,
+                  position: newPosition,
+                });
+              }
+            }
+          });
+        }
 
+        return newTicket;
+      });
+      onChange(updatesPayload);
+    },
+    [onChange]
+  );
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="flex overflow-x-auto">
         {boards.map((board) => {
           return (
-            <div key={board} className="flex-1 mx-2 bg-muted p-1.5 rounded-md min-w-[200px]">
-              <KanbanHeader board={board} taskCount={tickets[board].length}/>
+            <div
+              key={board}
+              className="flex-1 mx-2 bg-muted p-1.5 rounded-md min-w-[200px]"
+            >
+              <KanbanHeader board={board} ticketCount={tickets[board].length} />
               <Droppable droppableId={board}>
                 {(provided) => (
                   <div
@@ -155,7 +169,7 @@ export const KanbanView = ({
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            <KanbanCard ticket={ticket}/>
+                            <KanbanCard ticket={ticket} />
                           </div>
                         )}
                       </Draggable>
@@ -171,5 +185,3 @@ export const KanbanView = ({
     </DragDropContext>
   );
 };
-
-

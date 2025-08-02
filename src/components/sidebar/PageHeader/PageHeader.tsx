@@ -3,7 +3,12 @@
 import { useLogOut } from "@/api/auth/auth";
 import { Sidebar } from "@/components/sidebar/Sidebar";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger, } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -14,27 +19,27 @@ const pathnameMap = {
   home: {
     title: "Home",
     description: "Monitor all of your projects and tasks here",
-    component: <></>
+    component: <></>,
   },
   settings: {
     title: "Settings",
     description: "View all of your settings here",
-    component: <></>
+    component: <></>,
   },
-  tasks: {
-    title: "My Tasks",
-    description: "View all of your tasks here",
-    component: <></>
+  tickets: {
+    title: "Tickets",
+    description: "View all of the tickets for the project here",
+    component: <></>,
   },
   contributors: {
     title: "Contributors",
     description: "View all the contributing members of your projects here",
-    component: <></>
+    component: <></>,
   },
   features: {
     title: "Features",
     description: "View all of your features for the project here",
-    component: <EditFeatureButton/>
+    component: <EditFeatureButton />,
   },
 };
 

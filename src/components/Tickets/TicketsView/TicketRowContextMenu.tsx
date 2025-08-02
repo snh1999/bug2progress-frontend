@@ -1,5 +1,10 @@
 import { useRouter } from "next/navigation";
-import { ExternalLinkIcon, MoreVertical, PencilIcon, TrashIcon } from "lucide-react";
+import {
+  ExternalLinkIcon,
+  MoreVertical,
+  PencilIcon,
+  TrashIcon,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,20 +23,20 @@ import { ResponsiveModal } from "@/components/common/ResponsiveModal";
 import { UpdateTicketForm } from "@/components/Tickets/UpdateTicketForm/UpdateTicketForm";
 import { Button } from "@/components/ui/button";
 
-interface TaskActionsProps {
+interface Props {
   id: string;
 }
 
-export const TicketRowContextMenu = ({ id }: TaskActionsProps) => {
+export const TicketRowContextMenu = ({ id }: Props) => {
   const featureId = useFeatureId();
   const projectId = useProjectId();
   const router = useRouter();
 
-  const {data, isLoading, error} = useGetTicket({id, projectId, featureId});
-  const {mutate: deleteTicket, isPending: isDeletePending} = useDeleteTicket()
+  const { data, isLoading, error } = useGetTicket({ id, projectId, featureId });
+  const { mutate: deleteTicket, isPending: isDeletePending } =
+    useDeleteTicket();
 
-
-  const {closeModal, isOpen, openModal} = useOpenModal(
+  const { closeModal, isOpen, openModal } = useOpenModal(
     OPEN_UPDATE_TICKET_MODAL_KEY
   );
 
@@ -40,8 +45,8 @@ export const TicketRowContextMenu = ({ id }: TaskActionsProps) => {
     message: "Are you sure you want to remove this ticket?",
     variant: "destructive",
     onConfirm: () => {
-      deleteTicket({projectId, id, featureId});
-      closeModal()
+      deleteTicket({ projectId, id, featureId });
+      closeModal();
     },
   });
 
@@ -51,11 +56,11 @@ export const TicketRowContextMenu = ({ id }: TaskActionsProps) => {
   }
 
   if (!data || isLoading || isDeletePending) {
-    return <LoadingComponent/>;
+    return <LoadingComponent />;
   }
 
-  const onOpenTask = () => {
-    router.push(`${PROJECTS_PATH}/${projectId}/tasks/${id}`);
+  const redirectToTicket = () => {
+    router.push(`${PROJECTS_PATH}/${projectId}/tickets/${id}`);
   };
 
   const onOpenProject = () => {
@@ -64,23 +69,29 @@ export const TicketRowContextMenu = ({ id }: TaskActionsProps) => {
 
   return (
     <div className="flex justify-end">
-      <DeleteConfirmation/>
+      <DeleteConfirmation />
 
       <ResponsiveModal open={isOpen} onOpenChange={closeModal}>
-        <UpdateTicketForm defaultValues={data} onCancel={closeModal} onDelete={deleteConfirmation}/>
+        <UpdateTicketForm
+          defaultValues={data}
+          onCancel={closeModal}
+          onDelete={deleteConfirmation}
+        />
       </ResponsiveModal>
 
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="ml-2"><MoreVertical className="size-4 p-0"/></Button>
+          <Button variant="ghost" className="ml-2">
+            <MoreVertical className="size-4 p-0" />
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48">
           <DropdownMenuItem
-            onClick={onOpenTask}
+            onClick={redirectToTicket}
             className="font-medium p-[10px]"
           >
             <ExternalLinkIcon className="size-4 mr-2 stroke-2" />
-            Task Details
+            Ticket Details
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={onOpenProject}
@@ -94,7 +105,7 @@ export const TicketRowContextMenu = ({ id }: TaskActionsProps) => {
             className="font-medium p-[10px]"
           >
             <PencilIcon className="size-4 mr-2 stroke-2" />
-            Edit Task
+            Edit Ticket
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={deleteConfirmation}
@@ -102,11 +113,10 @@ export const TicketRowContextMenu = ({ id }: TaskActionsProps) => {
             className="text-red-500 focus:text-red-700 font-medium p-[10px]"
           >
             <TrashIcon className="size-4 mr-2 stroke-2" />
-            Delete Task
+            Delete Ticket
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
   );
 };
-

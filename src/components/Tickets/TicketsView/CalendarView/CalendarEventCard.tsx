@@ -1,19 +1,16 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useProjectId } from "@/hooks/useProjectId";
-import {
-  ETicketPriority,
-  ETicketStatus,
-  ETicketType,
-  TTicket,
-} from "@/api/tickets/tickets.types";
+import { ETicketPriority, ETicketStatus, ETicketType, TTicket, } from "@/api/tickets/tickets.types";
 import {
   getTicketPriorityStyle,
   getTicketStatusStyle,
   getTicketTypeStyle,
 } from "@/components/Tickets/TicketsView/DataTable/enums/TicketViewEnums";
 import { TicketViewFeatureHover } from "@/components/Tickets/TicketsView/DataTable/feature/TicketViewFeature";
-import { TicketViewContributorHover } from "@/components/Tickets/TicketsView/DataTable/contributors/TicketViewContributorHover";
+import {
+  TicketViewContributorHover
+} from "@/components/Tickets/TicketsView/DataTable/contributors/TicketViewContributorHover";
 import { cn, convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 interface EventCardProps {
@@ -52,13 +49,13 @@ export const CalendarEventCard = ({ ticket }: EventCardProps) => {
     assignedContributor: contributor,
   } = ticket;
 
-  const workspaceId = useProjectId();
+  const projectId = useProjectId();
   const router = useRouter();
 
   const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
 
-    router.push(`/workspaces/${workspaceId}/tasks/${id}`);
+    router.push(`/workspaces/${projectId}/tickets/${id}`);
   };
 
   return (

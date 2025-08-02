@@ -32,16 +32,17 @@ export const TicketsView = ({ hideFeatureFilter }: TicketsViewProps) => {
       assignedContributorId,
       verifierId,
       featureId: searchFeatureId,
+
       creatorId,
     },
   ] = useTicketFilters();
 
-  const [view, setView] = useQueryState("task-view", {
+  const [view, setView] = useQueryState(ETicketView.TABLE, {
     defaultValue: ETicketView.TABLE,
   });
 
   const projectId = useProjectId();
-  const featureId = useFeatureId();
+  const featureId = searchFeatureId || useFeatureId();
 
   const { data: tickets, isLoading: isLoadingTickets } = useGetTickets({
     featureId,
@@ -52,14 +53,13 @@ export const TicketsView = ({ hideFeatureFilter }: TicketsViewProps) => {
     ticketPriority,
     assignedContributorId,
     verifierId,
-    // searchFeatureId,
     creatorId,
   });
 
   const { mutate: rearrangeTickets } = useRearrangeTickets();
 
   const handleRearrange = (data: UpdateTicketPositionData[]) => {
-    rearrangeTickets({ data, projectId, featureId });
+    rearrangeTickets({ data, projectId });
   };
 
   return (

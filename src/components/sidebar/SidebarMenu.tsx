@@ -19,8 +19,8 @@ const menuItems = [
     permission: true
   },
   {
-    label: "My Tasks",
-    href: "/tasks",
+    label: "Tickets",
+    href: "/tickets",
     icon: GoCheckCircle,
     activeIcon: GoCheckCircleFill,
     permission: true

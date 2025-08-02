@@ -21,7 +21,7 @@ const FeaturePage = () => {
   }
 
   return <div>{feature.title}
-    <TicketsView/>
+    <TicketsView hideFeatureFilter/>
   </div>;
 };
 

@@ -40,7 +40,7 @@ export type TCreateTicketDto = {
   title: string;
   description: string;
   projectId: string;
-  featureId: string;
+  featureId?: string;
   ticketType?: ETicketType;
   ticketPriority?: ETicketPriority;
   ticketStatus: ETicketStatus;
@@ -52,6 +52,7 @@ export type TCreateTicketDto = {
 export type TUpdateTicketDto = Partial<TCreateTicketDto> & {
   verifierId?: string;
   id: string;
+  projectId: string;
 }
 
 export type UpdateTicketPositionData = {
@@ -62,12 +63,11 @@ export type UpdateTicketPositionData = {
 
 export type TUpdateTicketRearrangeDto = {
   data: UpdateTicketPositionData[];
-  featureId: string;
   projectId: string;
 }
 
 export type TGetTickets = {
-  featureId: string;
+  featureId?: string;
   projectId: string;
   assignedContributorId?: string | null;
   dueAt?: string | null;
@@ -87,7 +87,7 @@ export type TTicket = {
   title: string;
   description: string;
   projectId: string;
-  featureId: string;
+  featureId?: string;
   feature: TFeature;
   creatorId: string;
   creator: TUserWithProfile;
