@@ -126,7 +126,6 @@ export const FeatureList = ({data, total}: FeatureListProps) => {
           <p className="text-lg font-semibold">
             Projects ({total})
           </p>
-
         </div>
         <ul className="grid grid-cols-1 lg:grid-cols-2 py-4 gap-4">
           {data.map((feature) => (
@@ -189,7 +188,7 @@ export const ContributorList = ({data, total}: ContributorListProps) => {
             </li>
           ))}
           {total === 0 && <li className="text-sm text-muted-foreground italic">
-            No members found
+            No contributors found
           </li>}
         </ul>
       </div>

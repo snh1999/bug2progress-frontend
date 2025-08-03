@@ -4,6 +4,7 @@ import LoadingComponent from "@/components/common/LoadingComponent";
 import { useProjectId } from "@/hooks/useProjectId";
 import { CardList } from "@/components/common/dataView/CardList/CardList";
 import { ContributorMenu } from "@/components/contributors/ContributorMenu";
+import { convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 type TContributorListProps = {
   role: EProjectRole
@@ -22,11 +23,29 @@ const ContributorList = ({role}: TContributorListProps) => {
     bottomBarInformation: role,
     childComponent: <ContributorMenu userId={user.id}/>
   }));
+
+  if(data.length === 0) {
+    return null;
+  }
   
   return (
-    <div>
-      {role}
-      <CardList listItems={cardListData} />
+      <div className="bg-white dark:bg-black border rounded-lg p-6 mb-2">
+        <div className="flex items-center justify-between">
+          <p className="text-lg font-semibold">
+            {convertSnakeCaseToTitleCase(role)} ({data.length})
+          </p>
+        </div>
+
+      <div className="flex items-center justify-between">
+
+        <ul className="grid grid-cols-1 lg:grid-cols-2 py-4 gap-4">
+          {data.map((contributor) => (
+            <li key={contributor.userId}>
+              <CardList listItems={cardListData} />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
