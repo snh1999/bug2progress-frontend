@@ -1,12 +1,23 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { FormInput } from "@/components/common/form/FormComponent/FormInput";
 import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
 import LoadingComponent from "@/components/common/LoadingComponent";
 import { TFeature } from "@/api/features/features.types";
 import { convertSnakeCaseToTitleCase } from "@/lib/utils";
-import { ETicketPriority, ETicketStatus, ETicketType, TUpdateTicketDto } from "@/api/tickets/tickets.types";
+import {
+  ETicketPriority,
+  ETicketStatus,
+  ETicketType,
+  TUpdateTicketDto,
+} from "@/api/tickets/tickets.types";
 import { FormInputWrapper } from "@/components/common/form/FormComponent/FormInputWrapper";
 import { DatePicker } from "@/components/common/DatePicker";
 import { TProjectContributorWithUser } from "@/api/projects/projects.types";
@@ -14,7 +25,7 @@ import { useUpdateTicketForm } from "@/components/Tickets/UpdateTicketForm/Updat
 
 interface UpdateProjectFormProps {
   onCancel?: () => void;
-  onDelete: () => void
+  onDelete?: () => void;
   defaultValues: TUpdateTicketDto;
   contributors?: TProjectContributorWithUser[];
   features?: TFeature[];
@@ -25,19 +36,21 @@ export const UpdateTicketForm = ({
   onDelete,
   defaultValues,
   contributors = [],
-  features = []
+  features = [],
 }: UpdateProjectFormProps) => {
-  const {form, onSubmit, isPending} = useUpdateTicketForm({defaultValues, onSuccess: onCancel});
+  const { form, onSubmit, isPending } = useUpdateTicketForm({
+    defaultValues,
+    onSuccess: onCancel,
+  });
 
   const {
     control,
     handleSubmit,
-    formState: {isDirty},
+    formState: { isDirty },
   } = form;
 
-
   if (isPending) {
-    return <LoadingComponent/>;
+    return <LoadingComponent />;
   }
 
   return (
@@ -119,7 +132,11 @@ export const UpdateTicketForm = ({
             <FormSelect
               name="assignedContributorId"
               label="Assigned to"
-              placeholder={contributors.length === 0 ? "No contributors available" : "Assign the ticket to a contributor"}
+              placeholder={
+                contributors.length === 0
+                  ? "No contributors available"
+                  : "Assign the ticket to a contributor"
+              }
               control={control}
               disabled={contributors.length === 0}
               options={contributors.map((contributor) => ({
@@ -128,7 +145,12 @@ export const UpdateTicketForm = ({
               }))}
             />
 
-            <FormInputWrapper name="dueAt" label="Due Date" control={control} InputComponent={DatePicker}/>
+            <FormInputWrapper
+              name="dueAt"
+              label="Due Date"
+              control={control}
+              InputComponent={DatePicker}
+            />
 
             <FormInput
               name="description"
@@ -139,24 +161,25 @@ export const UpdateTicketForm = ({
               required
             />
           </CardContent>
-          <CardContent className="w-full p-7 pt-0 space-y-5 gap-3">
-            <div className="flex items-center justify-between">
-              <CardDescription className="text-lg text-foreground">
-                This operation will delete the feature and all associated data
-              </CardDescription>
-              <Button
-                className="ml-1"
-                variant="destructive"
-                type="button"
-                onClick={onDelete}
-              >
-                Delete Project
-              </Button>
-            </div>
-          </CardContent>
+          {onDelete && (
+            <CardContent className="w-full p-7 pt-0 space-y-5 gap-3">
+              <div className="flex items-center justify-between">
+                <CardDescription className="text-lg text-foreground">
+                  This operation will delete the feature and all associated data
+                </CardDescription>
+                <Button
+                  className="ml-1"
+                  variant="destructive"
+                  type="button"
+                  onClick={onDelete}
+                >
+                  Delete Project
+                </Button>
+              </div>
+            </CardContent>
+          )}
         </Card>
       </form>
-
     </Form>
   );
 };

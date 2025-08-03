@@ -10,15 +10,26 @@ import { format } from "date-fns";
 
 type Props = {
   contributor?: TUserWithProfile;
+  altText?: string;
   compact?: boolean;
 };
 
 export function TicketViewContributorHover({
   contributor,
+  altText,
   compact = false,
 }: Props) {
   if (!contributor)
-    return <span className="text-muted-foreground italic">Unassigned</span>;
+    return (
+      <Button
+        disabled
+        variant="ghost"
+        size="sm"
+        className="text-muted-foreground pr-0"
+      >
+        {altText ?? "Unassigned"}
+      </Button>
+    );
 
   return (
     <HoverCard>

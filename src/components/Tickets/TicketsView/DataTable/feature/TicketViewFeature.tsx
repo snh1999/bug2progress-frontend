@@ -8,7 +8,7 @@ import { TFeature } from "@/api/features/features.types";
 import { Button } from "@/components/ui/button";
 
 type Props = {
-  feature: TFeature;
+  feature?: TFeature;
   compact?: boolean;
   rounded?: boolean;
 };
@@ -18,6 +18,8 @@ export function TicketViewFeatureHover({
   compact = false,
   rounded = false,
 }: Props) {
+  if (!feature) return <span className="text-muted-foreground italic">-</span>;
+
   return (
     <HoverCard>
       <HoverCardTrigger asChild>

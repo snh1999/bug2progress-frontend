@@ -4,10 +4,18 @@ import { cn } from "@/lib/utils";
 type Props = {
   date?: string;
   className?: string;
+  compact?: boolean;
 };
 
-export const TicketViewDueHeader = ({date, className}: Props) => {
-  if (!date) return <span className="text-muted-foreground italic truncate">No Due Date</span>;
+export const TicketViewDueHeader = ({
+  date,
+  className,
+  compact = false,
+}: Props) => {
+  if (!date)
+    return (
+      <span className="text-muted-foreground italic truncate">No Due Date</span>
+    );
 
   const now = new Date();
   const dueDate = new Date(date);
@@ -21,7 +29,11 @@ export const TicketViewDueHeader = ({date, className}: Props) => {
     textColor = "text-primary";
   }
 
-  return <div className={textColor}>
-    <span className={cn("truncate ", className)}>{format(date, "PP")}</span>
-  </div>;
+  return (
+    <div className={textColor}>
+      <span className={cn("truncate ", className)}>
+        {format(date, compact ? "P" : "PP")}
+      </span>
+    </div>
+  );
 };
