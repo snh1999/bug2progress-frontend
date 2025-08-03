@@ -13,34 +13,13 @@ import { MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/common/themes/ThemeToggle";
-import EditFeatureButton from "@/components/features/EditFeatureButton";
 
 const pathnameMap = {
-  home: {
-    title: "Home",
-    description: "Monitor all of your projects and tasks here",
-    component: <></>,
-  },
-  settings: {
-    title: "Settings",
-    description: "View all of your settings here",
-    component: <></>,
-  },
-  tickets: {
-    title: "Tickets",
-    description: "View all of the tickets for the project here",
-    component: <></>,
-  },
-  contributors: {
-    title: "Contributors",
-    description: "View all the contributing members of your projects here",
-    component: <></>,
-  },
-  features: {
-    title: "Features",
-    description: "View all of your features for the project here",
-    component: <EditFeatureButton />,
-  },
+  home: "Home",
+  settings: "Settings",
+  tickets: "Ticket",
+  contributors: "Contributors",
+  features: "Feature",
 };
 
 const MobileSidebar = () => {
@@ -71,23 +50,20 @@ export const PageHeader = () => {
   const pathnameParts = pathname.split("/");
   const pathnameKey = pathnameParts[3] as keyof typeof pathnameMap;
 
-  const { title, description, component } =
-    pathnameMap[pathnameKey] || pathnameMap.home;
+  const title = pathnameMap[pathnameKey] || pathnameMap.home;
   const { mutate: logOut, isPending } = useLogOut();
 
   return (
     <nav className="pt-4 px-6 flex items-center justify-between">
       <div className="flex items-center gap-4">
         <MobileSidebar />
-        <div className="flex-col flex">
+        <div className="flex-col gap-2 flex">
           <h1 className="text-2xl font-semibold">{title}</h1>
-          <p className="text-muted-foreground">{description}</p>
         </div>
       </div>
 
       <div className="flex items-center gap-2">
         <ThemeToggle />
-        {component}
         <Button
           variant="destructive"
           disabled={isPending}
