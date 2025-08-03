@@ -26,7 +26,7 @@ export const CreateTicketForm = ({onCancel, defaultStatus = ETicketStatus.BACKLO
   return (
     <Card className=" h-full border-none shadow-none m-5">
       <CardHeader className="flex items-center justify-center text-center p-5">
-        <CardTitle className="text-2xl">Create a New Feature</CardTitle>
+        <CardTitle className="text-2xl">Create a New Ticket</CardTitle>
       </CardHeader>
 
       <CardContent className="w-full p-7">
