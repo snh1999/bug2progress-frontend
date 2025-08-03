@@ -46,7 +46,7 @@ export type TCreateTicketDto = {
   ticketStatus: ETicketStatus;
   position: number;
   assignedContributorId?: string;
-  dueAt?: Date;
+  dueAt?: Date|string;
 }
 
 export type TUpdateTicketDto = Partial<TCreateTicketDto> & {
@@ -88,7 +88,7 @@ export type TTicket = {
   description: string;
   projectId: string;
   featureId?: string;
-  feature: TFeature;
+  feature?: TFeature;
   creatorId: string;
   creator: TUserWithProfile;
   position: number;

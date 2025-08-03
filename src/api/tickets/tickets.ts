@@ -1,6 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { DeleteRequest, GetRequest, PatchRequest, PostRequest } from "@/api/axios";
-import { TFeature } from "@/api/features/features.types";
 import { toast } from "sonner";
 import {
   TCreateTicketDto,
@@ -48,7 +47,7 @@ export const useGetTickets = ({
 };
 
 export const useGetTicket = ({id, projectId}: TGetTicket) =>
-  useQuery<TFeature, Error>({
+  useQuery<TTicket, Error>({
     queryKey: ["ticket", projectId, id],
     queryFn: async () => (await GetRequest(`/projects/${projectId}/tickets/${id}`)).data,
   });
