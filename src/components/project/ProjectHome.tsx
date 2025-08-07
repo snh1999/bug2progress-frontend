@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { formatDistanceToNow } from "date-fns";
 import { CalendarIcon, ChevronDown, ExternalLink } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -18,6 +17,14 @@ import { TicketViewFeatureHover } from "@/components/Tickets/TicketsView/DataTab
 import { TFeature } from "@/api/features/features.types";
 import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
 import { TProjectContributorWithUser } from "@/api/projects/projects.types";
+import { CardItem } from "@/components/common/dataView/CardList/CardItem";
+import React from "react";
+import {
+  TicketPriority,
+  TicketStatus,
+  TicketType,
+} from "@/components/Tickets/TicketsView/DataTable/enums/TicketViewEnums";
+import { formatDistanceToNow } from "date-fns";
 
 export const ProjectHome = () => {
   const projectId = useProjectId();
@@ -75,6 +82,35 @@ interface TicketListProps {
 export const TicketList = ({ data, total }: TicketListProps) => {
   const projectId = useProjectId();
 
+  const cardListData = data.map((ticket) => ({
+    title: ticket.title,
+    titleNode: (
+      <>
+        <span className="font-semibold">{ticket.title}</span>
+        <div className="flex items-center gap-x-2">
+          <TicketStatus status={ticket.ticketStatus} />
+          <TicketPriority priority={ticket.ticketPriority} />
+          <TicketType type={ticket.ticketType} />
+        </div>
+      </>
+    ),
+    summary: (
+      <div className="flex items-center gap-x-2">
+        <div className="text-sm text-muted-foreground flex items-center">
+          <CalendarIcon className="size-3 mr-1" />
+          <span className="truncate">
+            {ticket.dueAt
+              ? formatDistanceToNow(new Date(ticket.dueAt))
+              : "No due Date"}
+          </span>
+        </div>
+        <div className="size-1 rounded-full bg-neutral-300" />
+        <TicketViewFeatureHover feature={ticket.feature} />
+      </div>
+    ),
+    id: ticket.id,
+  }));
+
   return (
     <div className="flex flex-col gap-y-4 col-span-1">
       <div className="bg-white dark:bg-black rounded-lg p-4">
@@ -83,36 +119,19 @@ export const TicketList = ({ data, total }: TicketListProps) => {
           <CreateTicketButton />
         </div>
         <ul className="flex flex-col pt-4 gap-y-4">
-          {data.map((ticket) => (
+          {cardListData.map((ticket) => (
             <li key={ticket.id}>
               <Link href={`/projects/${projectId}/tickets/${ticket.id}`}>
-                <Card className="shadow-none bg-muted rounded-lg hover:opacity-90 transition">
-                  <CardContent className="p-4">
-                    <p className="text-lg font-medium truncate">
-                      {ticket.title}
-                    </p>
-                    <div className="flex items-center gap-x-2">
-                      <div className="text-sm text-muted-foreground flex items-center">
-                        <CalendarIcon className="size-3 mr-1" />
-                        <span className="truncate">
-                          {ticket.dueAt
-                            ? formatDistanceToNow(new Date(ticket.dueAt))
-                            : "No due Date"}
-                        </span>
-                      </div>
-                      <div className="size-1 rounded-full bg-neutral-300" />
-                      <TicketViewFeatureHover feature={ticket.feature} />
-                    </div>
-                  </CardContent>
-                </Card>
+                <CardItem {...ticket} hideAvatar />
               </Link>
             </li>
           ))}
+
           <li className="pb-4 text-sm text-muted-foreground text-center hidden first-of-type:block">
             No tickets found
           </li>
         </ul>
-        {data.length > 0 && (
+        {data.length > 3 && (
           <Button variant="ghost" className="mt-4 w-full" asChild>
             <Link href={`/projects/${projectId}/tickets`}>
               Show All
