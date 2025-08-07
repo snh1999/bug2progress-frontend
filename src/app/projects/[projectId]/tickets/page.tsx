@@ -3,7 +3,7 @@ import { TicketsView } from "@/components/Tickets/TicketsView/TicketsView";
 const TicketsPage = () => {
   return (
     <div>
-      <TicketsView />;
+      <TicketsView />
     </div>
   );
 };

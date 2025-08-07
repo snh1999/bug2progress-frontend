@@ -1,10 +1,5 @@
 import { useRouter } from "next/navigation";
-import {
-  ExternalLinkIcon,
-  MoreVertical,
-  PencilIcon,
-  TrashIcon,
-} from "lucide-react";
+import { ExternalLinkIcon, MoreVertical, PencilIcon, TrashIcon, } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,12 +27,12 @@ export const TicketRowContextMenu = ({ id }: Props) => {
   const projectId = useProjectId();
   const router = useRouter();
 
-  const { data, isLoading, error } = useGetTicket({ id, projectId, featureId });
+  const { data, isLoading, error } = useGetTicket({ id, projectId });
   const { mutate: deleteTicket, isPending: isDeletePending } =
     useDeleteTicket();
 
   const { closeModal, isOpen, openModal } = useOpenModal(
-    OPEN_UPDATE_TICKET_MODAL_KEY
+    OPEN_UPDATE_TICKET_MODAL_KEY + `-${id}`
   );
 
   const [DeleteConfirmation, deleteConfirmation] = useConfirm({
@@ -45,7 +40,7 @@ export const TicketRowContextMenu = ({ id }: Props) => {
     message: "Are you sure you want to remove this ticket?",
     variant: "destructive",
     onConfirm: () => {
-      deleteTicket({ projectId, id, featureId });
+      deleteTicket({ projectId, id });
       closeModal();
     },
   });
