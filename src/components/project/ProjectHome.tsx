@@ -15,7 +15,6 @@ import { TTicket } from "@/api/tickets/tickets.types";
 import CreateTicketButton from "@/components/Tickets/CreateTicketButton";
 import { TicketViewFeatureHover } from "@/components/Tickets/TicketsView/DataTable/feature/TicketViewFeature";
 import { TFeature } from "@/api/features/features.types";
-import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
 import { TProjectContributorWithUser } from "@/api/projects/projects.types";
 import { CardItem } from "@/components/common/dataView/CardList/CardItem";
 import React from "react";
@@ -25,6 +24,8 @@ import {
   TicketType,
 } from "@/components/Tickets/TicketsView/DataTable/enums/TicketViewEnums";
 import { formatDistanceToNow } from "date-fns";
+import { Badge } from "@/components/ui/badge";
+import { convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 export const ProjectHome = () => {
   const projectId = useProjectId();
@@ -33,7 +34,7 @@ export const ProjectHome = () => {
     data: tickets,
     isLoading: isLoadingTickets,
     error: ticketsError,
-  } = useGetTickets({ projectId });
+  } = useGetTickets({projectId});
   const {
     data: features,
     isLoading: isLoadingFeatures,
@@ -43,20 +44,20 @@ export const ProjectHome = () => {
     data: contributors,
     isLoading: isLoadingContributors,
     error: contributorsError,
-  } = useGetProjectContributors({ id: projectId });
+  } = useGetProjectContributors({id: projectId});
 
   const isLoading =
     isLoadingTickets || isLoadingFeatures || isLoadingContributors;
 
   if (isLoading) {
-    return <LoadingComponent />;
+    return <LoadingComponent/>;
   }
 
   if (!tickets || !features || !contributors) {
     toast.error(
       ticketsError?.message ??
-        featuresError?.message ??
-        contributorsError?.message
+      featuresError?.message ??
+      contributorsError?.message
     );
     return null;
   }
@@ -64,10 +65,10 @@ export const ProjectHome = () => {
   return (
     <div className="h-full flex flex-col space-y-4">
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-        <TicketList data={tickets} total={tickets.length} />
+        <TicketList data={tickets} total={tickets.length}/>
         <div className="gap-4">
-          <FeatureList data={features} total={features.length} />
-          <ContributorList data={contributors} total={contributors.length} />
+          <FeatureList data={features} total={features.length}/>
+          <ContributorList data={contributors} total={contributors.length}/>
         </div>
       </div>
     </div>
@@ -79,36 +80,36 @@ interface TicketListProps {
   total: number;
 }
 
-export const TicketList = ({ data, total }: TicketListProps) => {
+export const TicketList = ({data, total}: TicketListProps) => {
   const projectId = useProjectId();
 
   const cardListData = data.map((ticket) => ({
     title: ticket.title,
+    id: ticket.id,
     titleNode: (
       <>
         <span className="font-semibold">{ticket.title}</span>
         <div className="flex items-center gap-x-2">
-          <TicketStatus status={ticket.ticketStatus} />
-          <TicketPriority priority={ticket.ticketPriority} />
-          <TicketType type={ticket.ticketType} />
+          <TicketStatus status={ticket.ticketStatus}/>
+          <TicketPriority priority={ticket.ticketPriority}/>
+          <TicketType type={ticket.ticketType}/>
         </div>
       </>
     ),
     summary: (
       <div className="flex items-center gap-x-2">
         <div className="text-sm text-muted-foreground flex items-center">
-          <CalendarIcon className="size-3 mr-1" />
+          <CalendarIcon className="size-3 mr-1"/>
           <span className="truncate">
             {ticket.dueAt
               ? formatDistanceToNow(new Date(ticket.dueAt))
               : "No due Date"}
           </span>
         </div>
-        <div className="size-1 rounded-full bg-neutral-300" />
-        <TicketViewFeatureHover feature={ticket.feature} />
+        <div className="size-1 rounded-full bg-neutral-300"/>
+        <TicketViewFeatureHover feature={ticket.feature}/>
       </div>
     ),
-    id: ticket.id,
   }));
 
   return (
@@ -116,13 +117,13 @@ export const TicketList = ({ data, total }: TicketListProps) => {
       <div className="bg-white dark:bg-black rounded-lg p-4">
         <div className="flex items-center justify-between">
           <p className="text-lg font-semibold">Tasks ({total})</p>
-          <CreateTicketButton />
+          <CreateTicketButton/>
         </div>
         <ul className="flex flex-col pt-4 gap-y-4">
           {cardListData.map((ticket) => (
             <li key={ticket.id}>
               <Link href={`/projects/${projectId}/tickets/${ticket.id}`}>
-                <CardItem {...ticket} hideAvatar />
+                <CardItem {...ticket} hideAvatar/>
               </Link>
             </li>
           ))}
@@ -135,7 +136,7 @@ export const TicketList = ({ data, total }: TicketListProps) => {
           <Button variant="ghost" className="mt-4 w-full" asChild>
             <Link href={`/projects/${projectId}/tickets`}>
               Show All
-              <ChevronDown className="size-4" />
+              <ChevronDown className="size-4"/>
             </Link>
           </Button>
         )}
@@ -149,7 +150,7 @@ interface FeatureListProps {
   total: number;
 }
 
-export const FeatureList = ({ data, total }: FeatureListProps) => {
+export const FeatureList = ({data, total}: FeatureListProps) => {
   const projectId = useProjectId();
 
   return (
@@ -158,13 +159,13 @@ export const FeatureList = ({ data, total }: FeatureListProps) => {
         <div className="flex items-center justify-between">
           <p className="text-lg font-semibold">Features ({total})</p>
         </div>
-        <ul className="grid grid-cols-1 lg:grid-cols-2 py-4 gap-4">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-4 gap-4">
           {data.map((feature) => (
             <li key={feature.id}>
               <Link href={`/projects/${projectId}/features/${feature.id}`}>
                 <Card className="bg-muted shadow-none rounded-lg hover:opacity-75 transition">
                   <CardContent className="p-4 flex items-center gap-x-2.5">
-                    <TicketViewFeatureHover feature={feature} />
+                    <TicketViewFeatureHover feature={feature}/>
                   </CardContent>
                 </Card>
               </Link>
@@ -186,38 +187,45 @@ interface ContributorListProps {
   total: number;
 }
 
-export const ContributorList = ({ data, total }: ContributorListProps) => {
+export const ContributorList = ({data, total}: ContributorListProps) => {
   const projectId = useProjectId();
+
+  const cardListData = data.map((contributor) => ({
+    id: contributor.user.id,
+    title: contributor.user.profile.name,
+    topRightComponent: (
+      <Badge className="rounded-full">
+        {convertSnakeCaseToTitleCase(contributor.role)}
+      </Badge>
+    ),
+    summary: (
+      <div className="mt-2 flex items-center gap-x-2">
+        <span className="truncate text-muted-foreground">
+            {'@' + contributor.user.profile.username}
+          </span>
+
+      </div>
+    ),
+  }));
 
   return (
     <div className="flex pt-4 flex-col gap-y-4 col-span-1">
       <div className="bg-white dark:bg-black border rounded-lg p-4">
         <div className="flex items-center justify-between">
           <p className="text-lg font-semibold">Members ({total})</p>
-          <Button asChild variant="secondary" size="icon">
-            <Link href={`/projects/${projectId}/members`}>
-              <ExternalLink className="size-4 text-neutral-400" />
+          <Button asChild variant="outline" size="icon">
+            <Link href={`/projects/${projectId}/contributors`}>
+              <ExternalLink className="size-4 text-neutral-400"/>
             </Link>
           </Button>
         </div>
-        <ul className="grid grid-cols-1 lg:grid-cols-2 py-4 gap-4">
-          {data.map((contributor) => (
-            <li key={contributor.userId}>
-              <Card className="shadow-none rounded-lg overflow-hidden">
-                <CardContent className="p-3 flex flex-col items-center gap-x-2">
-                  <ImageOrAvatar name={contributor.user.profile.name} />
-                  <div className="flex flex-col items-center overflow-hidden">
-                    <p className="text-lg font-medium line-clamp-1">
-                      {contributor.user.profile.name}
-                    </p>
-                    <p className="text-sm text-muted-foreground line-clamp-1">
-                      {contributor.user.profile.username}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </li>
-          ))}
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 py-4 gap-4">
+            {cardListData.map((contributor) => (
+              <li key={contributor.id}>
+                <CardItem {...contributor} />
+              </li>
+            ))}
+
         </ul>
         {total === 0 && (
           <span className="pb-4 text-sm text-muted-foreground text-center hidden first-of-type:block">

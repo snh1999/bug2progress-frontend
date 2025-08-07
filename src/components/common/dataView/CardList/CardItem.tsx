@@ -1,26 +1,20 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
 import { ReactNode } from "react";
 import { getRandomColor } from "@/lib/utils";
 
 export type TCardItemProps = {
+  id?: string;
   title: string;
+  bgColor?: string;
+  progress?: number;
+  hideAvatar?: boolean;
   titleNode?: ReactNode;
   summary: string | ReactNode;
-  centerFocusText?: string;
-  bottomBarInformation?: string;
-  progress?: number;
-  id?: string;
-  childComponent?: ReactNode;
-  bgColor?: string;
-  hideAvatar?: boolean;
+  centerFocusText?: string | ReactNode;
+  bottomBarInformation?: string | ReactNode;
+  topRightComponent?: ReactNode;
 };
 
 export const CardItem = ({
@@ -30,7 +24,7 @@ export const CardItem = ({
   centerFocusText,
   bottomBarInformation,
   progress,
-  childComponent,
+  topRightComponent,
   hideAvatar = false,
   bgColor = getRandomColor(),
 }: TCardItemProps) => {
@@ -47,8 +41,8 @@ export const CardItem = ({
             </div>
           )}
 
-          {childComponent
-            ? childComponent
+          {topRightComponent
+            ? topRightComponent
             : progress && (
                 <Badge variant="default" className="rounded-full">
                   {progress}
