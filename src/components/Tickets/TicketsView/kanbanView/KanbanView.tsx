@@ -1,15 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-import {
-  DragDropContext,
-  Draggable,
-  Droppable,
-  type DropResult,
-} from "@hello-pangea/dnd";
-import {
-  ETicketStatus,
-  TTicket,
-  UpdateTicketPositionData,
-} from "@/api/tickets/tickets.types";
+import { DragDropContext, Draggable, Droppable, type DropResult, } from "@hello-pangea/dnd";
+import { ETicketStatus, TTicket, UpdateTicketPositionData, } from "@/api/tickets/tickets.types";
 import { toast } from "sonner";
 import { KanbanHeader } from "@/components/Tickets/TicketsView/kanbanView/KanbanHeader";
 import { KanbanCard } from "@/components/Tickets/TicketsView/kanbanView/KanbanCard";
@@ -142,7 +133,7 @@ export const KanbanView = ({ data, onChange }: DataKanbanProps) => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="flex overflow-x-auto">
+      <div className="flex overflow-x-auto min-h-[75vh]">
         {boards.map((board) => {
           return (
             <div
@@ -179,7 +170,7 @@ export const KanbanView = ({ data, onChange }: DataKanbanProps) => {
                 )}
               </Droppable>
             </div>
-          );
+          )
         })}
       </div>
     </DragDropContext>
