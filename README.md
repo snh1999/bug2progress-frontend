@@ -167,7 +167,7 @@ src/
 
 ### 🔐 Application Flow
 
-#### Authentication
+#### 1. Authentication
 | Login Page (dark mode) | Register Page |
 |------------------------|---------------|
 | <img width="1875" alt="Image" src="https://github.com/user-attachments/assets/c48b7fe1-0e4c-4060-bfc7-31c7daa1f371" />| <img width="1875" alt="Image" src="https://github.com/user-attachments/assets/9f9c0b1a-795b-446b-8a5d-3380248b4f37" />| 
@@ -178,52 +178,55 @@ src/
 - Logout: token removal and redirect to login
 
 #### Projects
-Users get redirected to home page (`/`) after login.
+2. Users get redirected to home page (`/`) after login.
 
 <img width="1875" alt="no project home" src="https://github.com/user-attachments/assets/7e40d633-8948-47dc-9a25-788d86f71067" />
 
-Initially, there is no project, so the user has to create one or join via invite code
+2.1. Initially, there is no project, so the user has to create one or join via invite code
 
 | join project | Create project |
 |--------------|----------------|
 | <img width="1503"  alt="join project" src="https://github.com/user-attachments/assets/29f65175-c3b0-4cbc-a1d7-91cc19dd6724" />| <img width="1505"  alt="create project" src="https://github.com/user-attachments/assets/60f38185-706c-4085-b74a-1e36ff79368d" />| 
 
-Already existing users will see the project list.
+2.2. Already existing users will see the project list.
 <img width="1871" alt="homepage" src="https://github.com/user-attachments/assets/a4d88a71-2f7d-4cda-85c6-92cfe1a58d73" />
 
 
-Joining/creating a project redirects to the project dashboard, where the user can create tickets and features. The sidebar contains the project and features list and a switcher to switch between projects.
+3. Joining/creating a project redirects to the project dashboard, where the user can create tickets and features. The sidebar contains the project and features list and a switcher to switch between projects.
 <img width="1869" alt="empty project" src="https://github.com/user-attachments/assets/ee6db0d8-b7d9-4c90-86af-7d64770576ad" />
 
-Users can add new tickets and features to the project.
+3.1 Older projects will view existing tickets, contributors and features.
+<img width="1871" alt="project-home" src="https://github.com/user-attachments/assets/aca72c71-c365-494f-8b93-fdcf7ded1a11" />
+
+4. Users can add new tickets and features to the project.
 
 | Create Ticket                                                                                                                  | Create Feature |
 |--------------------------------------------------------------------------------------------------------------------------------|----------------|
 | <img width="958"  alt="create ticket" src="https://github.com/user-attachments/assets/1ef1dc41-8be4-44eb-86f4-2652392f2f30" /> | <img width="958"  alt="create feature" src="https://github.com/user-attachments/assets/1a165da7-4571-4404-a849-4607baed0f21" />| 
 
-Older projects will view existing tickets, contributors and features.
-<img width="1871" alt="project-home" src="https://github.com/user-attachments/assets/aca72c71-c365-494f-8b93-fdcf7ded1a11" />
 
-Settings tab (`projects/:id/settings`) allows users to update project details, invite contributors, and change ownership.
+5. Settings tab (`projects/:id/settings`) allows users to update project details, invite contributors, and change ownership.
 <img width="1868" alt="Image" src="https://github.com/user-attachments/assets/580da61b-4b3c-4da6-afe7-9f9b784bef82" />
 
-Tickets tab (`projects/:id/tickets`) of features page (`projects/:ifeatures/:id`) allows users to view all tickets associated (features page filter by relevant feature id).
+6. Tickets tab (`projects/:id/tickets`) of features page (`projects/:ifeatures/:id`) allows users to view all tickets associated (features page filter by relevant feature id).
 
-There exists three distinct ticket views switchable from tabs:
-- ListView: Traditional table format with sorting and filtering
+7. There exists three distinct ticket views switchable from tabs:
+7.1. ListView: Traditional table format with sorting and filtering
   <img width="1871" alt="table-view" src="https://github.com/user-attachments/assets/22a15d47-4be8-425d-b9fc-c8ffd6e92639" />
-- KanbanBoard: Drag-and-drop interface with status columns
+7.2. KanbanBoard: Drag-and-drop interface with status columns
   <img width="1871" alt="kanban-view" src="https://github.com/user-attachments/assets/bf03f035-1a31-465a-8f93-5e117a926dde" />
-- CalendarView: Timeline view for deadline management
+7.3. CalendarView: Timeline view for deadline management
   <img width="1871"  alt="calendar-view" src="https://github.com/user-attachments/assets/aef96f95-c163-4361-97f0-0376f0e12ead" />
 
-Individual ticket view (`projects/:id/tickets/:id`) allows users to view and update tickets.
+7.4. Individual ticket view (`projects/:id/tickets/:id`) allows users to view and update tickets.
 <img width="1875" alt="ticket-view" src="https://github.com/user-attachments/assets/36eb7b18-67b5-4a53-b7b6-f82bc540b797" />
 
 #### Responsive Design
 
-
-
+| <img width="887" height="909" alt="responsive homepage" src="https://github.com/user-attachments/assets/087ef3e5-e45b-465e-ac34-c2d8b38621ba" /> |<img width="887" height="909" alt="responsive home" src="https://github.com/user-attachments/assets/19ac5206-85d6-4117-b116-61e08112705c" /> | 
+|--------------------------------------------------------------------------------------------------------------------------------|----------------|
+| <img width="887" height="909" alt="responsive form" src="https://github.com/user-attachments/assets/b64e8456-33fd-4544-85c6-5f529c007033" /> | <img width="887" height="909" alt="responsive ticket view" src="https://github.com/user-attachments/assets/fde65b4e-cf33-452d-822e-2a762b0ea140" />
+ | 
 
 #### 🤝 API
 For complete API documentation, see the [bug2progress backend repository](https://github.com/snh1999/bug2progress).
