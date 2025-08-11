@@ -12,6 +12,13 @@ export default function Home() {
   if (!data) {
     return <LoadingComponent />;
   }
+  if (data.length === 0) {
+    return (
+      <span className="mt-10 h-full text-semibold text-xl text-muted-foreground text-center italic">
+        No projects found
+      </span>
+    );
+  }
 
   const cardListData = data.map((item) => ({
     title: item.title,

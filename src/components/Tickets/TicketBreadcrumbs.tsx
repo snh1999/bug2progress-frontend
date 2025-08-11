@@ -47,7 +47,7 @@ export const TicketBreadcrumbs = ({
         size="sm"
       >
         <TrashIcon className="size-4 lg:mr-2"/>
-        <span className="hidden lg:block">Delete Task</span>
+        <span className="hidden lg:block">Delete Ticket</span>
       </Button>
     </div>
   );
