@@ -1,3 +1,10 @@
+<img width="1875" height="907" alt="ticket-view" src="https://github.com/user-attachments/assets/36eb7b18-67b5-4a53-b7b6-f82bc540b797" />
+<img width="1871" height="902" alt="table-view" src="https://github.com/user-attachments/assets/22a15d47-4be8-425d-b9fc-c8ffd6e92639" />
+<img width="1871" height="902" alt="project-home" src="https://github.com/user-attachments/assets/aca72c71-c365-494f-8b93-fdcf7ded1a11" />
+<img width="1871" height="902" alt="kanban-view" src="https://github.com/user-attachments/assets/bf03f035-1a31-465a-8f93-5e117a926dde" />
+<img width="1871" height="902" alt="homepage" src="https://github.com/user-attachments/assets/a4d88a71-2f7d-4cda-85c6-92cfe1a58d73" />
+<img width="1875" height="907" alt="feature-view" src="https://github.com/user-attachments/assets/d051c6b2-58b4-4432-b028-824ca5765240" />
+<img width="1871" height="902" alt="calendar-view" src="https://github.com/user-attachments/assets/aef96f95-c163-4361-97f0-0376f0e12ead" />
 Features: 
 
 - [x] Dark mode theming
