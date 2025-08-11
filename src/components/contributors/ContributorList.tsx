@@ -2,9 +2,9 @@ import { EProjectRole } from "@/api/projects/projects.types";
 import { useGetProjectContributors } from "@/api/projects/projectContributors";
 import LoadingComponent from "@/components/common/LoadingComponent";
 import { useProjectId } from "@/hooks/useProjectId";
-import { CardList } from "@/components/common/dataView/CardList/CardList";
 import { ContributorMenu } from "@/components/contributors/ContributorMenu";
 import { convertSnakeCaseToTitleCase } from "@/lib/utils";
+import { CardItem } from "@/components/common/dataView/CardList/CardItem";
 
 type TContributorListProps = {
   role: EProjectRole
@@ -36,15 +36,10 @@ const ContributorList = ({role}: TContributorListProps) => {
           </p>
         </div>
 
-      <div className="flex items-center justify-between">
-
-        <ul className="grid grid-cols-1 lg:grid-cols-2 py-4 gap-4">
-          {data.map((contributor) => (
-            <li key={contributor.userId}>
-              <CardList listItems={cardListData} />
-            </li>
+      <div className="grid grid-cols-2 lg:grid-cols-3">
+          {cardListData.map((item) => (
+            <CardItem key={item.id} {...item} />
           ))}
-        </ul>
       </div>
     </div>
   );
