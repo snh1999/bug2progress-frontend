@@ -24,19 +24,20 @@ npm install
 
 4. Environment Setup: create a `.env`/`.env.local` file or rename the `.env.example` file in the root directory:
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:8080/api/v1
+NEXT_PUBLIC_VERSION_PATH=/api/v1
+NEXT_PUBLIC_API_URL=http://localhost:8080
 ```
 Note: reflect any modification to the backend API URL in the `.env` file.
 
 5. Start the development server:
 ```bash
-npm run dev
+bun dev
 ```
 other scripts
 ```bash
-npm run build # Build for production
-npm run start # Start production server
-npm run lint  # Run ESLint
+bun build # Build for production
+bun start # Start production server
+bun lint  # Run ESLint
 ```
 
 6. Open your browser and navigate to http://localhost:3000
@@ -234,6 +235,3 @@ For complete API documentation, see the [bug2progress backend repository](https:
 ## 📱 Browser Support
 
 Tested on Ungoogled Chromium, Firefox and brave browser.
-
-
-
