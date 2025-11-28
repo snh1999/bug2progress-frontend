@@ -1,9 +1,20 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { DragDropContext, Draggable, Droppable, type DropResult, } from "@hello-pangea/dnd";
-import { ETicketStatus, TTicket, UpdateTicketPositionData, } from "@/api/tickets/tickets.types";
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  type DropResult,
+} from "@hello-pangea/dnd";
+import {
+  ETicketStatus,
+  TTicket,
+  UpdateTicketPositionData,
+} from "@/api/tickets/tickets.types";
 import { toast } from "sonner";
 import { KanbanHeader } from "@/components/Tickets/TicketsView/kanbanView/KanbanHeader";
 import { KanbanCard } from "@/components/Tickets/TicketsView/kanbanView/KanbanCard";
+import { useSocket } from "@/realtime/provider/websocket-provider";
+import { useRealtimeTickets } from "@/realtime/useRealTimeTickets";
 
 const boards: ETicketStatus[] = Object.values(ETicketStatus);
 
@@ -24,16 +35,17 @@ interface DataKanbanProps {
 }
 
 export const KanbanView = ({ data, onChange }: DataKanbanProps) => {
+  const { connected } = useSocket();
+  useRealtimeTickets();
+
   const [tickets, setTickets] = useState<TicketStatus>(() => {
     const initialTickets: TicketStatus = getInitialTicketValues();
-
     data.forEach((ticket) => {
       initialTickets[ticket.ticketStatus].push(ticket);
     });
-
     Object.keys(initialTickets).forEach((status) => {
       initialTickets[status as ETicketStatus].sort(
-        (a, b) => a.position - b.position
+        (a, b) => a.position - b.position,
       );
     });
 
@@ -42,14 +54,13 @@ export const KanbanView = ({ data, onChange }: DataKanbanProps) => {
 
   useEffect(() => {
     const newTickets: TicketStatus = getInitialTicketValues();
-
     data.forEach((ticket) => {
       newTickets[ticket.ticketStatus].push(ticket);
     });
 
     Object.keys(newTickets).forEach((status) => {
       newTickets[status as ETicketStatus].sort(
-        (a, b) => a.position - b.position
+        (a, b) => a.position - b.position,
       );
     });
 
@@ -128,51 +139,61 @@ export const KanbanView = ({ data, onChange }: DataKanbanProps) => {
       });
       onChange(updatesPayload);
     },
-    [onChange]
+    [onChange],
   );
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div className="flex overflow-x-auto min-h-[75vh]">
-        {boards.map((board) => {
-          return (
-            <div
-              key={board}
-              className="flex-1 mx-2 bg-muted p-1.5 rounded-md min-w-[200px]"
-            >
-              <KanbanHeader board={board} ticketCount={tickets[board].length} />
-              <Droppable droppableId={board}>
-                {(provided) => (
-                  <div
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                    className="min-h-[200px] py-1.5"
-                  >
-                    {tickets[board].map((ticket, index) => (
-                      <Draggable
-                        key={ticket.id}
-                        draggableId={ticket.id}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          >
-                            <KanbanCard ticket={ticket} />
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </div>
-          )
-        })}
-      </div>
-    </DragDropContext>
+    <>
+      {connected && (
+        <div className="text-xs text-green-600 px-2 py-1 rounded">
+          🟢 Sync active
+        </div>
+      )}
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="flex overflow-x-auto min-h-[75vh]">
+          {boards.map((board) => {
+            return (
+              <div
+                key={board}
+                className="flex-1 mx-2 bg-muted p-1.5 rounded-md min-w-[200px]"
+              >
+                <KanbanHeader
+                  board={board}
+                  ticketCount={tickets[board].length}
+                />
+                <Droppable droppableId={board}>
+                  {(provided) => (
+                    <div
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      className="min-h-[200px] py-1.5"
+                    >
+                      {tickets[board].map((ticket, index) => (
+                        <Draggable
+                          key={ticket.id}
+                          draggableId={ticket.id}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              <KanbanCard ticket={ticket} />
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </div>
+            );
+          })}
+        </div>
+      </DragDropContext>
+    </>
   );
 };

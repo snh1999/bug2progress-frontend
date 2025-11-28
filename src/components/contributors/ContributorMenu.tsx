@@ -8,13 +8,12 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreHorizontalIcon } from "lucide-react";
+import { ExternalLinkIcon, MoreHorizontalIcon } from "lucide-react";
 import {
   EContributorAction,
   useCheckPermission,
 } from "@/components/contributors/contributor.helper";
 import { useProjectId } from "@/hooks/useProjectId";
-import { ExternalIcon } from "next/dist/client/components/react-dev-overlay/ui/icons/external";
 import {
   useDeleteContributor,
   useUpdateProjectContributorRole,
@@ -31,11 +30,11 @@ export function ContributorMenu({ userId }: TContributorMenu) {
 
   const editRolePermission = useCheckPermission(
     EContributorAction.EDIT_ROLE,
-    projectId
+    projectId,
   );
   const removeContributorPermission = useCheckPermission(
     EContributorAction.REMOVE,
-    projectId
+    projectId,
   );
 
   const { mutate: updateRole } = useUpdateProjectContributorRole();
@@ -68,7 +67,7 @@ export function ContributorMenu({ userId }: TContributorMenu) {
       <DropdownMenuContent className="w-56" align="start">
         <DropdownMenuItem disabled>
           Go to Profile
-          <ExternalIcon />
+          <ExternalLinkIcon />
         </DropdownMenuItem>
 
         {editRolePermission && (

@@ -3,6 +3,7 @@ export const AUTH_TOKEN_KEY = "token";
 export const API_URL =
   process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
 export const BASE_URL = API_URL + (process.env.NEXT_PUBLIC_VERSION_PATH ?? "");
+export const HOME_PATH = "/";
 export const LOGIN_PATH = "/login";
 export const REGISTER_PATH = "/register";
 export const PROJECTS_PATH = "/projects";
