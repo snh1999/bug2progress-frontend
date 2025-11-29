@@ -3,6 +3,8 @@
 Frontend for a Bug Tracker application built with Next.js, featuring multiple ticket views, project management, and
 role-based access control.
 
+Bugs for this project are being listed here: https://trello.com/b/5hVPzEPS/bug2progress (until I figure out a way for free hosting)
+
 | Project Home                                                                                                                  | Homepage (dark mode)                                                                                                                        |
 |-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | <img width="1871" alt="project-home" src="https://github.com/user-attachments/assets/aca72c71-c365-494f-8b93-fdcf7ded1a11" /> | <img width="1875" alt="homepage-dark" src="https://github.com/user-attachments/assets/3b841452-997a-4a21-b3d7-abd91b8a560f" />|
