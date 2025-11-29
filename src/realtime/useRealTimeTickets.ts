@@ -48,7 +48,7 @@ export function useRealtimeTickets() {
       );
 
       queryClient.setQueriesData<TTicket>(
-        { queryKey: ["ticket", projectId], exact: false },
+        { queryKey: ["ticket", projectId, ticket.id] },
         ticket,
       );
     };

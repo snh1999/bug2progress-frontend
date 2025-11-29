@@ -26,9 +26,11 @@ import {
 import { formatDistanceToNow } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { convertSnakeCaseToTitleCase } from "@/lib/utils";
+import { useRealtimeNotifications } from "@/realtime/useRealTimeNotifications";
 
 export const ProjectHome = () => {
   const projectId = useProjectId();
+  useRealtimeNotifications();
 
   const {
     data: tickets,
@@ -57,7 +59,7 @@ export const ProjectHome = () => {
     toast.error(
       ticketsError?.message ??
         featuresError?.message ??
-        contributorsError?.message
+        contributorsError?.message,
     );
     return null;
   }
