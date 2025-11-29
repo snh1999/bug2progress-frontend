@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { FormInput } from "@/components/common/form/FormComponent/FormInput";
 import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
@@ -10,7 +16,7 @@ import { convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 interface UpdateProjectFormProps {
   onCancel?: () => void;
-  onDelete: () => void
+  onDelete: () => void;
   defaultValues: TUpdateFeatureDto;
 }
 
@@ -19,17 +25,19 @@ export const UpdateFeatureForm = ({
   onDelete,
   defaultValues,
 }: UpdateProjectFormProps) => {
-  const {form, onSubmit, isPending} = useUpdateFeatureForm({defaultValues, onSuccess: onCancel});
+  const { form, onSubmit, isPending } = useUpdateFeatureForm({
+    defaultValues,
+    onSuccess: onCancel,
+  });
 
   const {
     control,
     handleSubmit,
-    formState: {isDirty},
+    formState: { isDirty },
   } = form;
 
-
   if (isPending) {
-    return <LoadingComponent/>;
+    return <LoadingComponent />;
   }
 
   return (
@@ -85,13 +93,12 @@ export const UpdateFeatureForm = ({
                 type="button"
                 onClick={onDelete}
               >
-                Delete Project
+                Delete Feature
               </Button>
             </div>
           </CardContent>
         </Card>
       </form>
-
     </Form>
   );
 };

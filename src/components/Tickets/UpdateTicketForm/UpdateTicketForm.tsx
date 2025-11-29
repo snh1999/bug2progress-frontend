@@ -156,7 +156,7 @@ export const UpdateTicketForm = ({
               name="description"
               label="Description"
               control={control}
-              placeholder="Description for the feature"
+              placeholder="Description for the ticket"
               textarea
               required
             />
@@ -165,7 +165,7 @@ export const UpdateTicketForm = ({
             <CardContent className="w-full p-7 pt-0 space-y-5 gap-3">
               <div className="flex items-center justify-between">
                 <CardDescription className="text-lg text-foreground">
-                  This operation will delete the feature and all associated data
+                  This operation will delete the ticket and all associated data
                 </CardDescription>
                 <Button
                   className="ml-1"
@@ -173,7 +173,7 @@ export const UpdateTicketForm = ({
                   type="button"
                   onClick={onDelete}
                 >
-                  Delete Project
+                  Delete Ticket
                 </Button>
               </div>
             </CardContent>
