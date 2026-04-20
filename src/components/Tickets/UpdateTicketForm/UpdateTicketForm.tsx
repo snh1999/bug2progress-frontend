@@ -1,3 +1,17 @@
+import type { TFeature } from "@/api/features/features.types";
+import type { TProjectContributorWithUser } from "@/api/projects/projects.types";
+import {
+  ETicketPriority,
+  ETicketStatus,
+  ETicketType,
+  type TUpdateTicketDto,
+} from "@/api/tickets/tickets.types";
+import { DatePicker } from "@/components/common/DatePicker";
+import { FormInput } from "@/components/common/form/FormComponent/FormInput";
+import { FormInputWrapper } from "@/components/common/form/FormComponent/FormInputWrapper";
+import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
+import LoadingComponent from "@/components/common/LoadingComponent";
+import { useUpdateTicketForm } from "@/components/Tickets/UpdateTicketForm/UpdateTicketForm.hooks";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,21 +21,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
-import { FormInput } from "@/components/common/form/FormComponent/FormInput";
-import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
-import LoadingComponent from "@/components/common/LoadingComponent";
-import { TFeature } from "@/api/features/features.types";
 import { convertSnakeCaseToTitleCase } from "@/lib/utils";
-import {
-  ETicketPriority,
-  ETicketStatus,
-  ETicketType,
-  TUpdateTicketDto,
-} from "@/api/tickets/tickets.types";
-import { FormInputWrapper } from "@/components/common/form/FormComponent/FormInputWrapper";
-import { DatePicker } from "@/components/common/DatePicker";
-import { TProjectContributorWithUser } from "@/api/projects/projects.types";
-import { useUpdateTicketForm } from "@/components/Tickets/UpdateTicketForm/UpdateTicketForm.hooks";
 
 interface UpdateProjectFormProps {
   onCancel?: () => void;

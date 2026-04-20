@@ -1,18 +1,17 @@
-import { cn, convertSnakeCaseToTitleCase } from "@/lib/utils";
-import { IoIosArchive } from "react-icons/io";
+import type { ReactNode } from "react";
 import { FaCheckCircle, FaClipboardList } from "react-icons/fa";
-import { GoCodeReview } from "react-icons/go";
-import { GiProgression } from "react-icons/gi";
 import { FaStopwatch } from "react-icons/fa6";
-import { ImBlocked } from "react-icons/im";
-import { TbLock } from "react-icons/tb";
+import { GiProgression } from "react-icons/gi";
+import { GoCodeReview } from "react-icons/go";
 import { GrDeploy } from "react-icons/gr";
-
-import { ETicketStatus } from "@/api/tickets/tickets.types";
-import { getTicketStatusStyle } from "@/components/Tickets/TicketsView/DataTable/enums/TicketViewEnums";
+import { ImBlocked } from "react-icons/im";
+import { IoIosArchive } from "react-icons/io";
 import { LuTestTubeDiagonal } from "react-icons/lu";
+import { TbLock } from "react-icons/tb";
+import { ETicketStatus } from "@/api/tickets/tickets.types";
 import CreateTicketButton from "@/components/Tickets/CreateTicketButton";
-import { ReactNode } from "react";
+import { getTicketStatusStyle } from "@/components/Tickets/TicketsView/DataTable/enums/TicketViewEnums";
+import { cn, convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 interface KanbanColumnHeaderProps {
   board: ETicketStatus;
@@ -35,7 +34,7 @@ const statusIconMap: Record<ETicketStatus, ReactNode> = {
     <GiProgression
       className={cn(
         commonStyle,
-        getTicketStatusStyle(ETicketStatus.IN_PROGRESS)
+        getTicketStatusStyle(ETicketStatus.IN_PROGRESS),
       )}
     />
   ),

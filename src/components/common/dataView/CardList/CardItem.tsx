@@ -1,7 +1,13 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import type { ReactNode } from "react";
 import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
-import { ReactNode } from "react";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { getRandomColor } from "@/lib/utils";
 
 export type TCardItemProps = {

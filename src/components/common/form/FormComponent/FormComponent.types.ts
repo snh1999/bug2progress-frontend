@@ -1,4 +1,4 @@
-import { Control } from "react-hook-form";
+import type { Control } from "react-hook-form";
 
 export type TFormComponentProps = {
   name: string;
@@ -9,12 +9,11 @@ export type TFormComponentProps = {
   disabled?: boolean;
 };
 
-
 export type TFormInputProps = {
-  value?: Date
-  onChange: (date: Date) => void,
-  placeholder?: string,
-  className?: string,
+  value?: Date;
+  onChange: (date: Date) => void;
+  placeholder?: string;
+  className?: string;
   required?: boolean;
   disabled?: boolean;
-}
+};

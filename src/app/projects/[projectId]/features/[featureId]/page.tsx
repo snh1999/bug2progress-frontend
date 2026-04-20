@@ -1,13 +1,12 @@
 "use client";
-import { useFeatureId } from "@/hooks/useFeatureId";
-import { useProjectId } from "@/hooks/useProjectId";
+import { toast } from "sonner";
 import { useGetFeature } from "@/api/features/features";
 import LoadingComponent from "@/components/common/LoadingComponent";
-import { toast } from "sonner";
-import { TicketsView } from "@/components/Tickets/TicketsView/TicketsView";
 import { SecondaryHeader } from "@/components/common/SecondaryHeader";
 import EditFeatureButton from "@/components/features/EditFeatureButton";
-import React from "react";
+import { TicketsView } from "@/components/Tickets/TicketsView/TicketsView";
+import { useFeatureId } from "@/hooks/useFeatureId";
+import { useProjectId } from "@/hooks/useProjectId";
 
 const FeaturePage = () => {
   const projectId = useProjectId();

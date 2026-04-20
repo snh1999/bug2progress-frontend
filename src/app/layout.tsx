@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import QueryProvider from "./providers";
-import { Toaster } from "@/components/ui/sonner";
-import { ReactNode } from "react";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import type { ReactNode } from "react";
 import { ThemeProvider } from "@/components/common/themes/ThemeProvider";
+import { Toaster } from "@/components/ui/sonner";
+import QueryProvider from "./providers";
 
 export const metadata: Metadata = {
   title: "Bug2Progress",

@@ -1,3 +1,11 @@
+import {
+  FeatureType,
+  type TUpdateFeatureDto,
+} from "@/api/features/features.types";
+import { FormInput } from "@/components/common/form/FormComponent/FormInput";
+import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
+import LoadingComponent from "@/components/common/LoadingComponent";
+import { useUpdateFeatureForm } from "@/components/features/UpdateFeatureForm/UpdateFeatureForm.hooks";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,11 +15,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
-import { FormInput } from "@/components/common/form/FormComponent/FormInput";
-import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
-import LoadingComponent from "@/components/common/LoadingComponent";
-import { useUpdateFeatureForm } from "@/components/features/UpdateFeatureForm/UpdateFeatureForm.hooks";
-import { FeatureType, TUpdateFeatureDto } from "@/api/features/features.types";
 import { convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 interface UpdateProjectFormProps {

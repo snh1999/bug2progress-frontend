@@ -1,10 +1,10 @@
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { z } from "zod";
 import { useRegister } from "@/api/auth/auth";
-import { useRouter } from "next/navigation";
-import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
-import { TAuthResponse, TRegisterDto } from "@/api/auth/auth.types";
-import { toast } from "sonner";
+import type { TAuthResponse, TRegisterDto } from "@/api/auth/auth.types";
 import { LOGIN_PATH } from "@/app.constants";
+import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 
 const registerFormSchema = z.object({
   name: z.string().min(2, "Required"),

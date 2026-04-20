@@ -10,7 +10,7 @@ export type TCreateFeatureDto = {
   description: string;
   featureType?: FeatureType;
   projectId: string;
-}
+};
 
 export type TFeature = {
   id: string;
@@ -19,11 +19,11 @@ export type TFeature = {
   featureType: FeatureType;
   projectId: string;
   ownerId: string;
-}
+};
 
-export type TUpdateFeatureDto = Partial<TCreateFeatureDto> & TDeleteFeatureDto
+export type TUpdateFeatureDto = Partial<TCreateFeatureDto> & TDeleteFeatureDto;
 
 export type TDeleteFeatureDto = {
   id: string;
   projectId: string;
-}
+};

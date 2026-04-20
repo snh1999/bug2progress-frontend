@@ -1,12 +1,10 @@
-import { useProjectId } from "@/hooks/useProjectId";
-import { useFeatureId } from "@/hooks/useFeatureId";
-import { useTicketId } from "@/hooks/useTicketId";
-import { useGetProject } from "@/api/projects/projects";
-
 import { useGetFeature } from "@/api/features/features";
-
+import { useGetProject } from "@/api/projects/projects";
 import { useGetTicket } from "@/api/tickets/tickets";
 import { HeaderBreadcrumbs } from "@/components/common/HeaderBreadcrumbs";
+import { useFeatureId } from "@/hooks/useFeatureId";
+import { useProjectId } from "@/hooks/useProjectId";
+import { useTicketId } from "@/hooks/useTicketId";
 
 export const SecondaryHeader = () => {
   const projectId = useProjectId();

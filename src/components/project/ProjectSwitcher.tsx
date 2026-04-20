@@ -2,17 +2,21 @@
 
 import { useRouter } from "next/navigation";
 import { RiAddCircleFill } from "react-icons/ri";
-
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select";
 import { useGetProjects } from "@/api/projects/projects";
-import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
-import { getRandomColor } from "@/lib/utils";
 import { OPEN_CREATE_PROJECT_MODAL_KEY, PROJECTS_PATH } from "@/app.constants";
-import { useProjectId } from "@/hooks/useProjectId";
+import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
 import LoadingComponent from "@/components/common/LoadingComponent";
-import React from "react";
-import { useOpenModal } from "@/hooks/useModalHook";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useOpenModal } from "@/hooks/useModalHook";
+import { useProjectId } from "@/hooks/useProjectId";
+import { getRandomColor } from "@/lib/utils";
 
 export const ProjectSwitcher = () => {
   const router = useRouter();

@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { AUTH_TOKEN_KEY, LOGIN_PATH, REGISTER_PATH } from "./app.constants";
 import { verifyJwtToken } from "./lib/jwt-verify";
 

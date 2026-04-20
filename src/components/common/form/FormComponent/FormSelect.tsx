@@ -1,13 +1,25 @@
 "use client";
 
-import { FormControl, FormField, FormItem, FormLabel, FormMessage, } from "@/components/ui/form";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select";
-import { TFormComponentProps } from "@/components/common/form/FormComponent/FormComponent.types";
+import type { TFormComponentProps } from "@/components/common/form/FormComponent/FormComponent.types";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type TOptions = {
   value: string;
   label: string;
-}
+};
 type TFormSelectProps = TFormComponentProps & {
   options: TOptions[];
 };
@@ -19,7 +31,7 @@ export function FormSelect({
   control,
   options,
   required = false,
-  disabled = false
+  disabled = false,
 }: TFormSelectProps) {
   return (
     <FormField
@@ -40,7 +52,7 @@ export function FormSelect({
               </SelectTrigger>
             </FormControl>
             <SelectContent>
-              {options.map(({label, value}) => (
+              {options.map(({ label, value }) => (
                 <SelectItem key={value} value={value}>
                   {label}
                 </SelectItem>

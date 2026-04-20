@@ -1,135 +1,145 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
-import { TTicket } from "@/api/tickets/tickets.types";
-import { Button } from "@/components/ui/button";
+import type { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
+import type { TTicket } from "@/api/tickets/tickets.types";
+import { TicketViewContributorHover } from "@/components/Tickets/TicketsView/DataTable/contributors/TicketViewContributorHover";
 import { TicketViewDueHeader } from "@/components/Tickets/TicketsView/DataTable/date/TicketViewDueHeader";
-import {
-  TicketViewContributorHover
-} from "@/components/Tickets/TicketsView/DataTable/contributors/TicketViewContributorHover";
-import { TicketViewFeatureHover } from "@/components/Tickets/TicketsView/DataTable/feature/TicketViewFeature";
 import {
   TicketPriority,
   TicketStatus,
-  TicketType
+  TicketType,
 } from "@/components/Tickets/TicketsView/DataTable/enums/TicketViewEnums";
+import { TicketViewFeatureHover } from "@/components/Tickets/TicketsView/DataTable/feature/TicketViewFeature";
 import { TicketRowContextMenu } from "@/components/Tickets/TicketsView/TicketRowContextMenu";
 import { Badge } from "@/components/ui/badge";
-
+import { Button } from "@/components/ui/button";
 
 export const ticketColumns: ColumnDef<TTicket>[] = [
   {
     accessorKey: "title",
-    header: ({column}) => {
+    header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Title
-          <ArrowUpDown className="ml-2 h-4 w-4"/>
+          <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({row}) =>
+    cell: ({ row }) => (
       <div className="flex items-center justify-between">
         <p className="flex line-clamp-1">{row.original.title}</p>
-        <TicketRowContextMenu id={row.original.id}/>
+        <TicketRowContextMenu id={row.original.id} />
       </div>
+    ),
   },
 
   {
     accessorKey: "dueAt",
-    header: ({column}) => {
+    header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Due At
-          <ArrowUpDown className="ml-2 h-4 w-4"/>
+          <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({row}) => <TicketViewDueHeader date={row.original.dueAt}/>
-
+    cell: ({ row }) => <TicketViewDueHeader date={row.original.dueAt} />,
   },
   {
     accessorKey: "assignedContributor",
     header: "Assigned To",
-    cell: ({row}) => <TicketViewContributorHover contributor={row.original.assignedContributor}/>
+    cell: ({ row }) => (
+      <TicketViewContributorHover
+        contributor={row.original.assignedContributor}
+      />
+    ),
   },
   {
     accessorKey: "ticketStatus",
-    header: ({column}) => {
+    header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Status
-          <ArrowUpDown className="ml-2 h-4 w-4"/>
+          <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({row}) =>
-      <TicketStatus status={row.original.ticketStatus}/>
+    cell: ({ row }) => <TicketStatus status={row.original.ticketStatus} />,
   },
   {
     accessorKey: "ticketPriority",
-    header: ({column}) => {
+    header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Priority
-          <ArrowUpDown className="ml-2 h-4 w-4"/>
+          <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({row}) => {
+    cell: ({ row }) => {
       const ticketPriority = row.original.ticketPriority;
       if (!ticketPriority)
-        return <Badge className="bg-gray-500 text-gray-200 rounded-full">Not set</Badge>;
-      return <TicketPriority priority={ticketPriority}/>;
-    }
+        return (
+          <Badge className="bg-gray-500 text-gray-200 rounded-full">
+            Not set
+          </Badge>
+        );
+      return <TicketPriority priority={ticketPriority} />;
+    },
   },
   {
     accessorKey: "ticketType",
-    header: ({column}) => {
+    header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Type
-          <ArrowUpDown className="ml-2 h-4 w-4"/>
+          <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({row}) => {
+    cell: ({ row }) => {
       const ticketType = row.original.ticketType;
       if (!ticketType)
-        return <Badge className="bg-gray-500 text-gray-200 rounded-full">Not set</Badge>;
-      return <TicketType type={row.original.ticketType}/>;
-    }
+        return (
+          <Badge className="bg-gray-500 text-gray-200 rounded-full">
+            Not set
+          </Badge>
+        );
+      return <TicketType type={row.original.ticketType} />;
+    },
   },
   {
     accessorKey: "verifiedBy",
     header: "Verified By",
-    cell: ({row}) => {
+    cell: ({ row }) => {
       const verifier = row.original.verifiedBy;
-      if (!verifier) return <span className="text-muted-foreground italic">Unverified</span>;
-      return <TicketViewContributorHover contributor={verifier}/>;
-    }
+      if (!verifier)
+        return <span className="text-muted-foreground italic">Unverified</span>;
+      return <TicketViewContributorHover contributor={verifier} />;
+    },
   },
   {
     accessorKey: "creator",
     header: "Created By",
-    cell: ({row}) =>
-      <TicketViewContributorHover contributor={row.original.creator}/>
+    cell: ({ row }) => (
+      <TicketViewContributorHover contributor={row.original.creator} />
+    ),
   },
   // {
   //   accessorKey: "description",
@@ -139,8 +149,8 @@ export const ticketColumns: ColumnDef<TTicket>[] = [
   {
     accessorKey: "feature",
     header: "Feature",
-    cell: ({row}) =>
-      <TicketViewFeatureHover feature={row.original.feature}/>
-  }
+    cell: ({ row }) => (
+      <TicketViewFeatureHover feature={row.original.feature} />
+    ),
+  },
 ];
-

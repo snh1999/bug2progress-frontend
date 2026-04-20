@@ -1,30 +1,28 @@
 "use client";
 
-import Link from "next/link";
+import { formatDistanceToNow } from "date-fns";
 import { CalendarIcon, ChevronDown, ExternalLink } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { useProjectId } from "@/hooks/useProjectId";
-import { useGetTickets } from "@/api/tickets/tickets";
-import { useGetFeatures } from "@/api/features/features";
-import { useGetProjectContributors } from "@/api/projects/projectContributors";
-import LoadingComponent from "@/components/common/LoadingComponent";
+import Link from "next/link";
 import { toast } from "sonner";
-import { TTicket } from "@/api/tickets/tickets.types";
-import CreateTicketButton from "@/components/Tickets/CreateTicketButton";
-import { TicketViewFeatureHover } from "@/components/Tickets/TicketsView/DataTable/feature/TicketViewFeature";
-import { TFeature } from "@/api/features/features.types";
-import { TProjectContributorWithUser } from "@/api/projects/projects.types";
+import { useGetFeatures } from "@/api/features/features";
+import type { TFeature } from "@/api/features/features.types";
+import { useGetProjectContributors } from "@/api/projects/projectContributors";
+import type { TProjectContributorWithUser } from "@/api/projects/projects.types";
+import { useGetTickets } from "@/api/tickets/tickets";
+import type { TTicket } from "@/api/tickets/tickets.types";
 import { CardItem } from "@/components/common/dataView/CardList/CardItem";
-import React from "react";
+import LoadingComponent from "@/components/common/LoadingComponent";
+import CreateTicketButton from "@/components/Tickets/CreateTicketButton";
 import {
   TicketPriority,
   TicketStatus,
   TicketType,
 } from "@/components/Tickets/TicketsView/DataTable/enums/TicketViewEnums";
-import { formatDistanceToNow } from "date-fns";
+import { TicketViewFeatureHover } from "@/components/Tickets/TicketsView/DataTable/feature/TicketViewFeature";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { useProjectId } from "@/hooks/useProjectId";
 import { convertSnakeCaseToTitleCase } from "@/lib/utils";
 import { useRealtimeNotifications } from "@/realtime/useRealTimeNotifications";
 

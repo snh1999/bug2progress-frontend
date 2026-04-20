@@ -1,16 +1,16 @@
-import { z } from "zod";
-import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 import { toast } from "sonner";
-import { useProjectId } from "@/hooks/useProjectId";
+import { z } from "zod";
+import { useCreateTicket } from "@/api/tickets/tickets";
 import {
   ETicketPriority,
   ETicketStatus,
   ETicketType,
-  TCreateTicketDto,
-  TTicket,
+  type TCreateTicketDto,
+  type TTicket,
 } from "@/api/tickets/tickets.types";
-import { useCreateTicket } from "@/api/tickets/tickets";
+import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 import { useFeatureId } from "@/hooks/useFeatureId";
+import { useProjectId } from "@/hooks/useProjectId";
 
 const createTicketFormSchema: z.ZodType<TCreateTicketDto> = z.object({
   title: z.string(),
@@ -27,7 +27,7 @@ const createTicketFormSchema: z.ZodType<TCreateTicketDto> = z.object({
 export const useCreateTicketForm = (
   defaultStatus: ETicketStatus,
   onSuccess: () => void,
-  position: number = 0
+  position: number = 0,
 ) => {
   const projectId = useProjectId();
   const featureId = useFeatureId();

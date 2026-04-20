@@ -1,10 +1,14 @@
-import { z } from "zod";
-import { ProjectStatus, TProject, TUpdateProjectDto, } from "@/api/projects/projects.types";
-import { useUpdateProject } from "@/api/projects/projects";
-import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { z } from "zod";
+import { useUpdateProject } from "@/api/projects/projects";
+import {
+  ProjectStatus,
+  type TProject,
+  type TUpdateProjectDto,
+} from "@/api/projects/projects.types";
 import { PROJECTS_PATH } from "@/app.constants";
+import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 
 const updateProjectFormSchema: z.ZodType<TUpdateProjectDto> = z.object({
   id: z.string(),

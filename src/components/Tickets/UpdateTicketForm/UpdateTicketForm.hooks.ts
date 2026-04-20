@@ -1,8 +1,14 @@
-import { z } from "zod";
-import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 import { toast } from "sonner";
-import { ETicketPriority, ETicketStatus, ETicketType, TTicket, TUpdateTicketDto } from "@/api/tickets/tickets.types";
+import { z } from "zod";
 import { useUpdateTicket } from "@/api/tickets/tickets";
+import {
+  ETicketPriority,
+  ETicketStatus,
+  ETicketType,
+  type TTicket,
+  type TUpdateTicketDto,
+} from "@/api/tickets/tickets.types";
+import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 
 const updateTicketFormSchema: z.ZodType<TUpdateTicketDto> = z.object({
   id: z.string(),
@@ -17,11 +23,14 @@ const updateTicketFormSchema: z.ZodType<TUpdateTicketDto> = z.object({
   dueAt: z.date().optional(),
 });
 
-export const useUpdateTicketForm = ({defaultValues, onSuccess}: {
-  defaultValues: TUpdateTicketDto,
-  onSuccess?: () => void
+export const useUpdateTicketForm = ({
+  defaultValues,
+  onSuccess,
+}: {
+  defaultValues: TUpdateTicketDto;
+  onSuccess?: () => void;
 }) => {
-  const {ticketType, ticketPriority, dueAt} = defaultValues
+  const { ticketType, ticketPriority, dueAt } = defaultValues;
   return useFormHooksWrapper<TUpdateTicketDto, TTicket>({
     formSchema: updateTicketFormSchema,
     useFormMutation: useUpdateTicket,
@@ -29,11 +38,11 @@ export const useUpdateTicketForm = ({defaultValues, onSuccess}: {
       ...defaultValues,
       ticketType: ticketType ?? undefined,
       ticketPriority: ticketPriority ?? undefined,
-      dueAt: dueAt ? new Date(dueAt) : undefined
+      dueAt: dueAt ? new Date(dueAt) : undefined,
     },
     onSuccess: () => {
       toast.success("Ticket updated");
-      if(onSuccess) onSuccess();
+      if (onSuccess) onSuccess();
     },
   });
 };

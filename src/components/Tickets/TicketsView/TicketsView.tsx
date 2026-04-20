@@ -1,22 +1,21 @@
 "use client";
 
 import { useQueryState } from "nuqs";
-
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import CreateTicketButton from "@/components/Tickets/CreateTicketButton";
-import { useProjectId } from "@/hooks/useProjectId";
-import { useFeatureId } from "@/hooks/useFeatureId";
-import { ETicketView } from "@/components/Tickets/TicketsView/TicketsView.types";
 import { useGetTickets, useRearrangeTickets } from "@/api/tickets/tickets";
-import LoadingComponent from "@/components/common/LoadingComponent";
-import { Separator } from "@/components/ui/separator";
-import { TicketFilters } from "@/components/Tickets/TicketsView/DataTable/filters/TicketFilters";
-import { useTicketFilters } from "@/hooks/useTicketFilters";
-import { ticketColumns } from "@/components/Tickets/TicketsView/DataTable/ticketColumns";
+import type { UpdateTicketPositionData } from "@/api/tickets/tickets.types";
 import { DataTable } from "@/components/common/DataTable";
-import { KanbanView } from "@/components/Tickets/TicketsView/kanbanView/KanbanView";
-import { UpdateTicketPositionData } from "@/api/tickets/tickets.types";
+import LoadingComponent from "@/components/common/LoadingComponent";
+import CreateTicketButton from "@/components/Tickets/CreateTicketButton";
 import { CalendarView } from "@/components/Tickets/TicketsView/CalendarView/CalendarView";
+import { TicketFilters } from "@/components/Tickets/TicketsView/DataTable/filters/TicketFilters";
+import { ticketColumns } from "@/components/Tickets/TicketsView/DataTable/ticketColumns";
+import { KanbanView } from "@/components/Tickets/TicketsView/kanbanView/KanbanView";
+import { ETicketView } from "@/components/Tickets/TicketsView/TicketsView.types";
+import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useFeatureId } from "@/hooks/useFeatureId";
+import { useProjectId } from "@/hooks/useProjectId";
+import { useTicketFilters } from "@/hooks/useTicketFilters";
 
 interface TicketsViewProps {
   hideFeatureFilter?: boolean;

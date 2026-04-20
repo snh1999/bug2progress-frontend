@@ -1,12 +1,12 @@
+import { format } from "date-fns";
+import type { TUserWithProfile } from "@/api/users/users.types";
+import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
 import { Button } from "@/components/ui/button";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { TUserWithProfile } from "@/api/users/users.types";
-import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
-import { format } from "date-fns";
 
 type Props = {
   contributor?: TUserWithProfile;

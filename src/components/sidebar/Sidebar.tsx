@@ -1,14 +1,14 @@
-import { LogoLink } from "../common/header/LogoLink";
-import { SidebarMenu } from "./SidebarMenu";
+import FeaturesList from "@/components/features/FeaturesList";
 import { ProjectSwitcher } from "@/components/project/ProjectSwitcher";
 import { Separator } from "@/components/ui/separator";
-import FeaturesList from "@/components/features/FeaturesList";
+import { LogoLink } from "../common/header/LogoLink";
+import { SidebarMenu } from "./SidebarMenu";
 
 export const Sidebar = () => {
   return (
     <aside className="h-full bg-neutral-50 dark:bg-neutral-900 p-4 w-full">
       <LogoLink />
-      <ProjectSwitcher/>
+      <ProjectSwitcher />
       <SidebarMenu />
       <Separator className="my-3" />
       <FeaturesList />

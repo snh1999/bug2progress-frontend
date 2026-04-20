@@ -1,11 +1,11 @@
+import type { TFeature } from "@/api/features/features.types";
+import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
+import { Button } from "@/components/ui/button";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
-import { TFeature } from "@/api/features/features.types";
-import { Button } from "@/components/ui/button";
 
 type Props = {
   feature?: TFeature;

@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { TAuthResponse, TLoginDto, TRegisterDto } from "./auth.types";
-import { api } from "../axios";
-import { setAuthCookie } from "@/components/auth/auth.actions";
 import { useRouter } from "next/navigation";
+import { setAuthCookie } from "@/components/auth/auth.actions";
+import { api } from "../axios";
+import type { TAuthResponse, TLoginDto, TRegisterDto } from "./auth.types";
 
 export const useLogin = () => {
   return useMutation<TAuthResponse, Error, TLoginDto>({
@@ -35,7 +35,9 @@ export const useLogOut = () => {
       await setAuthCookie("");
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["currentUser", "projects"] });
+      await queryClient.invalidateQueries({
+        queryKey: ["currentUser", "projects"],
+      });
       router.refresh();
     },
   });

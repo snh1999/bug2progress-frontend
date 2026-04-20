@@ -1,4 +1,7 @@
-import { CardItem, TCardItemProps, } from "@/components/common/dataView/CardList/CardItem";
+import {
+  CardItem,
+  type TCardItemProps,
+} from "@/components/common/dataView/CardList/CardItem";
 
 type TCardListProps = {
   listItems: Array<TCardItemProps>;

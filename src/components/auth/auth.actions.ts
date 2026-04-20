@@ -1,7 +1,7 @@
 "use server";
 
-import { AUTH_TOKEN_KEY } from "@/app.constants";
 import { cookies } from "next/headers";
+import { AUTH_TOKEN_KEY } from "@/app.constants";
 
 export async function setAuthCookie(token: string) {
   (await cookies()).set({

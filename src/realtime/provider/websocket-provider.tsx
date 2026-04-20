@@ -1,17 +1,7 @@
 "use client";
 
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { io, Socket } from "socket.io-client";
-import { getBearerToken } from "@/components/auth/auth.actions";
-import { useProjectId } from "@/hooks/useProjectId";
+import react from "react";
+import { io, type Socket } from "socket.io-client";
 import { toast } from "sonner";
 import {
   API_URL,
@@ -20,24 +10,26 @@ import {
   SOCKET_DISCONNECT_EVENT,
   SOCKET_RECONNECT_EVENT,
 } from "@/app.constants";
+import { getBearerToken } from "@/components/auth/auth.actions";
+import { useProjectId } from "@/hooks/useProjectId";
 
 interface ISocketContext {
   socket: Socket | null;
   connected: boolean;
 }
 
-const SocketContext = createContext<ISocketContext>({
+const SocketContext = react.createContext<ISocketContext>({
   socket: null,
   connected: false,
 });
 
-export function SocketProvider({ children }: { children: ReactNode }) {
-  const [socket, setSocket] = useState<Socket | null>(null);
-  const [connected, setConnected] = useState(false);
+export function SocketProvider({ children }: { children: react.ReactNode }) {
+  const [socket, setSocket] = react.useState<Socket | null>(null);
+  const [connected, setConnected] = react.useState(false);
   const projectId = useProjectId();
-  const socketRef = useRef<Socket | null>(null);
+  const socketRef = react.useRef<Socket | null>(null);
 
-  useEffect(() => {
+  react.useEffect(() => {
     if (!projectId) return;
     let isMounted = true;
 
@@ -97,7 +89,7 @@ export function SocketProvider({ children }: { children: ReactNode }) {
     };
   }, [projectId, toast]);
 
-  const contextValue = useMemo(
+  const contextValue = react.useMemo(
     () => ({ socket, connected }),
     [socket, connected],
   );
@@ -109,4 +101,4 @@ export function SocketProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export const useSocket = () => useContext(SocketContext);
+export const useSocket = () => react.useContext(SocketContext);

@@ -1,3 +1,13 @@
+import { ExternalLinkIcon, MoreHorizontalIcon } from "lucide-react";
+import {
+  useDeleteContributor,
+  useUpdateProjectContributorRole,
+} from "@/api/projects/projectContributors";
+import { EProjectRole } from "@/api/projects/projects.types";
+import {
+  EContributorAction,
+  useCheckPermission,
+} from "@/components/contributors/contributor.helper";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,18 +18,8 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ExternalLinkIcon, MoreHorizontalIcon } from "lucide-react";
-import {
-  EContributorAction,
-  useCheckPermission,
-} from "@/components/contributors/contributor.helper";
-import { useProjectId } from "@/hooks/useProjectId";
-import {
-  useDeleteContributor,
-  useUpdateProjectContributorRole,
-} from "@/api/projects/projectContributors";
 import { useConfirm } from "@/hooks/useConfirm";
-import { EProjectRole } from "@/api/projects/projects.types";
+import { useProjectId } from "@/hooks/useProjectId";
 
 type TContributorMenu = {
   userId: string;

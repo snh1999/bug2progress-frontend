@@ -57,17 +57,16 @@ export type TProjectContributor = {
 };
 
 export type TProjectContributorWithUser = TProjectContributor & {
-  user: TUserWithProfile
+  user: TUserWithProfile;
 };
-
 
 export type TContributorDto = {
   userId: string;
   role: EProjectRole;
   projectId: string;
-}
+};
 
 export type TDeleteProjectDto = {
   projectId: string;
   userId: string;
-}
+};

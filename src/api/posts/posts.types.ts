@@ -1,4 +1,3 @@
-
 export type TPost = {
   id: string;
   title: string;
@@ -13,4 +12,4 @@ export type TPost = {
   refProjectId: string | null;
   refFeaturesId: string | null;
   isPublic: boolean;
-}
+};

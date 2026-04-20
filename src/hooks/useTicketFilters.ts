@@ -1,5 +1,9 @@
 import { parseAsString, parseAsStringEnum, useQueryStates } from "nuqs";
-import { ETicketPriority, ETicketStatus, ETicketType } from "@/api/tickets/tickets.types";
+import {
+  ETicketPriority,
+  ETicketStatus,
+  ETicketType,
+} from "@/api/tickets/tickets.types";
 
 export const useTicketFilters = () => {
   return useQueryStates({
@@ -10,6 +14,6 @@ export const useTicketFilters = () => {
     creatorId: parseAsString,
     assignedContributorId: parseAsString,
     dueAt: parseAsString,
-    featureId: parseAsString
+    featureId: parseAsString,
   });
 };

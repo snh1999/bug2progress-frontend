@@ -1,27 +1,38 @@
+import type { TFeature } from "@/api/features/features.types";
+import type { TProjectContributorWithUser } from "@/api/projects/projects.types";
+import {
+  ETicketPriority,
+  ETicketStatus,
+  ETicketType,
+} from "@/api/tickets/tickets.types";
+import { DatePicker } from "@/components/common/DatePicker";
+import { FormInput } from "@/components/common/form/FormComponent/FormInput";
+import { FormInputWrapper } from "@/components/common/form/FormComponent/FormInputWrapper";
+import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
+import { useCreateTicketForm } from "@/components/Tickets/CreateTicketForm/CreateTicketForm.hooks";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
-import { FormInput } from "@/components/common/form/FormComponent/FormInput";
-import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
-import { useCreateTicketForm } from "@/components/Tickets/CreateTicketForm/CreateTicketForm.hooks";
-import { ETicketPriority, ETicketStatus, ETicketType } from "@/api/tickets/tickets.types";
-import { FormInputWrapper } from "@/components/common/form/FormComponent/FormInputWrapper";
-import { DatePicker } from "@/components/common/DatePicker";
-import { TFeature } from "@/api/features/features.types";
-import { TProjectContributorWithUser } from "@/api/projects/projects.types";
 import { convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 interface CreateFeatureFormProps {
   onCancel: () => void;
   features: TFeature[];
   contributors: TProjectContributorWithUser[];
-  defaultStatus?: ETicketStatus
+  defaultStatus?: ETicketStatus;
 }
 
-export const CreateTicketForm = ({onCancel, defaultStatus = ETicketStatus.BACKLOG, features = [], contributors = []}: CreateFeatureFormProps) => {
-  const {form, onSubmit, isPending} = useCreateTicketForm(defaultStatus, onCancel);
-  const {control, handleSubmit} = form;
-
+export const CreateTicketForm = ({
+  onCancel,
+  defaultStatus = ETicketStatus.BACKLOG,
+  features = [],
+  contributors = [],
+}: CreateFeatureFormProps) => {
+  const { form, onSubmit, isPending } = useCreateTicketForm(
+    defaultStatus,
+    onCancel,
+  );
+  const { control, handleSubmit } = form;
 
   return (
     <Card className=" h-full border-none shadow-none m-5">
@@ -98,7 +109,11 @@ export const CreateTicketForm = ({onCancel, defaultStatus = ETicketStatus.BACKLO
             <FormSelect
               name="assignedContributorId"
               label="Assigned to"
-              placeholder={contributors.length === 0 ? "No contributors available" : "Assign the ticket to a contributor"}
+              placeholder={
+                contributors.length === 0
+                  ? "No contributors available"
+                  : "Assign the ticket to a contributor"
+              }
               control={control}
               disabled={contributors.length === 0}
               options={contributors.map((contributor) => ({
@@ -107,7 +122,12 @@ export const CreateTicketForm = ({onCancel, defaultStatus = ETicketStatus.BACKLO
               }))}
             />
 
-            <FormInputWrapper name="dueAt" label="Due Date" control={control} InputComponent={DatePicker}/>
+            <FormInputWrapper
+              name="dueAt"
+              label="Due Date"
+              control={control}
+              InputComponent={DatePicker}
+            />
 
             <FormInput
               name="description"

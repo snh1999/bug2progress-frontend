@@ -1,6 +1,6 @@
-import { TFeature } from "@/api/features/features.types";
-import { TProject } from "@/api/projects/projects.types";
-import { ETicketStatus, TTicket } from "@/api/tickets/tickets.types";
+import type { TFeature } from "@/api/features/features.types";
+import type { TProject } from "@/api/projects/projects.types";
+import type { ETicketStatus, TTicket } from "@/api/tickets/tickets.types";
 
 export interface TCursorPayload {
   x: number;

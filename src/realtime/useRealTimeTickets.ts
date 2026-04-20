@@ -1,15 +1,15 @@
-import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
 
-import { TTicket } from "@/api/tickets/tickets.types";
+import type { TTicket } from "@/api/tickets/tickets.types";
 import { TICKET_EVENTS } from "@/app.constants";
-import {
+import { useSocket } from "./provider/websocket-provider";
+import type {
   TTicketCreationPayload,
   TTicketDeletionPayload,
   TTicketRearrangementPayload,
   TTicketUpdatePayload,
 } from "./websocket.types";
-import { useSocket } from "./provider/websocket-provider";
 
 export function useRealtimeTickets() {
   const { socket, connected } = useSocket();

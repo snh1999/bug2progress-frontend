@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import {
   addMonths,
   format,
@@ -9,13 +7,15 @@ import {
   subMonths,
 } from "date-fns";
 import { enUS } from "date-fns/locale";
+import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 
 import { Button } from "@/components/ui/button";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./calendar.css";
-import { TTicket } from "@/api/tickets/tickets.types";
+import type { TTicket } from "@/api/tickets/tickets.types";
 import { CalendarEventCard } from "@/components/Tickets/TicketsView/CalendarView/CalendarEventCard";
 
 const locales = {
@@ -66,7 +66,7 @@ const CustomToolbar = ({ date, onNavigate }: CustomToolbarProps) => {
 
 export const CalendarView = ({ data }: CalendarViewProps) => {
   const [value, setValue] = useState(
-    data.length > 0 && data[0].dueAt ? new Date(data[0].dueAt) : new Date()
+    data.length > 0 && data[0].dueAt ? new Date(data[0].dueAt) : new Date(),
   );
 
   const events = data

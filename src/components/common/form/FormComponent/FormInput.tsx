@@ -1,8 +1,14 @@
-import { FormControl, FormField, FormItem, FormLabel, FormMessage, } from "../../../ui/form";
+import type { HTMLInputTypeAttribute } from "react";
+import type { TFormComponentProps } from "@/components/common/form/FormComponent/FormComponent.types";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../../../ui/form";
 import { Input } from "../../../ui/input";
 import { Textarea } from "../../../ui/textarea";
-import { TFormComponentProps } from "@/components/common/form/FormComponent/FormComponent.types";
-import { HTMLInputTypeAttribute } from "react";
 
 type TFormInputProps = TFormComponentProps & {
   type?: HTMLInputTypeAttribute;
@@ -17,7 +23,7 @@ export const FormInput = ({
   control,
   required = false,
   textarea = false,
-  disabled = false
+  disabled = false,
 }: TFormInputProps) => {
   return (
     <FormField

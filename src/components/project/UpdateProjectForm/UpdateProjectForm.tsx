@@ -1,12 +1,21 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from "@/components/ui/card";
-import { Form } from "@/components/ui/form";
+import {
+  ProjectStatus,
+  type TUpdateProjectDto,
+} from "@/api/projects/projects.types";
 import { FormInput } from "@/components/common/form/FormComponent/FormInput";
 import { FormSelect } from "@/components/common/form/FormComponent/FormSelect";
-import { ProjectStatus, TUpdateProjectDto, } from "@/api/projects/projects.types";
-import { useUpdateProjectForm } from "@/components/project/UpdateProjectForm/UpdateProjectForm.hooks";
 import LoadingComponent from "@/components/common/LoadingComponent";
 import UpdateInviteCode from "@/components/project/UpdateProjectForm/UpdateInviteCode";
+import { useUpdateProjectForm } from "@/components/project/UpdateProjectForm/UpdateProjectForm.hooks";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Form } from "@/components/ui/form";
 import { convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 interface UpdateProjectFormProps {

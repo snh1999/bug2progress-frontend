@@ -1,6 +1,10 @@
 "use client";
 
+import { MenuIcon } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useLogOut } from "@/api/auth/auth";
+import { ThemeToggle } from "@/components/common/themes/ThemeToggle";
 import { Sidebar } from "@/components/sidebar/Sidebar";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,10 +13,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { MenuIcon } from "lucide-react";
-import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { ThemeToggle } from "@/components/common/themes/ThemeToggle";
 
 const pathnameMap = {
   home: "Home",

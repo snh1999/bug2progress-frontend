@@ -1,13 +1,13 @@
-import { z } from "zod";
-import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 import { toast } from "sonner";
+import { z } from "zod";
+import { useCreateFeature } from "@/api/features/features";
 import {
   FeatureType,
-  TCreateFeatureDto,
-  TFeature,
+  type TCreateFeatureDto,
+  type TFeature,
 } from "@/api/features/features.types";
+import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 import { useProjectId } from "@/hooks/useProjectId";
-import { useCreateFeature } from "@/api/features/features";
 
 const createFeatureFormSchema: z.ZodType<TCreateFeatureDto> = z.object({
   title: z.string(),

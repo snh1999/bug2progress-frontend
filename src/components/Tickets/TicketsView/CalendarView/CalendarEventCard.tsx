@@ -1,42 +1,54 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useProjectId } from "@/hooks/useProjectId";
-import { ETicketPriority, ETicketStatus, ETicketType, TTicket, } from "@/api/tickets/tickets.types";
 import {
   getTicketPriorityStyle,
   getTicketStatusStyle,
   getTicketTypeStyle,
 } from "@/components/Tickets/TicketsView/DataTable/enums/TicketViewEnums";
 import { TicketViewFeatureHover } from "@/components/Tickets/TicketsView/DataTable/feature/TicketViewFeature";
-import {
-  TicketViewContributorHover
-} from "@/components/Tickets/TicketsView/DataTable/contributors/TicketViewContributorHover";
+import { TicketViewContributorHover } from "@/components/Tickets/TicketsView/DataTable/contributors/TicketViewContributorHover";
 import { cn, convertSnakeCaseToTitleCase } from "@/lib/utils";
+import {
+  type TTicket,
+  ETicketStatus,
+  ETicketType,
+  ETicketPriority,
+} from "@/api/tickets/tickets.types";
 
 interface EventCardProps {
   ticket: TTicket;
 }
 
 const statusColorMap: Record<ETicketStatus, string> = Object.values(
-  ETicketStatus
-).reduce((acc, status) => {
-  acc[status] = getTicketStatusStyle(status);
-  return acc;
-}, {} as Record<ETicketStatus, string>);
+  ETicketStatus,
+).reduce(
+  (acc, status) => {
+    acc[status] = getTicketStatusStyle(status);
+    return acc;
+  },
+  {} as Record<ETicketStatus, string>,
+);
 
 const typeColorMap: Record<ETicketType, string> = Object.values(
-  ETicketType
-).reduce((acc, type) => {
-  acc[type] = getTicketTypeStyle(type);
-  return acc;
-}, {} as Record<ETicketType, string>);
+  ETicketType,
+).reduce(
+  (acc, type) => {
+    acc[type] = getTicketTypeStyle(type);
+    return acc;
+  },
+  {} as Record<ETicketType, string>,
+);
 
 const priorityColorMap: Record<ETicketPriority, string> = Object.values(
-  ETicketPriority
-).reduce((acc, status) => {
-  acc[status] = getTicketPriorityStyle(status);
-  return acc;
-}, {} as Record<ETicketPriority, string>);
+  ETicketPriority,
+).reduce(
+  (acc, status) => {
+    acc[status] = getTicketPriorityStyle(status);
+    return acc;
+  },
+  {} as Record<ETicketPriority, string>,
+);
 
 export const CalendarEventCard = ({ ticket }: EventCardProps) => {
   const {
@@ -68,7 +80,7 @@ export const CalendarEventCard = ({ ticket }: EventCardProps) => {
           title={convertSnakeCaseToTitleCase(status)}
           className={cn(
             "pl-1.5 py-full flex-shrink-0 rounded-l-md",
-            statusColorMap[status]
+            statusColorMap[status],
           )}
         />
 
@@ -95,7 +107,7 @@ export const CalendarEventCard = ({ ticket }: EventCardProps) => {
               className={cn(
                 "w-1.5 flex-1 flex-shrink-0 rounded-tr-md",
                 !ticketType && "rounded-br-md",
-                priorityColorMap[ticketPriority]
+                priorityColorMap[ticketPriority],
               )}
             />
           )}
@@ -105,7 +117,7 @@ export const CalendarEventCard = ({ ticket }: EventCardProps) => {
               className={cn(
                 "w-1.5 flex-1 flex-shrink-0 rounded-br-md",
                 !ticketType && "rounded-tr-md",
-                typeColorMap[ticketType]
+                typeColorMap[ticketType],
               )}
             />
           )}

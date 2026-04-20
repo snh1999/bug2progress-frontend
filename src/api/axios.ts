@@ -14,13 +14,20 @@ export const apiWithAuth = async () =>
     },
   });
 
-export const GetRequest = async (url: string, config?:  AxiosRequestConfig<any>) => {
+export const GetRequest = async (
+  url: string,
+  config?: AxiosRequestConfig<any>,
+) => {
   const api = await apiWithAuth();
   const response = await api.get(url, config);
   return response.data;
 };
 
-export const PostRequest = async (url: string, data: any, config?:  AxiosRequestConfig<any>) => {
+export const PostRequest = async (
+  url: string,
+  data: any,
+  config?: AxiosRequestConfig<any>,
+) => {
   const api = await apiWithAuth();
   const response = await api.post(url, data, config);
   return response.data;
@@ -32,7 +39,11 @@ export const DeleteRequest = async (url: string) => {
   return response.data;
 };
 
-export const PatchRequest = async (url: string, data: any, config?:  AxiosRequestConfig<any>) => {
+export const PatchRequest = async (
+  url: string,
+  data: any,
+  config?: AxiosRequestConfig<any>,
+) => {
   const api = await apiWithAuth();
   const response = await api.patch(url, data, config);
   return response.data;

@@ -1,14 +1,14 @@
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { z } from "zod";
+import { useCreateProject } from "@/api/projects/projects";
 import {
   ProjectStatus,
-  TCreateProjectDto,
-  TProject,
+  type TCreateProjectDto,
+  type TProject,
 } from "@/api/projects/projects.types";
-import { useCreateProject } from "@/api/projects/projects";
-import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { PROJECTS_PATH } from "@/app.constants";
+import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 
 const createProjectFormSchema: z.ZodType<TCreateProjectDto> = z.object({
   title: z.string(),

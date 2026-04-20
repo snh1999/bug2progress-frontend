@@ -1,10 +1,10 @@
-import { Badge } from "@/components/ui/badge";
-import { cn, convertSnakeCaseToTitleCase } from "@/lib/utils";
 import {
   ETicketPriority,
   ETicketStatus,
   ETicketType,
 } from "@/api/tickets/tickets.types";
+import { Badge } from "@/components/ui/badge";
+import { cn, convertSnakeCaseToTitleCase } from "@/lib/utils";
 
 export const getTicketStatusStyle = (status: ETicketStatus) => {
   switch (status) {

@@ -1,10 +1,9 @@
 "use client";
-import React from "react";
-import { useGetProjects } from "@/api/projects/projects";
-import LoadingComponent from "@/components/common/LoadingComponent";
-import { CardItem } from "@/components/common/dataView/CardList/CardItem";
-import { PROJECTS_PATH } from "@/app.constants";
 import Link from "next/link";
+import { useGetProjects } from "@/api/projects/projects";
+import { PROJECTS_PATH } from "@/app.constants";
+import { CardItem } from "@/components/common/dataView/CardList/CardItem";
+import LoadingComponent from "@/components/common/LoadingComponent";
 
 export default function Home() {
   const { data } = useGetProjects();

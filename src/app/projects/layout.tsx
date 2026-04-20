@@ -1,18 +1,18 @@
 "use client";
 
-import { PageHeader } from "@/components/sidebar/PageHeader/PageHeader";
-import { Sidebar } from "@/components/sidebar/Sidebar";
-import { ReactNode } from "react";
-import { ResponsiveModal } from "@/components/common/ResponsiveModal";
-import { useOpenModal } from "@/hooks/useModalHook";
+import type { ReactNode } from "react";
 import {
   OPEN_CREATE_FEATURE_MODAL_KEY,
   OPEN_CREATE_PROJECT_MODAL_KEY,
   OPEN_JOIN_PROJECT_MODAL_KEY,
 } from "@/app.constants";
+import { ResponsiveModal } from "@/components/common/ResponsiveModal";
+import { CreateFeatureForm } from "@/components/features/CreateFeatureForm/CreateFeatureForm";
 import { CreateProjectForm } from "@/components/project/CreateProjectForm/CreateProjectForm";
 import JoinProject from "@/components/project/JoinProject";
-import { CreateFeatureForm } from "@/components/features/CreateFeatureForm/CreateFeatureForm";
+import { PageHeader } from "@/components/sidebar/PageHeader/PageHeader";
+import { Sidebar } from "@/components/sidebar/Sidebar";
+import { useOpenModal } from "@/hooks/useModalHook";
 import { SocketProvider } from "@/realtime/provider/websocket-provider";
 
 interface IDashboardLayoutProps {

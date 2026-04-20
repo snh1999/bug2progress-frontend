@@ -1,18 +1,18 @@
-import React, { useCallback, useEffect, useState } from "react";
 import {
   DragDropContext,
   Draggable,
   Droppable,
   type DropResult,
 } from "@hello-pangea/dnd";
+import { useCallback, useEffect, useState } from "react";
+import { toast } from "sonner";
 import {
   ETicketStatus,
-  TTicket,
-  UpdateTicketPositionData,
+  type TTicket,
+  type UpdateTicketPositionData,
 } from "@/api/tickets/tickets.types";
-import { toast } from "sonner";
-import { KanbanHeader } from "@/components/Tickets/TicketsView/kanbanView/KanbanHeader";
 import { KanbanCard } from "@/components/Tickets/TicketsView/kanbanView/KanbanCard";
+import { KanbanHeader } from "@/components/Tickets/TicketsView/kanbanView/KanbanHeader";
 import { useSocket } from "@/realtime/provider/websocket-provider";
 import { useRealtimeTickets } from "@/realtime/useRealTimeTickets";
 

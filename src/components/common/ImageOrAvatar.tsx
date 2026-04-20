@@ -1,6 +1,6 @@
+import Image from "next/image";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { cn, getContrastColor, getInitials, getRandomColor } from "@/lib/utils";
-import Image from "next/image";
 
 interface ImageOrAvatarProps {
   image?: string;
@@ -29,10 +29,14 @@ export const ImageOrAvatar = ({
   }
 
   return (
-    <Avatar  className={cn("rounded-md", size && `size-${size}`,  className)}>
+    <Avatar className={cn("rounded-md", size && `size-${size}`, className)}>
       <AvatarFallback
         style={{ backgroundColor: bgColor, color: getContrastColor(bgColor) }}
-        className={cn("font-semibold p-1 uppercase rounded-md", size && size >= 9 ? "text-lg" : "text-xs", rounded && "rounded-full")}
+        className={cn(
+          "font-semibold p-1 uppercase rounded-md",
+          size && size >= 9 ? "text-lg" : "text-xs",
+          rounded && "rounded-full",
+        )}
       >
         {getInitials(name)}
       </AvatarFallback>

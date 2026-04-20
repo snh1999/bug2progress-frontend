@@ -1,13 +1,13 @@
 "use client";
-import { TicketBreadcrumbs } from "@/components/Tickets/TicketBreadcrumbs";
-import { useTicketId } from "@/hooks/useTicketId";
-import { useProjectId } from "@/hooks/useProjectId";
-import { useGetTicket } from "@/api/tickets/tickets";
-import { toast } from "sonner";
-import LoadingComponent from "@/components/common/LoadingComponent";
-import { useGetProject } from "@/api/projects/projects";
-import { TicketOverview } from "@/components/Tickets/TicketView/TicketView";
 import { Separator } from "@radix-ui/react-dropdown-menu";
+import { toast } from "sonner";
+import { useGetProject } from "@/api/projects/projects";
+import { useGetTicket } from "@/api/tickets/tickets";
+import LoadingComponent from "@/components/common/LoadingComponent";
+import { TicketBreadcrumbs } from "@/components/Tickets/TicketBreadcrumbs";
+import { TicketOverview } from "@/components/Tickets/TicketView/TicketView";
+import { useProjectId } from "@/hooks/useProjectId";
+import { useTicketId } from "@/hooks/useTicketId";
 
 const TicketPage = () => {
   const ticketId = useTicketId();

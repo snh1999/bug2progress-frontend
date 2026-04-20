@@ -1,13 +1,19 @@
+import { useEffect } from "react";
+import { API_URL } from "@/app.constants";
+import { FormInput } from "@/components/common/form/FormComponent/FormInput";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useLoginForm } from "./LoginCard.hooks";
 import { Form } from "@/components/ui/form";
-import { FormInput } from "@/components/common/form/FormComponent/FormInput";
 import { getRegisterLinkText } from "../auth.helpers";
+import { useLoginForm } from "./LoginCard.hooks";
 
 export const LoginCard = () => {
   const { form, onSubmit } = useLoginForm();
   const { control, handleSubmit } = form;
+
+  useEffect(() => {
+    fetch(`${API_URL}/health`, { method: "GET" }).catch(() => {});
+  }, []);
 
   return (
     <Card className="w-1/2 h-full border-none shadow-none">

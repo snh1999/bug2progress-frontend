@@ -1,11 +1,11 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
+import { useJoinProjectByInviteCode } from "@/api/projects/projectContributors";
+import { PROJECTS_PATH } from "@/app.constants";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { PROJECTS_PATH } from "@/app.constants";
-import { useJoinProjectByInviteCode } from "@/api/projects/projectContributors";
 
 const JoinProject = () => {
   const [inviteCode, setInviteCode] = useState("");

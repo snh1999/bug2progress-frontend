@@ -1,29 +1,32 @@
+import {
+  ExternalLinkIcon,
+  MoreVertical,
+  PencilIcon,
+  TrashIcon,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
-import { ExternalLinkIcon, MoreVertical, PencilIcon, TrashIcon, } from "lucide-react";
+import { toast } from "sonner";
+import { useDeleteTicket, useGetTicket } from "@/api/tickets/tickets";
+import { OPEN_UPDATE_TICKET_MODAL_KEY, PROJECTS_PATH } from "@/app.constants";
+import LoadingComponent from "@/components/common/LoadingComponent";
+import { ResponsiveModal } from "@/components/common/ResponsiveModal";
+import { UpdateTicketForm } from "@/components/Tickets/UpdateTicketForm/UpdateTicketForm";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useProjectId } from "@/hooks/useProjectId";
-import { useFeatureId } from "@/hooks/useFeatureId";
-import { useOpenModal } from "@/hooks/useModalHook";
-import { OPEN_UPDATE_TICKET_MODAL_KEY, PROJECTS_PATH } from "@/app.constants";
-import { useDeleteTicket, useGetTicket } from "@/api/tickets/tickets";
 import { useConfirm } from "@/hooks/useConfirm";
-import { toast } from "sonner";
-import LoadingComponent from "@/components/common/LoadingComponent";
-import { ResponsiveModal } from "@/components/common/ResponsiveModal";
-import { UpdateTicketForm } from "@/components/Tickets/UpdateTicketForm/UpdateTicketForm";
-import { Button } from "@/components/ui/button";
+import { useOpenModal } from "@/hooks/useModalHook";
+import { useProjectId } from "@/hooks/useProjectId";
 
 interface Props {
   id: string;
 }
 
 export const TicketRowContextMenu = ({ id }: Props) => {
-  const featureId = useFeatureId();
   const projectId = useProjectId();
   const router = useRouter();
 
@@ -32,7 +35,7 @@ export const TicketRowContextMenu = ({ id }: Props) => {
     useDeleteTicket();
 
   const { closeModal, isOpen, openModal } = useOpenModal(
-    OPEN_UPDATE_TICKET_MODAL_KEY + `-${id}`
+    `${OPEN_UPDATE_TICKET_MODAL_KEY}-${id}`,
   );
 
   const [DeleteConfirmation, deleteConfirmation] = useConfirm({

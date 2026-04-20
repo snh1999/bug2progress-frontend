@@ -1,8 +1,12 @@
-import { z } from "zod";
-import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 import { toast } from "sonner";
-import { FeatureType, TFeature, TUpdateFeatureDto } from "@/api/features/features.types";
+import { z } from "zod";
 import { useUpdateFeature } from "@/api/features/features";
+import {
+  FeatureType,
+  type TFeature,
+  type TUpdateFeatureDto,
+} from "@/api/features/features.types";
+import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 
 const updateFeatureFormSchema: z.ZodType<TUpdateFeatureDto> = z.object({
   id: z.string(),
@@ -12,9 +16,12 @@ const updateFeatureFormSchema: z.ZodType<TUpdateFeatureDto> = z.object({
   projectId: z.string(),
 });
 
-export const useUpdateFeatureForm = ({defaultValues, onSuccess}: {
-  defaultValues: TUpdateFeatureDto,
-  onSuccess?: () => void
+export const useUpdateFeatureForm = ({
+  defaultValues,
+  onSuccess,
+}: {
+  defaultValues: TUpdateFeatureDto;
+  onSuccess?: () => void;
 }) => {
   return useFormHooksWrapper<TUpdateFeatureDto, TFeature>({
     formSchema: updateFeatureFormSchema,
@@ -24,7 +31,7 @@ export const useUpdateFeatureForm = ({defaultValues, onSuccess}: {
     },
     onSuccess: (data) => {
       toast.success("Feature updated");
-      if(onSuccess) onSuccess();
+      if (onSuccess) onSuccess();
     },
   });
 };

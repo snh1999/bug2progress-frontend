@@ -1,10 +1,9 @@
-import Link from "next/link";
 import { ChevronRightIcon } from "lucide-react";
-
-import { TTicket } from "@/api/tickets/tickets.types";
+import Link from "next/link";
+import type { TFeature } from "@/api/features/features.types";
+import type { TProject } from "@/api/projects/projects.types";
+import type { TTicket } from "@/api/tickets/tickets.types";
 import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
-import { TProject } from "@/api/projects/projects.types";
-import { TFeature } from "@/api/features/features.types";
 
 interface Props {
   project: TProject;

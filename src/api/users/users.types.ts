@@ -19,8 +19,8 @@ export type TUser = {
 };
 
 export type TUserWithProfile = TUser & {
-    profile: TProfile
-}
+  profile: TProfile;
+};
 
 export enum ERole {
   ADMIN = "ADMIN",

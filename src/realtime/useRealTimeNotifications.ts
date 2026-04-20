@@ -1,18 +1,18 @@
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { FEATURE_EVENTS, HOME_PATH, PROJECT_EVENTS } from "@/app.constants";
-import { toast } from "sonner";
-import { useSocket } from "./provider/websocket-provider";
 import { useQueryClient } from "@tanstack/react-query";
-import { TFeature } from "@/api/features/features.types";
-import {
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { toast } from "sonner";
+import type { TFeature } from "@/api/features/features.types";
+import type { TProject } from "@/api/projects/projects.types";
+import { FEATURE_EVENTS, HOME_PATH, PROJECT_EVENTS } from "@/app.constants";
+import { useSocket } from "./provider/websocket-provider";
+import type {
   TFeatureCreationPayload,
   TFeatureDeletionPayload,
   TFeatureUpdatePayload,
   TProjectDeletionPayload,
   TProjectUpdatePayload,
 } from "./websocket.types";
-import { TProject } from "@/api/projects/projects.types";
 
 export function useRealtimeNotifications() {
   const { socket, connected } = useSocket();

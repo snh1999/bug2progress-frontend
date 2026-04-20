@@ -3,7 +3,7 @@ import { parseAsBoolean, useQueryState } from "nuqs";
 export const useOpenModal = (key: string) => {
   const [isOpen, setIsOpen] = useQueryState(
     key,
-    parseAsBoolean.withDefault(false).withOptions({ clearOnDefault: true })
+    parseAsBoolean.withDefault(false).withOptions({ clearOnDefault: true }),
   );
 
   const openModal = () => setIsOpen(true);

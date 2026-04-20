@@ -1,13 +1,13 @@
-import { Separator } from "@/components/ui/separator";
-import { TTicket } from "@/api/tickets/tickets.types";
-import { TicketRowContextMenu } from "@/components/Tickets/TicketsView/TicketRowContextMenu";
-import { TicketViewDueHeader } from "@/components/Tickets/TicketsView/DataTable/date/TicketViewDueHeader";
+import type { TTicket } from "@/api/tickets/tickets.types";
 import { TicketViewContributorHover } from "@/components/Tickets/TicketsView/DataTable/contributors/TicketViewContributorHover";
-import { TicketViewFeatureHover } from "@/components/Tickets/TicketsView/DataTable/feature/TicketViewFeature";
+import { TicketViewDueHeader } from "@/components/Tickets/TicketsView/DataTable/date/TicketViewDueHeader";
 import {
   TicketPriority,
   TicketType,
 } from "@/components/Tickets/TicketsView/DataTable/enums/TicketViewEnums";
+import { TicketViewFeatureHover } from "@/components/Tickets/TicketsView/DataTable/feature/TicketViewFeature";
+import { TicketRowContextMenu } from "@/components/Tickets/TicketsView/TicketRowContextMenu";
+import { Separator } from "@/components/ui/separator";
 
 interface KanbanCardProps {
   ticket: TTicket;
