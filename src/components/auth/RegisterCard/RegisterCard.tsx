@@ -6,14 +6,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { getLoginLinkText } from "../auth.helpers";
 import { useRegisterForm } from "./RegisterCard.hooks";
+import { useGetHealth } from "@/api/axios";
 
 export const RegisterCard = () => {
   const { form, onSubmit } = useRegisterForm();
   const { control, handleSubmit } = form;
-
-  useEffect(() => {
-    fetch(`${API_URL}/health`, { method: "GET" }).catch(() => {});
-  }, []);
+  useGetHealth();
 
   return (
     <Card className="w-1/2 h-full border-none shadow-none">

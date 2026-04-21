@@ -11,7 +11,7 @@ Bugs for this project are being listed here: https://trello.com/b/5hVPzEPS/bug2p
 
 ## 🚀 Getting Started
 Prerequisites
-1. Node.js (v20+), npm (pnpm and docker for backend)
+1. Node.js (v20+), npm and docker for backend
 2. Backend API running (see [backend repository](http://github.com/snh1999/bug2progress))
 
 3. 
@@ -33,13 +33,13 @@ Note: reflect any modification to the backend API URL in the `.env` file.
 
 5. Start the development server:
 ```bash
-bun dev
+npm run dev
 ```
 other scripts
 ```bash
-bun build # Build for production
-bun start # Start production server
-bun lint  # Run ESLint
+npm run build # Build for production
+npm run start # Start production server
+npm run lint  # Run ESLint
 ```
 
 6. Open your browser and navigate to http://localhost:3000

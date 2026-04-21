@@ -1,5 +1,6 @@
 import { BASE_URL } from "@/app.constants";
 import { getBearerToken } from "@/components/auth/auth.actions";
+import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosRequestConfig } from "axios";
 
 export const api = axios.create({
@@ -48,3 +49,9 @@ export const PatchRequest = async (
   const response = await api.patch(url, data, config);
   return response.data;
 };
+
+export const useGetHealth = () =>
+  useQuery<any, Error>({
+    queryKey: ["health"],
+    queryFn: async () => (await GetRequest(`/health`)).data,
+  });
