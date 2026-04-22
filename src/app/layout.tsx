@@ -5,6 +5,12 @@ import type { ReactNode } from "react";
 import { ThemeProvider } from "@/components/common/themes/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import QueryProvider from "./providers";
+import { JetBrains_Mono, Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const interHeading = Inter({subsets:['latin'],variable:'--font-heading'});
+
+const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'});
 
 export const metadata: Metadata = {
   title: "Bug2Progress",
@@ -17,7 +23,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-mono", jetbrainsMono.variable, interHeading.variable)}>
       <body>
         <QueryProvider>
           <ThemeProvider>

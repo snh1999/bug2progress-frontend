@@ -31,7 +31,7 @@ const HomePageLayout = ({ children }: IDashboardLayoutProps) => {
       </ResponsiveModal>
 
       <div className="flex w-full h-full">
-        <div className="mx-auto max-w-screen-2xl w-full h-full">
+        <div className="mx-auto max-w-(--breakpoint-2xl) w-full h-full">
           <HomeHeader />
           <main className="h-full mx-10 mt-5 py-4 px-4 flex flex-col">
             {children}

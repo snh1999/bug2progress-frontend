@@ -46,7 +46,7 @@ const FeaturesList = () => {
                 className={cn(
                   "flex items-center gap-3 p-3 rounded-md font-medium hover:font-semibold transition text-neutral-600 dark:text-neutral-400",
                   isActive &&
-                    "bg-neutral-200 dark:bg-neutral-700 font-bold shadow-sm hover:opacity-100 text-primary",
+                    "bg-neutral-200 dark:bg-neutral-700 font-bold shadow-xs hover:opacity-100 text-primary",
                 )}
               >
                 <ImageOrAvatar

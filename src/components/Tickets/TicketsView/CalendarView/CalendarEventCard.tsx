@@ -79,7 +79,7 @@ export const CalendarEventCard = ({ ticket }: EventCardProps) => {
         <div
           title={convertSnakeCaseToTitleCase(status)}
           className={cn(
-            "pl-1.5 py-full flex-shrink-0 rounded-l-md",
+            "pl-1.5 py-full shrink-0 rounded-l-md",
             statusColorMap[status],
           )}
         />
@@ -105,7 +105,7 @@ export const CalendarEventCard = ({ ticket }: EventCardProps) => {
             <div
               title={convertSnakeCaseToTitleCase(ticketPriority)}
               className={cn(
-                "w-1.5 flex-1 flex-shrink-0 rounded-tr-md",
+                "w-1.5 flex-1 shrink-0 rounded-tr-md",
                 !ticketType && "rounded-br-md",
                 priorityColorMap[ticketPriority],
               )}
@@ -115,7 +115,7 @@ export const CalendarEventCard = ({ ticket }: EventCardProps) => {
             <div
               title={convertSnakeCaseToTitleCase(ticketType)}
               className={cn(
-                "w-1.5 flex-1 flex-shrink-0 rounded-br-md",
+                "w-1.5 flex-1 shrink-0 rounded-br-md",
                 !ticketType && "rounded-tr-md",
                 typeColorMap[ticketType],
               )}

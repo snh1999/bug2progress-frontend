@@ -49,7 +49,7 @@ const DashboardLayout = ({ children }: IDashboardLayoutProps) => {
           <div className="fixed left-0 top-0 hidden lg:block lg:w-[300px] h-full overflow-y-auto">
             <Sidebar />
           </div>
-          <div className="mx-auto max-w-screen-2xl w-full h-full">
+          <div className="mx-auto max-w-(--breakpoint-2xl) w-full h-full">
             <PageHeader />
             <main className="h-full py-4 px-4 flex flex-col">{children}</main>
           </div>

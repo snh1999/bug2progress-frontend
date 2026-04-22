@@ -23,7 +23,6 @@ export const ImageOrAvatar = ({
     return (
       <div className={cn("size-9 relative overflow-hidden", className)}>
         <Image src={image} alt={name} fill className="object-cover" />
-        ...
       </div>
     );
   }

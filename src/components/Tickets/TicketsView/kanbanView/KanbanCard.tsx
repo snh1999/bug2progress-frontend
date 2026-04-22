@@ -15,7 +15,7 @@ interface KanbanCardProps {
 
 export const KanbanCard = ({ ticket }: KanbanCardProps) => {
   return (
-    <div className="bg-white dark:bg-black p-2.5 mb-1.5 rounded shadow-sm space-y-2">
+    <div className="bg-white dark:bg-black p-2.5 mb-1.5 rounded shadow-xs space-y-2">
       <div className="flex items-center justify-between ml-2 gap-x-2">
         <p className="line-clamp-2">{ticket.title}</p>
         <TicketRowContextMenu id={ticket.id} />

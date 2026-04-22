@@ -15,7 +15,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
 
   return (
     <main className="bg-neutral-100 dark:bg-neutral-800 min-h-screen">
-      <div className="mx-auto max-w-screen-2xl p-4">
+      <div className="mx-auto max-w-(--breakpoint-2xl) p-4">
         <Header>
           <div className="flex items-center gap-2">
             <ThemeToggle />
