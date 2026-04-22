@@ -31,7 +31,7 @@ export const FormInput = ({
       control={control}
       render={({ field }) => (
         <FormItem className="text-left space-y-0">
-          <FormLabel className="font-bold">{label}</FormLabel>
+          <FormLabel className="font-bold py-3">{label}</FormLabel>
           <FormControl>
             {textarea ? (
               <Textarea

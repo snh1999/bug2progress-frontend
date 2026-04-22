@@ -1,6 +1,5 @@
 import { CgEnter } from "react-icons/cg";
 import { RiAddCircleFill } from "react-icons/ri";
-import { useLogOut } from "@/api/auth/auth";
 import {
   OPEN_CREATE_PROJECT_MODAL_KEY,
   OPEN_JOIN_PROJECT_MODAL_KEY,
@@ -9,14 +8,13 @@ import { LogoLink } from "@/components/common/header/LogoLink";
 import { ThemeToggle } from "@/components/common/themes/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { useOpenModal } from "@/hooks/useModalHook";
+import LogoutButton from "./LogoutButton";
 
 const HomeHeader = () => {
   const { openModal } = useOpenModal(OPEN_CREATE_PROJECT_MODAL_KEY);
   const { openModal: openJoinModal } = useOpenModal(
     OPEN_JOIN_PROJECT_MODAL_KEY,
   );
-
-  const { mutate: logOut, isPending } = useLogOut();
 
   return (
     <nav className="pt-4 px-6 flex items-center justify-between">
@@ -27,24 +25,17 @@ const HomeHeader = () => {
       <div className="flex items-center gap-2">
         <ThemeToggle />
         <div className="flex justify-between items-center gap-2">
-          <Button onClick={openModal} size="sm" variant="primary">
-            {" "}
+          <Button onClick={openModal}>
             New Project
-            <RiAddCircleFill className="size-5  cursor-pointer hover:opacity-75 transition" />
+            <RiAddCircleFill className="size-4" />
           </Button>
 
-          <Button onClick={openJoinModal} size="sm" variant="primary">
-            <CgEnter className="size-5  cursor-pointer hover:opacity-75 transition" />{" "}
+          <Button onClick={openJoinModal}>
+            <CgEnter className="size-4" />
             Join Project
           </Button>
         </div>
-        <Button
-          variant="destructive"
-          disabled={isPending}
-          onClick={() => logOut()}
-        >
-          Log Out
-        </Button>
+        <LogoutButton />
       </div>
     </nav>
   );

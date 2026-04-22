@@ -3,7 +3,7 @@ import { LOGIN_PATH, REGISTER_PATH } from "@/app.constants";
 import { Button } from "@/components/ui/button";
 
 export const getHeaderButtonLink = (pathUrl: string) => (
-  <Button variant="primary" asChild>
+  <Button asChild>
     {pathUrl === REGISTER_PATH ? getLoginLinkText() : getRegisterLinkText()}
   </Button>
 );

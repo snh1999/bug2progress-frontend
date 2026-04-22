@@ -8,7 +8,7 @@ import { useFormHooksWrapper } from "@/components/common/form/FormHooksWrapper";
 
 const loginFormSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(1, "Required"),
+  password: z.string().min(1, "This is required"),
 });
 
 export const useLoginForm = () => {

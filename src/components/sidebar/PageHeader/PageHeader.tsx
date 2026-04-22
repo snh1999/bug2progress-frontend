@@ -3,7 +3,6 @@
 import { MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useLogOut } from "@/api/auth/auth";
 import { ThemeToggle } from "@/components/common/themes/ThemeToggle";
 import { Sidebar } from "@/components/sidebar/Sidebar";
 import { Button } from "@/components/ui/button";
@@ -13,6 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import LogoutButton from "@/components/common/LogoutButton";
 
 const pathnameMap = {
   home: "Home",
@@ -20,6 +20,7 @@ const pathnameMap = {
   tickets: "Ticket",
   contributors: "Contributors",
   features: "Feature",
+  admin: "Admin Dashboard",
 };
 
 const MobileSidebar = () => {
@@ -51,7 +52,6 @@ export const PageHeader = () => {
   const pathnameKey = pathnameParts[3] as keyof typeof pathnameMap;
 
   const title = pathnameMap[pathnameKey] || pathnameMap.home;
-  const { mutate: logOut, isPending } = useLogOut();
 
   return (
     <nav className="pt-4 px-6 flex items-center justify-between">
@@ -64,13 +64,7 @@ export const PageHeader = () => {
 
       <div className="flex items-center gap-2">
         <ThemeToggle />
-        <Button
-          variant="destructive"
-          disabled={isPending}
-          onClick={() => logOut()}
-        >
-          Log Out
-        </Button>
+        <LogoutButton />
       </div>
     </nav>
   );
