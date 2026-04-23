@@ -68,3 +68,20 @@ export const useDeleteProject = () => {
     },
   });
 };
+
+export const useGenerateDemo = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (allData: boolean = false) => {
+      const response = await PostRequest("/health/setup", { allData });
+      return response.data;
+    },
+    onSuccess: () => {
+      toast.success("Demo data generated successfully!");
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+    },
+    onError: (error: Error) => {
+      toast.error(error.message || "Failed to generate demo data");
+    },
+  });
+};

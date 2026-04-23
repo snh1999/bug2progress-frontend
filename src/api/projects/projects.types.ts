@@ -40,6 +40,11 @@ export type TProject = {
   basePostId: string;
   ownerId: string;
   inviteCode: string;
+  _count?: {
+    ticket: number;
+    members: number;
+    features: number;
+  };
 };
 
 export type TProjectWithPost = TProject & { basePost: TPost };

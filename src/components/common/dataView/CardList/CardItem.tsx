@@ -36,14 +36,14 @@ export const CardItem = ({
 }: TCardItemProps) => {
   return (
     <Card className="@container/card bg-muted">
-      <CardHeader className="pb-0">
+      <CardHeader className="pb-0 pt-3">
         <div className="flex items-center justify-between py-0">
           {titleNode ? (
             titleNode
           ) : (
             <div className="flex items-center gap-2">
               {!hideAvatar && <ImageOrAvatar name={title} bgColor={bgColor} />}
-              <CardTitle className="camelcase">{title}</CardTitle>
+              <CardTitle className="camelcase text-lg">{title}</CardTitle>
             </div>
           )}
 
@@ -60,11 +60,11 @@ export const CardItem = ({
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-col items-start gap-3 text-sm">
-        <div className="ml-1 line-clamp-1 flex italic text-muted-foreground font-medium">
+        <div className="ml-1 line-clamp-1 flex text-muted-foreground font-medium">
           {summary}
         </div>
         {bottomBarInformation && (
-          <div className="pt-3 text-muted-foreground">
+          <div className="pt-3 text-xs italic text-muted-foreground flex justify-end">
             {bottomBarInformation}
           </div>
         )}
