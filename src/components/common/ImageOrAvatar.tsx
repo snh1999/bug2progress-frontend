@@ -38,7 +38,7 @@ export const ImageOrAvatar = ({
       <AvatarFallback
         style={{ backgroundColor, color: getContrastColor(backgroundColor) }}
         className={cn(
-          "font-semibold p-1 uppercase rounded-md border-none",
+          "font-semibold p-1 uppercase rounded-md border-none bg-primary/20",
           size && size >= 9 ? "text-lg" : "text-xs",
           rounded && "rounded-full",
         )}

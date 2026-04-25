@@ -5,6 +5,7 @@ import LoadingComponent from "@/components/common/LoadingComponent";
 import { ContributorMenu } from "@/components/contributors/ContributorMenu";
 import { useProjectId } from "@/hooks/useProjectId";
 import { convertSnakeCaseToTitleCase } from "@/lib/utils";
+import UserCard from "@/components/Tickets/TicketsView/DataTable/contributors/Usercard";
 
 type TContributorListProps = {
   role: EProjectRole;
@@ -39,9 +40,9 @@ const ContributorList = ({ role }: TContributorListProps) => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-3">
-        {cardListData.map((item) => (
-          <CardItem key={item.id} {...item} />
+      <div className="grid grid-cols-2 lg:grid-cols-3 pt-4">
+        {data.map((item) => (
+          <UserCard contributor={item} key={item.userId}  />
         ))}
       </div>
     </div>
