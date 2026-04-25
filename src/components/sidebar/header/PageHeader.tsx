@@ -4,7 +4,7 @@ import { MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/common/themes/ThemeToggle";
-import { Sidebar } from "@/components/sidebar/Sidebar";
+import { ProjectSidebar } from "@/components/sidebar/ProjectSidebar";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -40,7 +40,7 @@ const MobileSidebar = () => {
       </SheetTrigger>
       <SheetTitle></SheetTitle>
       <SheetContent side="left" className="p-0">
-        <Sidebar />
+        <ProjectSidebar />
       </SheetContent>
     </Sheet>
   );

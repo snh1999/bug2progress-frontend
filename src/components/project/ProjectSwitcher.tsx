@@ -16,7 +16,8 @@ import {
 } from "@/components/ui/select";
 import { useOpenModal } from "@/hooks/useModalHook";
 import { useProjectId } from "@/hooks/useProjectId";
-import { getRandomColor } from "@/lib/utils";
+import { getStringToColor } from "@/lib/utils";
+import { SidebarGroupLabel } from "../ui/sidebar";
 
 export const ProjectSwitcher = () => {
   const router = useRouter();
@@ -34,13 +35,18 @@ export const ProjectSwitcher = () => {
 
   return (
     <div className="flex flex-col gap-y-2">
-      <div className="flex items-center py-3 justify-between">
-        <p className="text-md font-semibold uppercase text-neutral-600 dark:text-neutral-300">
-          Projects
-        </p>
-        <Button onClick={openModal} size="sm" variant="primary">
-          New
-          <RiAddCircleFill className="size-5  cursor-pointer hover:opacity-75 transition" />
+      <div className="flex items-center pt-3 pb-1 justify-between">
+        <SidebarGroupLabel className="font-semibold uppercase tracking-wider">
+          Project
+        </SidebarGroupLabel>
+
+        <Button
+          onClick={openModal}
+          className="text-muted-foreground"
+          size="icon-lg"
+          variant="ghost"
+        >
+          <RiAddCircleFill />
         </Button>
       </div>
       <Select onValueChange={onSelect} value={projectId}>
@@ -53,7 +59,8 @@ export const ProjectSwitcher = () => {
               <div className="flex justify-start items-center gap-3 font-medium">
                 <ImageOrAvatar
                   name={project.title}
-                  bgColor={getRandomColor()}
+                  bgColor={getStringToColor(project.title)}
+                  size={7}
                 />
                 <span className="truncate">{project.title}</span>
               </div>

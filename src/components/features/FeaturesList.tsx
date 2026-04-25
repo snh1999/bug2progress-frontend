@@ -1,66 +1,69 @@
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { RiAddCircleFill } from "react-icons/ri";
 import { useGetFeatures } from "@/api/features/features";
-import { OPEN_CREATE_FEATURE_MODAL_KEY, PROJECTS_PATH } from "@/app.constants";
-import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
 import LoadingComponent from "@/components/common/LoadingComponent";
-import { Button } from "@/components/ui/button";
-import { useOpenModal } from "@/hooks/useModalHook";
 import { useProjectId } from "@/hooks/useProjectId";
-import { cn, getRandomColor } from "@/lib/utils";
+import {
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+} from "../ui/sidebar";
+import { OPEN_CREATE_FEATURE_MODAL_KEY } from "@/app.constants";
 
-const FeaturesList = () => {
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "../ui/collapsible";
+import { ChevronDown } from "lucide-react";
+import { FeatureItem } from "./FeatureItem";
+import { Button } from "../ui/button";
+import { RiAddCircleFill } from "react-icons/ri";
+import { useOpenModal } from "@/hooks/useModalHook";
+
+export default function FeaturesList() {
   const projectId = useProjectId();
   const { data: features } = useGetFeatures(projectId);
   const { openModal: openFeatureModal } = useOpenModal(
     OPEN_CREATE_FEATURE_MODAL_KEY,
   );
 
-  const pathname = usePathname();
-
   if (!features) {
     return <LoadingComponent />;
   }
 
   return (
-    <div className="flex flex-col gap-y-2">
-      <div className="flex items-center py-3 justify-between">
-        <p className="text-md font-semibold uppercase text-neutral-600 dark:text-neutral-300">
-          Features
-        </p>
-        <Button onClick={openFeatureModal} size="sm" variant="primary">
-          New
-          <RiAddCircleFill className="size-5  cursor-pointer hover:opacity-75 transition" />
-        </Button>
-      </div>
-
-      <ul className="flex flex-col">
-        {features.map((feature) => {
-          const fullHref = `${PROJECTS_PATH}/${projectId}/features/${feature.id}`;
-          const isActive = pathname === fullHref;
-
-          return (
-            <Link key={feature.id} href={fullHref}>
-              <div
-                className={cn(
-                  "flex items-center gap-3 p-3 rounded-md font-medium hover:font-semibold transition text-neutral-600 dark:text-neutral-400",
-                  isActive &&
-                    "bg-neutral-200 dark:bg-neutral-700 font-bold shadow-xs hover:opacity-100 text-primary",
-                )}
-              >
-                <ImageOrAvatar
-                  name={feature.title}
-                  bgColor={getRandomColor()}
-                />
-                <span className="truncate">{feature.title}</span>
-              </div>
-            </Link>
-          );
-        })}
-      </ul>
+    <div className="flex flex-col justify-between">
+      <Collapsible defaultOpen className="group/collapsible">
+        <SidebarGroup className="px-0">
+          <SidebarGroupLabel
+            asChild
+            className="font-semibold px-3 uppercase tracking-wider"
+          >
+            <CollapsibleTrigger>
+              Features
+              <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+            </CollapsibleTrigger>
+          </SidebarGroupLabel>
+          <CollapsibleContent>
+            <SidebarGroupContent>
+              <SidebarMenu className="px-1 pt-2 pb-2 space-y-0.5">
+                {features.map((feature) => (
+                  <FeatureItem feature={feature} key={feature.id} />
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </CollapsibleContent>
+        </SidebarGroup>
+      </Collapsible>
+      <Button
+        className="w-full rounded-none text-muted-foreground"
+        onClick={openFeatureModal}
+        size="sm"
+        variant="ghost"
+      >
+        New Feature
+        <RiAddCircleFill />
+      </Button>
     </div>
   );
-};
-
-export default FeaturesList;
+}

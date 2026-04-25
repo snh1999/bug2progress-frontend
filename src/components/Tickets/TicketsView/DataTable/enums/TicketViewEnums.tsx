@@ -17,7 +17,7 @@ export const getTicketStatusStyle = (status: ETicketStatus) => {
     case ETicketStatus.CANCELED:
       return "bg-gray-700 text-white";
     case ETicketStatus.IN_REVIEW:
-      return "bg-pink-400 text-gray-100";
+      return "bg-pink-600 text-gray-100";
     case ETicketStatus.IN_QA:
       return "bg-amber-500 text-white";
     case ETicketStatus.BLOCKED:
@@ -25,13 +25,13 @@ export const getTicketStatusStyle = (status: ETicketStatus) => {
     case ETicketStatus.DEPLOYED:
       return "bg-yellow-400 text-gray-700";
     case ETicketStatus.ARCHIVED:
-      return "bg-gray-400 text-white";
+      return "bg-gray-600 text-white";
     case ETicketStatus.DONE:
       return "bg-green-700 text-white";
   }
 };
 
-export const TicketStatus = ({ status }: { status: ETicketStatus }) => {
+export const TicketStatus = ({ status, size }: { status: ETicketStatus, size?: "sm" | "md" }) => {
   const className = getTicketStatusStyle(status);
   return (
     <Badge className={cn(className, "rounded-full")}>

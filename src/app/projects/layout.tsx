@@ -10,16 +10,16 @@ import { ResponsiveModal } from "@/components/common/ResponsiveModal";
 import { CreateFeatureForm } from "@/components/features/CreateFeatureForm/CreateFeatureForm";
 import { CreateProjectForm } from "@/components/project/CreateProjectForm/CreateProjectForm";
 import JoinProject from "@/components/project/JoinProject";
-import { PageHeader } from "@/components/sidebar/PageHeader/PageHeader";
-import { Sidebar } from "@/components/sidebar/Sidebar";
+import { ProjectSidebar } from "@/components/sidebar/ProjectSidebar";
 import { useOpenModal } from "@/hooks/useModalHook";
 import { SocketProvider } from "@/realtime/provider/websocket-provider";
+import ProjectHeader from "@/components/sidebar/header/ProjectHeader";
 
 interface IDashboardLayoutProps {
   children: ReactNode;
 }
 
-const DashboardLayout = ({ children }: IDashboardLayoutProps) => {
+export default function DashboardLayout({ children }: IDashboardLayoutProps) {
   const { closeModal, isOpen } = useOpenModal(OPEN_CREATE_PROJECT_MODAL_KEY);
   const { closeModal: closeJoinModal, isOpen: isJoinModalOpen } = useOpenModal(
     OPEN_JOIN_PROJECT_MODAL_KEY,
@@ -45,18 +45,18 @@ const DashboardLayout = ({ children }: IDashboardLayoutProps) => {
       </ResponsiveModal>
 
       <SocketProvider>
-        <div className="flex w-full h-full lg:pl-[300px]">
+        <div className="flex w-full h-full lg:pl-[300px] pt-2">
           <div className="fixed left-0 top-0 hidden lg:block lg:w-[300px] h-full overflow-y-auto">
-            <Sidebar />
+            <ProjectSidebar />
           </div>
-          <div className="mx-auto max-w-(--breakpoint-2xl) w-full h-full">
-            <PageHeader />
-            <main className="h-full py-4 px-4 flex flex-col">{children}</main>
+          <div className="mx-auto px-4 max-w-(--breakpoint-2xl) w-full h-full">
+            <ProjectHeader />
+            <main className="h-full py-4 px-8 mx-auto flex flex-col">
+              {children}
+            </main>
           </div>
         </div>
       </SocketProvider>
     </div>
   );
-};
-
-export default DashboardLayout;
+}

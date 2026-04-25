@@ -1,23 +1,17 @@
 "use client";
 
-import { SettingsIcon, UsersIcon } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import {
-  GoCheckCircle,
-  GoCheckCircleFill,
-  GoHome,
-  GoHomeFill,
-} from "react-icons/go";
+import { SettingsIcon, UsersIcon, Ticket, TicketCheck } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { GoHome, GoHomeFill } from "react-icons/go";
 import { PROJECTS_PATH } from "@/app.constants";
 import {
   EContributorAction,
   useCheckPermission,
 } from "@/components/contributors/contributor.helper";
 import { useProjectId } from "@/hooks/useProjectId";
-import { cn } from "@/lib/utils";
+import { SidebarMenu, SidebarMenuButton } from "../ui/sidebar";
 
-const menuItems = [
+export const sidebarMenuItems = [
   {
     label: "Home",
     href: "",
@@ -28,8 +22,8 @@ const menuItems = [
   {
     label: "Tickets",
     href: "/tickets",
-    icon: GoCheckCircle,
-    activeIcon: GoCheckCircleFill,
+    icon: Ticket,
+    activeIcon: TicketCheck,
     permission: true,
   },
   {
@@ -48,13 +42,14 @@ const menuItems = [
   },
 ];
 
-export const SidebarMenu = () => {
+export const ProjectMenu = () => {
   const projectId = useProjectId();
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
-    <ul className="flex flex-col pt-2">
-      {menuItems.map((menuItem) => {
+    <SidebarMenu className="flex flex-col pt-5">
+      {sidebarMenuItems.map((menuItem) => {
         const fullHref = `${PROJECTS_PATH}/${projectId}${menuItem.href}`;
         const isActive = pathname === fullHref;
         const Icon = isActive ? menuItem.activeIcon : menuItem.icon;
@@ -64,20 +59,17 @@ export const SidebarMenu = () => {
         )
           return null;
         return (
-          <Link key={menuItem.href} href={fullHref}>
-            <div
-              className={cn(
-                "flex items-center gap-3 p-3 rounded-md font-medium hover:font-semibold transition text-neutral-600 dark:text-neutral-400",
-                isActive &&
-                  "bg-neutral-200 dark:bg-neutral-700 font-bold shadow-xs hover:opacity-100 text-primary",
-              )}
-            >
-              <Icon className="size-5 text-neutral-600 dark:text-neutral-400" />
-              {menuItem.label}
-            </div>
-          </Link>
+          <SidebarMenuButton
+            key={menuItem.label}
+            isActive={isActive}
+            onClick={() => router.push(fullHref)}
+            className="px-5 pb-2 space-y-1 text-sm"
+          >
+            <Icon />
+            {menuItem.label}
+          </SidebarMenuButton>
         );
       })}
-    </ul>
+    </SidebarMenu>
   );
 };

@@ -1,6 +1,11 @@
 import Image from "next/image";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { cn, getContrastColor, getInitials, getRandomColor } from "@/lib/utils";
+import {
+  cn,
+  getContrastColor,
+  getInitials,
+  getStringToColor,
+} from "@/lib/utils";
 
 interface ImageOrAvatarProps {
   image?: string;
@@ -16,9 +21,10 @@ export const ImageOrAvatar = ({
   name,
   className,
   size = 9,
-  bgColor = getRandomColor(),
+  bgColor,
   rounded = false,
 }: ImageOrAvatarProps) => {
+  const backgroundColor = bgColor ? bgColor : getStringToColor(name);
   if (image) {
     return (
       <div className={cn("size-9 relative overflow-hidden", className)}>
@@ -30,9 +36,9 @@ export const ImageOrAvatar = ({
   return (
     <Avatar className={cn("rounded-md", size && `size-${size}`, className)}>
       <AvatarFallback
-        style={{ backgroundColor: bgColor, color: getContrastColor(bgColor) }}
+        style={{ backgroundColor, color: getContrastColor(backgroundColor) }}
         className={cn(
-          "font-semibold p-1 uppercase rounded-md",
+          "font-semibold p-1 uppercase rounded-md border-none",
           size && size >= 9 ? "text-lg" : "text-xs",
           rounded && "rounded-full",
         )}

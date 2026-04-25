@@ -32,10 +32,11 @@ export const useGetProjects = () =>
     queryFn: async () => (await GetRequest("/projects")).data,
   });
 
-export const useGetProject = (id: string) =>
+export const useGetProject = (id?: string) =>
   useQuery<TProjectWithPost, Error>({
     queryKey: ["project", id],
     queryFn: async () => (await GetRequest(`/projects/${id}`)).data,
+    enabled: Boolean(id),
   });
 
 export const useUpdateProject = () => {
