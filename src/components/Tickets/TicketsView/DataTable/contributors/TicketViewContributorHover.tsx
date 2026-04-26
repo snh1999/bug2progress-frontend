@@ -18,7 +18,7 @@ type Props = {
 export function TicketViewContributorHover({
   contributor,
   altText,
-  compact = false,
+  compact,
 }: Props) {
   if (!contributor)
     return (
@@ -36,7 +36,7 @@ export function TicketViewContributorHover({
     <HoverCard>
       <HoverCardTrigger asChild>
         {compact ? (
-          <ImageOrAvatar size={5} rounded name={contributor.profile.name} />
+          <ImageOrAvatar size={7} rounded name={contributor.profile.name} />
         ) : (
           <Button variant="ghost" size="sm">
             @{contributor.profile.username}

@@ -11,8 +11,10 @@ import { FeatureCard } from "@/components/features/FeatureCard";
 
 export function TicketViewFeatureHover({
   feature,
+  compact
 }: {
   feature?: TFeature;
+  compact?: boolean;
 }) {
   if (!feature) return <span className="text-muted-foreground italic">-</span>;
 
@@ -23,11 +25,11 @@ export function TicketViewFeatureHover({
           variant="ghost"
           className="flex items-center gap-2 truncate"
         >
-          <FeatureItem feature={feature} />
+          <FeatureItem feature={feature} compact={compact} />
         </Button>
       </HoverCardTrigger>
       <HoverCardContent className="w-max">
-        <FeatureCard feature={feature}/>
+        <FeatureCard feature={feature} />
       </HoverCardContent>
     </HoverCard>
   );

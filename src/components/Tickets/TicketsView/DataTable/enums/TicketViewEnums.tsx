@@ -31,7 +31,7 @@ export const getTicketStatusStyle = (status: ETicketStatus) => {
   }
 };
 
-export const TicketStatus = ({ status, size }: { status: ETicketStatus, size?: "sm" | "md" }) => {
+export const TicketStatus = ({ status }: { status: ETicketStatus }) => {
   const className = getTicketStatusStyle(status);
   return (
     <Badge className={cn(className, "rounded-full")}>
@@ -64,7 +64,7 @@ export const TicketPriority = ({
 }) => {
   if (!priority) return null;
 
-  let className = getTicketPriorityStyle(priority);
+  const className = getTicketPriorityStyle(priority);
   return (
     <Badge className={cn(className, "rounded-full")}>
       {convertSnakeCaseToTitleCase(priority)}
@@ -100,7 +100,7 @@ export const getTicketTypeStyle = (type: ETicketType) => {
 export const TicketType = ({ type }: { type?: ETicketType }) => {
   if (!type) return null;
 
-  let className = getTicketTypeStyle(type);
+  const className = getTicketTypeStyle(type);
   return (
     <Badge className={cn(className, "rounded-full")}>
       {convertSnakeCaseToTitleCase(type)}

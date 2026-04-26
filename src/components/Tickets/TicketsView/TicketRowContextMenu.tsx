@@ -79,7 +79,7 @@ export const TicketRowContextMenu = ({ id }: Props) => {
 
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="ml-2">
+          <Button variant="ghost" size="icon-xs" className="ml-2">
             <MoreVertical className="size-4 p-0" />
           </Button>
         </DropdownMenuTrigger>

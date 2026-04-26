@@ -35,12 +35,13 @@ export const TicketsView = ({ hideFeatureFilter }: TicketsViewProps) => {
     },
   ] = useTicketFilters();
 
-  const [view, setView] = useQueryState(ETicketView.TABLE, {
-    defaultValue: ETicketView.TABLE,
+  const [view, setView] = useQueryState(ETicketView.KANBAN, {
+    defaultValue: ETicketView.KANBAN,
   });
 
   const projectId = useProjectId();
-  const featureId = searchFeatureId || useFeatureId();
+  const fId = useFeatureId();
+  const featureId = searchFeatureId || fId;
 
   const { data: tickets, isLoading: isLoadingTickets } = useGetTickets({
     featureId,

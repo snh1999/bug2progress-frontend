@@ -1,41 +1,38 @@
 import type { TTicket } from "@/api/tickets/tickets.types";
-import { TicketViewContributorHover } from "@/components/Tickets/TicketsView/DataTable/contributors/TicketViewContributorHover";
 import { TicketViewDueHeader } from "@/components/Tickets/TicketsView/DataTable/date/TicketViewDueHeader";
 import {
   TicketPriority,
   TicketType,
 } from "@/components/Tickets/TicketsView/DataTable/enums/TicketViewEnums";
-import { TicketViewFeatureHover } from "@/components/Tickets/TicketsView/DataTable/feature/TicketViewFeature";
 import { TicketRowContextMenu } from "@/components/Tickets/TicketsView/TicketRowContextMenu";
-import { Separator } from "@/components/ui/separator";
 
 interface KanbanCardProps {
   ticket: TTicket;
+  compact?: boolean;
 }
 
-export const KanbanCard = ({ ticket }: KanbanCardProps) => {
+export const KanbanCard = ({ ticket, compact }: KanbanCardProps) => {
   return (
-    <div className="bg-white dark:bg-black p-2.5 mb-1.5 rounded shadow-xs space-y-2">
-      <div className="flex items-center justify-between ml-2 gap-x-2">
-        <p className="line-clamp-2">{ticket.title}</p>
-        <TicketRowContextMenu id={ticket.id} />
-      </div>
-
-      <div className="flex gap-2">
+    <div className="group bg-card p-3 mb-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-border/50 cursor-pointer">
+      <div className="items-center flex-wrap gap-1.5 mb-2 hidden group-hover:flex transition-all duration-200 ease-out">
         <TicketPriority priority={ticket.ticketPriority} />
         <TicketType type={ticket.ticketType} />
       </div>
 
-      <Separator />
-      <div className="flex items-center gap-x-1 text-xs">
-        <TicketViewContributorHover contributor={ticket.assignedContributor} />{" "}
-        |
-        <TicketViewDueHeader date={ticket.dueAt} compact />
-      </div>
+      <p
+        className={`text-xs font-medium text-foreground leading-snug line-clamp-3  ${compact ? "mb-0 pb-0" : "mb-2"}`}
+      >
+        {ticket.title}
+      </p>
 
-      <div className="bg-background flex text-xs">
-        <TicketViewFeatureHover feature={ticket.feature} />
-      </div>
+      {!compact && (
+        <div className={`flex ${compact ? "justify-end" : "justify-between"}`}>
+          <div className="flex items-center justify-end border-border/40">
+            <TicketViewDueHeader date={ticket.dueAt} compact />
+          </div>
+          <TicketRowContextMenu id={ticket.id} />
+        </div>
+      )}
     </div>
   );
 };

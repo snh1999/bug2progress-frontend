@@ -16,7 +16,10 @@ import { Button } from "@/components/ui/button";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./calendar.css";
 import type { TTicket } from "@/api/tickets/tickets.types";
-import { CalendarEventCard } from "@/components/Tickets/TicketsView/CalendarView/CalendarEventCard";
+import { KanbanCard } from "@/components/Tickets/TicketsView/kanbanView/KanbanCard";
+import { useProjectId } from "@/hooks/useProjectId";
+import Link from "next/link";
+import { PROJECTS_PATH } from "@/app.constants";
 
 const locales = {
   "en-US": enUS,
@@ -69,6 +72,8 @@ export const CalendarView = ({ data }: CalendarViewProps) => {
     data.length > 0 && data[0].dueAt ? new Date(data[0].dueAt) : new Date(),
   );
 
+  const projectId = useProjectId();
+
   const events = data
     .filter((ticket) => ticket.dueAt)
     .map((ticket) => ({
@@ -104,7 +109,9 @@ export const CalendarView = ({ data }: CalendarViewProps) => {
       }}
       components={{
         eventWrapper: ({ event: { ticket } }) => (
-          <CalendarEventCard ticket={ticket} />
+          <Link href={`${PROJECTS_PATH}/${projectId}/tickets/${ticket.id}`}>
+            <KanbanCard ticket={ticket} compact />
+          </Link>
         ),
         toolbar: () => (
           <CustomToolbar date={value} onNavigate={handleNavigate} />

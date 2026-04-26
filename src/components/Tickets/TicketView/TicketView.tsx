@@ -57,52 +57,50 @@ export const TicketOverview = ({ ticket }: Props) => {
     return <LoadingComponent />;
   }
   return (
-    <>
-      <div className="flex flex-col gap-y-4 col-span-1">
-        <ResponsiveModal open={isOpen} onOpenChange={closeModal}>
-          <UpdateTicketForm defaultValues={data} onCancel={closeModal} />
-        </ResponsiveModal>
-        <div className="bg-white dark:bg-black rounded-lg p-4">
-          <div className=" flex items-center justify-between">
-            <p className="text-lg font-semibold">Overview</p>
-            <Button onClick={openModal} size="sm" variant="secondary">
-              <PencilIcon className="size-4 mr-2" />
-              Edit
-            </Button>
-          </div>
-          <Separator className="my-4" />
-          <div className="flex flex-col gap-y-4">
-            <OverviewProperty label="Assigned Contributor">
-              <TicketViewContributorHover
-                contributor={ticket.assignedContributor}
-              />
-            </OverviewProperty>
-            <OverviewProperty label="Due Date">
-              <span className="pl-3">
-                <TicketViewDueHeader date={ticket.dueAt} />
-              </span>
-            </OverviewProperty>
-            <OverviewProperty label="Verified by">
-              <TicketViewContributorHover
-                contributor={ticket.verifiedBy}
-                altText="Not verified"
-              />
-            </OverviewProperty>
-            <OverviewProperty label="Created by">
-              <TicketViewContributorHover contributor={ticket.creator} />
-            </OverviewProperty>
-            <OverviewProperty label="Tags">
-              <div className="flex gap-2 pl-2">
-                <TicketStatus status={ticket.ticketStatus} />
-                {ticket.ticketPriority && (
-                  <TicketPriority priority={ticket.ticketPriority} />
-                )}
-                {ticket.ticketType && <TicketType type={ticket.ticketType} />}
-              </div>
-            </OverviewProperty>
-          </div>
+    <div className="flex flex-col gap-y-4 col-span-1">
+      <ResponsiveModal open={isOpen} onOpenChange={closeModal}>
+        <UpdateTicketForm defaultValues={data} onCancel={closeModal} />
+      </ResponsiveModal>
+      <div className="bg-white dark:bg-black rounded-lg p-4">
+        <div className=" flex items-center justify-between">
+          <p className="text-lg font-semibold">Overview</p>
+          <Button onClick={openModal} size="sm" variant="secondary">
+            <PencilIcon className="size-4 mr-2" />
+            Edit
+          </Button>
+        </div>
+        <Separator className="my-4" />
+        <div className="flex flex-col gap-y-4">
+          <OverviewProperty label="Assigned Contributor">
+            <TicketViewContributorHover
+              contributor={ticket.assignedContributor}
+            />
+          </OverviewProperty>
+          <OverviewProperty label="Due Date">
+            <span className="pl-3">
+              <TicketViewDueHeader date={ticket.dueAt} />
+            </span>
+          </OverviewProperty>
+          <OverviewProperty label="Verified by">
+            <TicketViewContributorHover
+              contributor={ticket.verifiedBy}
+              altText="Not verified"
+            />
+          </OverviewProperty>
+          <OverviewProperty label="Created by">
+            <TicketViewContributorHover contributor={ticket.creator} />
+          </OverviewProperty>
+          <OverviewProperty label="Tags">
+            <div className="flex gap-2 pl-2">
+              <TicketStatus status={ticket.ticketStatus} />
+              {ticket.ticketPriority && (
+                <TicketPriority priority={ticket.ticketPriority} />
+              )}
+              {ticket.ticketType && <TicketType type={ticket.ticketType} />}
+            </div>
+          </OverviewProperty>
         </div>
       </div>
-    </>
+    </div>
   );
 };
