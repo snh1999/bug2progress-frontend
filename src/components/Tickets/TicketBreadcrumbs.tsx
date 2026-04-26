@@ -34,7 +34,7 @@ export const TicketBreadcrumbs = ({ ticket, project }: Props) => {
   });
 
   return (
-    <div className="flex items-center gap-x-2">
+    <div className="flex items-center justify-between">
       <DeleteConfirmation />
       <HeaderBreadcrumbs
         project={project}
@@ -44,12 +44,11 @@ export const TicketBreadcrumbs = ({ ticket, project }: Props) => {
       <Button
         onClick={deleteConfirmation}
         disabled={isPending}
-        className="ml-auto"
+        className="ml-auto mb-3"
         variant="destructive"
-        size="sm"
-      >
+        >
         <TrashIcon className="size-4 lg:mr-2" />
-        <span className="hidden lg:block">Delete Ticket</span>
+        Delete
       </Button>
     </div>
   );

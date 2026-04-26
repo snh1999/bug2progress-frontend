@@ -11,7 +11,7 @@ export default function FeatureDetails({projectId, feature}: {
 }) {
   return (
     <div className="w-full space-y-6">
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Link href={`/projects/${projectId}/features`}
                 className="hover:text-foreground flex items-center gap-1">

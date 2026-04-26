@@ -8,6 +8,7 @@ import { TicketBreadcrumbs } from "@/components/Tickets/TicketBreadcrumbs";
 import { TicketOverview } from "@/components/Tickets/TicketView/TicketView";
 import { useProjectId } from "@/hooks/useProjectId";
 import { useTicketId } from "@/hooks/useTicketId";
+import AboutSection from "@/components/common/AboutSection";
 
 const TicketPage = () => {
   const ticketId = useTicketId();
@@ -27,19 +28,14 @@ const TicketPage = () => {
   if (isLoading || !ticket || !project) {
     return <LoadingComponent />;
   }
-  // TODO: add a view more wrap for tickets
   return (
     <div className="flex flex-col">
       <TicketBreadcrumbs project={project} ticket={ticket} />
-      <Separator className="my-4" />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <TicketOverview ticket={ticket} />
-        <div className="bg-white dark:bg-black rounded-lg p-4 mt-4">
-          <p className="text-lg font-semibold">Description</p>
-          <Separator className="my-4" />
-          <div className="flex items-center justify-between">
-            {ticket.description}
-          </div>
+        <div className="mt-4">
+          <AboutSection about={ticket.description} />
+
         </div>
       </div>
     </div>
