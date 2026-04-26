@@ -15,7 +15,7 @@ import {
   CollapsibleTrigger,
 } from "../ui/collapsible";
 import { ChevronDown } from "lucide-react";
-import { FeatureItem } from "./FeatureItem";
+import { SidebarFeatureItem } from "./SidebarFeatureItem";
 import { Button } from "../ui/button";
 import { RiAddCircleFill } from "react-icons/ri";
 import { useOpenModal } from "@/hooks/useModalHook";
@@ -48,7 +48,7 @@ export default function FeaturesList() {
             <SidebarGroupContent>
               <SidebarMenu className="px-1 pt-2 pb-2 space-y-0.5">
                 {features.map((feature) => (
-                  <FeatureItem feature={feature} key={feature.id} />
+                  <SidebarFeatureItem feature={feature} key={feature.id} />
                 ))}
               </SidebarMenu>
             </SidebarGroupContent>

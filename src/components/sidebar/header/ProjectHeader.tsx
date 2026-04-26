@@ -61,22 +61,24 @@ export default function ProjectHeader() {
 
       <div className="flex justify-between">
         <div className="flex items-center gap-1 mt-4">
-          {sidebarMenuItems.map((tab) => {
-            const Icon = tab.icon;
-            const fullHref = `${PROJECTS_PATH}/${projectId}${tab.href}`;
-            const isActive = pathname === fullHref;
-            return (
-              <Link key={tab.label} href={fullHref}>
-                <Button
-                  variant={isActive ? "default" : "ghost"}
-                  className="gap-2"
-                >
-                  <Icon className="w-4 h-4" />
-                  {tab.label}
-                </Button>
-              </Link>
-            );
-          })}
+          {sidebarMenuItems
+            .filter((item) => item.label !== "Settings")
+            .map((tab) => {
+              const Icon = tab.icon;
+              const fullHref = `${PROJECTS_PATH}/${projectId}${tab.href}`;
+              const isActive = pathname === fullHref;
+              return (
+                <Link key={tab.label} href={fullHref}>
+                  <Button
+                    variant={isActive ? "default" : "ghost"}
+                    className="gap-2"
+                  >
+                    <Icon className="w-4 h-4" />
+                    {tab.label}
+                  </Button>
+                </Link>
+              );
+            })}
         </div>
         <span className="text-xs text-muted-foreground flex items-center gap-1">
           <Calendar className="w-3 h-3" />

@@ -7,17 +7,16 @@ import {
   MapPin,
 
 } from "lucide-react";
-import { TProjectContributorWithUser } from "@/api/projects/projects.types";
 import TooltipWrapper from "@/components/common/TooltipWrapper";
 import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
 import { convertSnakeCaseToTitleCase } from "@/lib/utils";
+import { TUserWithProfile } from "@/api/users/users.types";
 
 type TProps = {
-  contributor: TProjectContributorWithUser;
+  user: TUserWithProfile;
   role?: string
 }
-export default function UserCard({contributor, role}: TProps) {
-  const {user} = contributor;
+export default function UserCard({user, role}: TProps) {
   const {email, joinedAt, profile} = user
 
   const name = profile?.name || email.split("@")[0];

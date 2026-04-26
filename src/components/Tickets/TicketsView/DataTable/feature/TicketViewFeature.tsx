@@ -1,23 +1,19 @@
 import type { TFeature } from "@/api/features/features.types";
-import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
 import { Button } from "@/components/ui/button";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { FeatureItem } from "@/components/features/FeatureItem";
+import { FeatureCard } from "@/components/features/FeatureCard";
 
-type Props = {
-  feature?: TFeature;
-  compact?: boolean;
-  rounded?: boolean;
-};
 
 export function TicketViewFeatureHover({
   feature,
-  compact = false,
-  rounded = false,
-}: Props) {
+}: {
+  feature?: TFeature;
+}) {
   if (!feature) return <span className="text-muted-foreground italic">-</span>;
 
   return (
@@ -25,23 +21,13 @@ export function TicketViewFeatureHover({
       <HoverCardTrigger asChild>
         <Button
           variant="ghost"
-          size={compact ? "xs" : "sm"}
           className="flex items-center gap-2 truncate"
         >
-          <ImageOrAvatar name={feature.title} rounded={rounded} size={5} />
-          {!compact && feature.title}
+          <FeatureItem feature={feature} />
         </Button>
       </HoverCardTrigger>
-      <HoverCardContent className="min-w-200 w-max">
-        <div className="flex justify-between gap-4">
-          <ImageOrAvatar name={feature.title} />
-          <div className="space-y-1">
-            <h4 className="text-sm font-semibold">{feature.title}</h4>
-            <div className="text-muted-foreground truncate text-xs">
-              {feature.description}
-            </div>
-          </div>
-        </div>
+      <HoverCardContent className="w-max">
+        <FeatureCard feature={feature}/>
       </HoverCardContent>
     </HoverCard>
   );

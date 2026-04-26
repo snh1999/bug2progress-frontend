@@ -96,7 +96,7 @@ export const CalendarEventCard = ({ ticket }: EventCardProps) => {
               <TicketViewContributorHover contributor={contributor} compact />
             )}
 
-            <TicketViewFeatureHover feature={feature} compact rounded />
+            <TicketViewFeatureHover feature={feature} />
           </div>
         </div>
 

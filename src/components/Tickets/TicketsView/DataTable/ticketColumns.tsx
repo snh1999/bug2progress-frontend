@@ -141,11 +141,6 @@ export const ticketColumns: ColumnDef<TTicket>[] = [
       <TicketViewContributorHover contributor={row.original.creator} />
     ),
   },
-  // {
-  //   accessorKey: "description",
-  //   header: "",
-  //   cell: ({row}) => ""
-  // },
   {
     accessorKey: "feature",
     header: "Feature",

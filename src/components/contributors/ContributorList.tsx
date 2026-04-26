@@ -42,7 +42,7 @@ const ContributorList = ({ role }: TContributorListProps) => {
 
       <div className="grid grid-cols-2 lg:grid-cols-3 pt-4">
         {data.map((item) => (
-          <UserCard contributor={item} key={item.userId}  />
+          <UserCard user={item.user} key={item.userId}  />
         ))}
       </div>
     </div>

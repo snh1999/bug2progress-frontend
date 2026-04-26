@@ -7,6 +7,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import UserCard from "@/components/Tickets/TicketsView/DataTable/contributors/Usercard";
 
 type Props = {
   contributor?: TUserWithProfile;
@@ -43,16 +44,7 @@ export function TicketViewContributorHover({
         )}
       </HoverCardTrigger>
       <HoverCardContent className="min-w-100 w-max">
-        <div className="flex justify-between gap-4">
-          <ImageOrAvatar name={contributor.profile.name} />
-          <div className="space-y-1">
-            <h4 className="text-sm italic">@{contributor.profile.username}</h4>
-            <p className="text-sm font-semibold">{contributor.profile.name}</p>
-            <div className="text-muted-foreground text-xs">
-              Joined at {format(contributor.joinedAt, "PP")}
-            </div>
-          </div>
-        </div>
+        <UserCard user={contributor} role={contributor.role} />
       </HoverCardContent>
     </HoverCard>
   );
