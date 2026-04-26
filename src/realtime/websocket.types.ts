@@ -1,6 +1,6 @@
 import type { TFeature } from "@/api/features/features.types";
 import type { TProject } from "@/api/projects/projects.types";
-import type { ETicketStatus, TTicket } from "@/api/tickets/tickets.types";
+import type { ETicketStatus, TTicket, TTicketComment } from "@/api/tickets/tickets.types";
 
 export interface TCursorPayload {
   x: number;
@@ -69,3 +69,18 @@ export type TProjectUpdatePayload = TUpdatePayload & {
 };
 
 export type TProjectDeletionPayload = TDeletePayload;
+
+export type TCommentCreationPayload = TCreationPayload & {
+  comment: TTicketComment;
+  ticketId: string;
+};
+
+export type TCommentUpdatePayload = TUpdatePayload & {
+  comment: TTicketComment;
+  ticketId: string;
+};
+
+export type TCommentDeletionPayload = TDeletePayload & {
+  commentId: string;
+  ticketId: string;
+};

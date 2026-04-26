@@ -38,3 +38,9 @@ export const FEATURE_EVENTS = {
   UPDATED: "feature.updated",
   DELETED: "feature.deleted",
 } as const;
+
+export const COMMENT_EVENTS = {
+  CREATED: "comment.created",
+  UPDATED: "comment.updated",
+  DELETED: "comment.deleted",
+} as const;

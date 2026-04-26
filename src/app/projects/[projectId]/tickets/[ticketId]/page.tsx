@@ -1,10 +1,12 @@
 "use client";
+
 import { toast } from "sonner";
 import { useGetProject } from "@/api/projects/projects";
 import { useGetTicket } from "@/api/tickets/tickets";
 import LoadingComponent from "@/components/common/LoadingComponent";
 import { TicketBreadcrumbs } from "@/components/Tickets/TicketBreadcrumbs";
 import { TicketOverview } from "@/components/Tickets/TicketView/TicketView";
+import { TicketComments } from "@/components/Tickets/TicketComments/TicketComments";
 import { useProjectId } from "@/hooks/useProjectId";
 import { useTicketId } from "@/hooks/useTicketId";
 import AboutSection from "@/components/common/AboutSection";
@@ -31,10 +33,11 @@ const TicketPage = () => {
     <div className="flex flex-col">
       <TicketBreadcrumbs project={project} ticket={ticket} />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <TicketOverview ticket={ticket} />
-        <div className="mt-4">
+        <div className="flex flex-col gap-4">
+          <TicketOverview ticket={ticket} />
           <AboutSection about={ticket.description} />
         </div>
+        <TicketComments ticketId={ticketId} />
       </div>
     </div>
   );

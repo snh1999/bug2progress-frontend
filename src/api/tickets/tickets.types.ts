@@ -102,3 +102,21 @@ export type TTicket = {
   verifiedBy?: TUserWithProfile;
   ticketStatus: ETicketStatus;
 };
+
+export type TTicketComment = {
+  id: string;
+  text: string;
+  authorId: string;
+  author?: TUserWithProfile;
+  parentTicketId: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type TCreateTicketCommentDto = {
+  ticketId: string; text: string
+}
+
+export type TUpdateTicketCommentDto = {
+  commentId: string; ticketId: string; text: string
+}
