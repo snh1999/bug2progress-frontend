@@ -90,7 +90,7 @@ export const KanbanView = ({ data, onChange }: DataKanbanProps) => {
 
         const updatedMovedTicket =
           sourceStatus !== destStatus
-            ? { ...movedTicket, status: destStatus }
+            ? { ...movedTicket, ticketStatus: destStatus }
             : movedTicket;
 
         newTicket[sourceStatus] = sourceColumn;
@@ -99,44 +99,42 @@ export const KanbanView = ({ data, onChange }: DataKanbanProps) => {
         destColumn.splice(destination.index, 0, updatedMovedTicket);
         newTicket[destStatus] = destColumn;
 
+        const prev = destColumn[destination.index - 1]?.position ?? 0;
+        const next = destColumn[destination.index + 1]?.position ?? 1_000_000;
+        const gap = next - prev;
+        const newPosition = Math.floor((prev + next) / 2);
+
         updatesPayload = [];
 
-        updatesPayload.push({
-          id: updatedMovedTicket.id,
-          ticketStatus: destStatus,
-          position: Math.min((destination.index + 1) * 1000, 1_000_000),
-        });
+        if (gap < 4) {
+          destColumn.forEach((ticket, index) => {
+            updatesPayload.push({
+              id: ticket.id,
+              ticketStatus: destStatus,
+              position: (index + 1) * 1000,
+            });
+          });
 
-        newTicket[destStatus].forEach((ticket, index) => {
-          if (ticket && ticket.id !== updatedMovedTicket.id) {
-            const newPosition = Math.min((index + 1) * 1000, 1_000_000);
-            if (ticket.position !== newPosition) {
+          if (sourceStatus !== destStatus) {
+            sourceColumn.forEach((ticket, index) => {
               updatesPayload.push({
                 id: ticket.id,
-                ticketStatus: destStatus,
-                position: newPosition,
+                ticketStatus: sourceStatus,
+                position: (index + 1) * 1000,
               });
-            }
+            });
           }
-        });
-
-        if (sourceStatus !== destStatus) {
-          newTicket[sourceStatus].forEach((ticket, index) => {
-            if (ticket) {
-              const newPosition = Math.min((index + 1) * 1000, 1_000_000);
-              if (ticket.position !== newPosition) {
-                updatesPayload.push({
-                  id: ticket.id,
-                  ticketStatus: sourceStatus,
-                  position: newPosition,
-                });
-              }
-            }
+        } else {
+          updatesPayload.push({
+            id: updatedMovedTicket.id,
+            ticketStatus: destStatus,
+            position: newPosition,
           });
         }
 
         return newTicket;
       });
+
       onChange(updatesPayload);
     },
     [onChange],
