@@ -31,7 +31,6 @@ export const TicketsView = ({ hideFeatureFilter }: TicketsViewProps) => {
       assignedContributorId,
       verifierId,
       featureId: searchFeatureId,
-
       creatorId,
     },
   ] = useTicketFilters();
