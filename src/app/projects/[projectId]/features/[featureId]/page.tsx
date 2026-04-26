@@ -1,14 +1,14 @@
 "use client";
-import { toast } from "sonner";
-import { useGetFeature } from "@/api/features/features";
-import LoadingComponent from "@/components/common/LoadingComponent";
-import { SecondaryHeader } from "@/components/common/SecondaryHeader";
-import EditFeatureButton from "@/components/features/EditFeatureButton";
-import { TicketsView } from "@/components/Tickets/TicketsView/TicketsView";
 import { useFeatureId } from "@/hooks/useFeatureId";
 import { useProjectId } from "@/hooks/useProjectId";
 
-const FeaturePage = () => {
+import { useGetFeature } from "@/api/features/features";
+import { toast } from "sonner";
+import LoadingComponent from "@/components/common/LoadingComponent";
+import { TicketsView } from "@/components/Tickets/TicketsView/TicketsView";
+import FeatureDetails from "@/components/features/FeatureDetails";
+
+export default function FeaturePage () {
   const projectId = useProjectId();
   const featureId = useFeatureId();
 
@@ -23,18 +23,14 @@ const FeaturePage = () => {
   }
 
   if (!feature || isLoading) {
-    return <LoadingComponent />;
+    return <LoadingComponent/>;
   }
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <SecondaryHeader />
-        <EditFeatureButton />
-      </div>
-      <TicketsView hideFeatureFilter />
+      <FeatureDetails projectId={projectId} feature={feature}/>
+
+      <TicketsView hideFeatureFilter/>
     </div>
   );
 };
-
-export default FeaturePage;

@@ -16,9 +16,14 @@ export type TFeature = {
   id: string;
   title: string;
   description: string;
+  necessaryLinks: string[]
+  process?: string | null;
   featureType: FeatureType;
   projectId: string;
   ownerId: string;
+  _count: {
+    ticket: number;
+  }
 };
 
 export type TUpdateFeatureDto = Partial<TCreateFeatureDto> & TDeleteFeatureDto;
