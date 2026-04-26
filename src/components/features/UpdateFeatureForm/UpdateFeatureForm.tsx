@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { convertSnakeCaseToTitleCase } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
 
 interface UpdateProjectFormProps {
   onCancel?: () => void;
@@ -46,16 +47,16 @@ export const UpdateFeatureForm = ({
   return (
     <Form {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Card className="h-full border-none shadow-none m-5">
-          <CardHeader className="flex flex-row justify-between items-center p-5">
-            <CardTitle className="span text-2xl pl-2 ">
+        <Card className="h-full border-none shadow-none">
+          <CardHeader className="flex flex-row justify-between items-center py-4">
+            <CardTitle className="span text-lg pl-2">
               {defaultValues.title}
             </CardTitle>
             <Button type="submit" disabled={isPending || !isDirty}>
               Update
             </Button>
           </CardHeader>
-          <CardContent className="w-full p-7">
+          <CardContent className="w-full space-y-2  px-7">
             <FormInput
               name="title"
               label="Feature Title"
@@ -84,10 +85,19 @@ export const UpdateFeatureForm = ({
               textarea
               required
             />
-          </CardContent>
-          <CardContent className="w-full p-7 pt-0 space-y-5 gap-3">
-            <div className="flex items-center justify-between">
-              <CardDescription className="text-lg text-foreground">
+
+            <FormInput
+              name="process"
+              label="Process"
+              control={control}
+              placeholder="Detailed description for the feature"
+              textarea
+              required
+            />
+
+            <Separator className="mt-6"/>
+            <div className="flex items-center justify-between p-2  gap-4">
+              <CardDescription className="text-foreground">
                 This operation will delete the feature and all associated data
               </CardDescription>
               <Button
@@ -100,6 +110,7 @@ export const UpdateFeatureForm = ({
               </Button>
             </div>
           </CardContent>
+
         </Card>
       </form>
     </Form>

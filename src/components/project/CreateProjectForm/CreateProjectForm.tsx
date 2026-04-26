@@ -16,12 +16,12 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
   const { control, handleSubmit } = form;
 
   return (
-    <Card className=" h-full border-none shadow-none m-5">
-      <CardHeader className="flex items-center justify-center text-center p-5">
-        <CardTitle className="text-2xl">Create a New Project</CardTitle>
+    <Card className="h-full border-none shadow-none">
+      <CardHeader className="flex items-center justify-center text-center pt-3">
+        <CardTitle className="text-lg">Create a New Project</CardTitle>
       </CardHeader>
 
-      <CardContent className="w-full p-7">
+      <CardContent className="w-full px-8">
         <Form {...form}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <FormInput

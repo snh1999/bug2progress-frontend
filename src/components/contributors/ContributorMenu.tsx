@@ -42,7 +42,7 @@ export function ContributorMenu({ userId }: TContributorMenu) {
     title: "Update contributor role",
     message:
       "Are you sure you want update the role of this contributor for this project?",
-    variant: "primary",
+    variant: "default",
   });
   const handleRoleChange = async (role: EProjectRole) => {
     const result = await updateConfirmation();

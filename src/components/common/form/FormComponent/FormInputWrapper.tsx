@@ -29,7 +29,7 @@ export const FormInputWrapper = ({
       name={name}
       control={control}
       render={({ field }) => (
-        <FormItem className="text-left space-y-0">
+        <FormItem className="text-left space-y-3">
           <FormLabel className="font-bold">{label ?? ""}</FormLabel>
           <FormControl>
             <InputComponent

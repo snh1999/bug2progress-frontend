@@ -41,16 +41,16 @@ export const UpdateProjectForm = ({
   return (
     <Form {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Card className="h-full border-none shadow-none m-5">
-          <CardHeader className="flex flex-row justify-between items-center p-5">
-            <CardTitle className="span text-2xl pl-2 ">
+        <Card className="h-full border-none shadow-none">
+          <CardHeader className="flex flex-row justify-between items-center pt-3">
+            <CardTitle className="span text-lg pl-2 ">
               {initialValues.title}
             </CardTitle>
             <Button type="submit" disabled={isPending || !isDirty}>
               Update
             </Button>
           </CardHeader>
-          <CardContent className="w-full p-7 space-y-5">
+          <CardContent className="w-full p-4 px-7 space-y-5">
             <FormInput
               name="title"
               label="Project Title"
@@ -91,30 +91,29 @@ export const UpdateProjectForm = ({
           </CardContent>
         </Card>
 
-        <Card className="h-full border-none shadow-none m-5">
-          <CardHeader className="flex flex-col space-y-1.5 p-6">
-            <CardTitle className="text-2xl">Danger Zone</CardTitle>
-            <CardDescription className="text-muted-foreground text-lg">
+        <Card className="h-full border-none shadow-none mt-5 px-6">
+          <CardHeader className="flex flex-col">
+            <CardTitle className="text-lg">Danger Zone</CardTitle>
+            <CardDescription className="text-muted-foreground text-xs">
               This actions in this section are irreversible. Proceed with
               caution.
             </CardDescription>
           </CardHeader>
-          <CardContent className="w-full p-7 pt-0 space-y-5">
+          <CardContent className="w-full pt-0 space-y-2">
             <div className="flex items-center justify-between">
-              <CardDescription className="text-lg text-foreground">
+              <CardDescription className="text-sm text-foreground">
                 You will give up access and ownership of this project.
               </CardDescription>
-              <Button size="lg" variant="destructive" type="button" disabled>
+              <Button variant="destructive" type="button" disabled>
                 Update Owner
               </Button>
             </div>
             <div className="flex items-center justify-between">
-              <CardDescription className="text-lg text-foreground">
+              <CardDescription className="text-sm text-foreground">
                 This operation will delete the project and all of its associated
                 data.
               </CardDescription>
               <Button
-                size="lg"
                 variant="destructive"
                 type="button"
                 onClick={onDelete}

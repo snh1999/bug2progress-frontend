@@ -38,7 +38,7 @@ export function FormSelect({
       name={name}
       control={control}
       render={({ field }) => (
-        <FormItem className="text-left space-y-0">
+        <FormItem className="text-left space-y-3 w-full">
           <FormLabel className="font-bold">{label}</FormLabel>
           <Select
             onValueChange={field.onChange}
@@ -46,7 +46,7 @@ export function FormSelect({
             required={required}
             disabled={disabled}
           >
-            <FormControl>
+            <FormControl className="w-full">
               <SelectTrigger>
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>

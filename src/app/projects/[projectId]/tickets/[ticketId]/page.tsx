@@ -1,5 +1,4 @@
 "use client";
-import { Separator } from "@radix-ui/react-dropdown-menu";
 import { toast } from "sonner";
 import { useGetProject } from "@/api/projects/projects";
 import { useGetTicket } from "@/api/tickets/tickets";
@@ -35,7 +34,6 @@ const TicketPage = () => {
         <TicketOverview ticket={ticket} />
         <div className="mt-4">
           <AboutSection about={ticket.description} />
-
         </div>
       </div>
     </div>

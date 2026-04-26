@@ -35,8 +35,8 @@ export const CreateTicketForm = ({
   const { control, handleSubmit } = form;
 
   return (
-    <Card className=" h-full border-none shadow-none m-5">
-      <CardHeader className="flex items-center justify-center text-center p-5">
+    <Card className=" h-full border-none shadow-none">
+      <CardHeader className="flex items-center justify-center text-center pt-3">
         <CardTitle className="text-2xl">Create a New Ticket</CardTitle>
       </CardHeader>
 

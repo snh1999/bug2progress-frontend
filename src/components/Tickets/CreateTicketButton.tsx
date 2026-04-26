@@ -56,7 +56,7 @@ const CreateTicketButton = ({ isCompact = false, defaultStatus }: Props) => {
       </ResponsiveModal>
 
       <Button
-        variant={isCompact ? "ghost" : "primary"}
+        variant={isCompact ? "ghost" : "default"}
         className={cn(isCompact && "p-0")}
         onClick={openModal}
       >
