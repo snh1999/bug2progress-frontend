@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { TFeature } from "@/api/features/features.types";
 import type { TProject } from "@/api/projects/projects.types";
 import type { TTicket } from "@/api/tickets/tickets.types";
-import { ImageOrAvatar } from "@/components/common/ImageOrAvatar";
 
 interface Props {
   project: TProject;

@@ -46,6 +46,10 @@ export const ProjectMenu = () => {
   const projectId = useProjectId();
   const pathname = usePathname();
   const router = useRouter();
+  const isPermitted = useCheckPermission(
+    EContributorAction.VIEW_SETTINGS,
+    projectId,
+  );
 
   return (
     <SidebarMenu className="flex flex-col pt-5">
@@ -53,11 +57,8 @@ export const ProjectMenu = () => {
         const fullHref = `${PROJECTS_PATH}/${projectId}${menuItem.href}`;
         const isActive = pathname === fullHref;
         const Icon = isActive ? menuItem.activeIcon : menuItem.icon;
-        if (
-          !menuItem.permission &&
-          !useCheckPermission(EContributorAction.VIEW_SETTINGS, projectId)
-        )
-          return null;
+
+        if (!menuItem.permission && !isPermitted) return null;
         return (
           <SidebarMenuButton
             key={menuItem.label}

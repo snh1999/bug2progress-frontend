@@ -114,9 +114,12 @@ export type TTicketComment = {
 };
 
 export type TCreateTicketCommentDto = {
-  ticketId: string; text: string
-}
+  ticketId: string;
+  text: string;
+};
 
 export type TUpdateTicketCommentDto = {
-  commentId: string; ticketId: string; text: string
-}
+  commentId: string;
+  ticketId: string;
+  text: string;
+};

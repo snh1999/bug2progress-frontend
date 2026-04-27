@@ -97,5 +97,5 @@ export function useRealtimeNotifications() {
       socket.off(FEATURE_EVENTS.UPDATED, handleFeatureUpdated);
       socket.off(FEATURE_EVENTS.DELETED, handleFeatureDeleted);
     };
-  }, [socket, connected, toast, router]);
+  }, [socket, connected, router, queryClient]);
 }

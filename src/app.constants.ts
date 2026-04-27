@@ -44,3 +44,11 @@ export const COMMENT_EVENTS = {
   UPDATED: "comment.updated",
   DELETED: "comment.deleted",
 } as const;
+
+export type TShadVariant =
+  | "default"
+  | "outline"
+  | "secondary"
+  | "ghost"
+  | "destructive"
+  | "link";

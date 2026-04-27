@@ -1,8 +1,9 @@
 import { ColumnDef } from "@tanstack/react-table";
 import AdminTables from "./AdminTables";
 import { useGetAdminPosts } from "@/api/admin/admin";
+import { AdminPost } from "@/api/admin/admin.types";
 
-const postColumns: ColumnDef<any>[] = [
+const postColumns: ColumnDef<AdminPost>[] = [
   {
     accessorKey: "title",
     header: "Title",

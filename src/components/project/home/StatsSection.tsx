@@ -3,8 +3,8 @@ import { Activity, Ticket, Users } from "lucide-react";
 import { TProject } from "@/api/projects/projects.types";
 import { useProjectId } from "@/hooks/useProjectId";
 
-export default function StatsSection({project}: {project: TProject}) {
-  const projectId = useProjectId()
+export default function StatsSection({ project }: { project: TProject }) {
+  const projectId = useProjectId();
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <StatCard
@@ -25,5 +25,5 @@ export default function StatsSection({project}: {project: TProject}) {
         icon={Activity}
       />
     </div>
-  )
+  );
 }

@@ -1,9 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
-import type {
-  TProjectWithPost
-} from "@/api/projects/projects.types";
+import type { TProjectWithPost } from "@/api/projects/projects.types";
 import { useGetTickets } from "@/api/tickets/tickets";
 import LoadingComponent from "@/components/common/LoadingComponent";
 import { useProjectId } from "@/hooks/useProjectId";
@@ -14,7 +12,7 @@ import AboutSection from "@/components/common/AboutSection";
 import ProjectMeta from "@/components/project/home/ProjectMeta";
 import ContributorsSummary from "@/components/project/home/ContributorsSummary";
 
-export const ProjectHome = ({project}: { project: TProjectWithPost }) => {
+export const ProjectHome = ({ project }: { project: TProjectWithPost }) => {
   const projectId = useProjectId();
   useRealtimeNotifications();
 
@@ -22,10 +20,10 @@ export const ProjectHome = ({project}: { project: TProjectWithPost }) => {
     data: tickets,
     isLoading,
     error: ticketsError,
-  } = useGetTickets({projectId});
+  } = useGetTickets({ projectId });
 
   if (isLoading) {
-    return <LoadingComponent/>;
+    return <LoadingComponent />;
   }
 
   if (ticketsError) {
@@ -37,17 +35,17 @@ export const ProjectHome = ({project}: { project: TProjectWithPost }) => {
 
   return (
     <div className="space-y-6 max-w-5xl">
-      <StatsSection project={project}/>
+      <StatsSection project={project} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
-          <AboutSection about={project.basePost?.postContent}/>
-          <TicketList data={recentTickets}/>
+          <AboutSection about={project.basePost?.postContent} />
+          <TicketList data={recentTickets} />
         </div>
 
         <div className="space-y-6">
-          <ProjectMeta project={project}/>
-          <ContributorsSummary/>
+          <ProjectMeta project={project} />
+          <ContributorsSummary />
         </div>
       </div>
     </div>

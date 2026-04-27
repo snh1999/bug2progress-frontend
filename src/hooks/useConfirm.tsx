@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 
-import { Button, type ButtonProps } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,11 +9,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ResponsiveModal } from "@/components/common/ResponsiveModal";
+import { TShadVariant } from "@/app.constants";
 
 type TUseConfirm = {
   title: string;
   message: string;
-  variant?: ButtonProps["variant"];
+  variant?: TShadVariant;
   onConfirm?: () => void;
 };
 

@@ -9,10 +9,10 @@ import { ProjectHome } from "@/components/project/home/ProjectHome";
 export default function ProjectHomePage() {
   const projectId = useProjectId();
 
-  const {data: project, isLoading, error} = useGetProject(projectId);
+  const { data: project, isLoading, error } = useGetProject(projectId);
 
   if (isLoading) {
-    return <LoadingComponent/>;
+    return <LoadingComponent />;
   }
 
   if (error) {
@@ -28,7 +28,5 @@ export default function ProjectHomePage() {
     );
   }
 
-  return (
-    <ProjectHome project={project}/>
-  );
+  return <ProjectHome project={project} />;
 }

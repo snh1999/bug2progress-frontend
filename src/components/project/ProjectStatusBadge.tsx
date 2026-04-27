@@ -1,6 +1,7 @@
 import { Badge } from "../ui/badge";
+import { TShadVariant } from "@/app.constants";
 
-const statusMap: Record<string, { label: string; variant: any }> = {
+const statusMap: Record<string, { label: string; variant: TShadVariant }> = {
   PROPOSED: { label: "Proposed", variant: "secondary" },
   IN_DEVELOPMENT: { label: "In Development", variant: "default" },
   ACTIVE: { label: "Active", variant: "default" },

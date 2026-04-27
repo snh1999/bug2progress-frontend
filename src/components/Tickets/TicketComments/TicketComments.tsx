@@ -80,7 +80,9 @@ export function TicketComments({ ticketId }: Props) {
                       {comment.author?.profile?.name ?? "Unknown"}
                     </span>
                     <span className="text-xs text-muted-foreground">
-                      {formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}
+                      {formatDistanceToNow(new Date(comment.createdAt), {
+                        addSuffix: true,
+                      })}
                     </span>
                   </div>
                   {isAuthor(comment.authorId) && (

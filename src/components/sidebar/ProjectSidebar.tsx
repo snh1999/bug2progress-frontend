@@ -7,7 +7,7 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarProvider
+  SidebarProvider,
 } from "../ui/sidebar";
 import { ProjectMenu } from "./ProjectMenu";
 import LogoutButton from "../common/LogoutButton";
@@ -18,19 +18,19 @@ export const ProjectSidebar = () => {
     <SidebarProvider>
       <Sidebar className="px-2">
         <SidebarHeader>
-          <LogoLink/>
+          <LogoLink />
         </SidebarHeader>
         <SidebarContent>
-          <ProjectSwitcher/>
-          <ProjectMenu/>
-          <Separator className="my-3"/>
-          <FeaturesList/>
+          <ProjectSwitcher />
+          <ProjectMenu />
+          <Separator className="my-3" />
+          <FeaturesList />
         </SidebarContent>
 
         <SidebarFooter>
           <div className="flex justify-between">
-            <LogoutButton compact/>
-            <ThemeToggle/>
+            <LogoutButton compact />
+            <ThemeToggle />
           </div>
         </SidebarFooter>
       </Sidebar>

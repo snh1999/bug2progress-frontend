@@ -1,42 +1,42 @@
 @reference "../../../../app/globals.css";
 .rbc-header {
-    @apply text-sm;
-    @apply font-normal;
-    @apply pb-4;
-    @apply text-muted-foreground;
-    @apply border-b-0;
+  @apply text-sm;
+  @apply font-normal;
+  @apply pb-4;
+  @apply text-muted-foreground;
+  @apply border-b-0;
 }
 
 .rbc-header + .rbc-header {
-    @apply border-l-0;
+  @apply border-l-0;
 }
 
 .rbc-button-link {
-    @apply text-sm;
-    @apply text-muted-foreground;
+  @apply text-sm;
+  @apply text-muted-foreground;
 }
 
 .rbc-month-row {
-    @apply min-h-[150px];
-    @apply border-t;
-    @apply border-x;
+  @apply min-h-[150px];
+  @apply border-t;
+  @apply border-x;
 }
 
 .rbc-month-view {
-    @apply border-none;
+  @apply border-none;
 }
 
 .rbc-date-cell {
-    @apply p-2;
+  @apply p-2;
 }
 
 .rbc-off-range-bg {
-    background: inherit;
-    opacity: 0.3;
+  background: inherit;
+  opacity: 0.3;
 }
 
 .rbc-toolbar button {
-    background: inherit;
-    opacity: 0.7;
-    color: inherit;
+  background: inherit;
+  opacity: 0.7;
+  color: inherit;
 }

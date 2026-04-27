@@ -40,7 +40,7 @@ export const useGetTickets = ({
   dueAt,
   assignedContributorId,
   verifierId,
-  creatorId
+  creatorId,
 }: TGetTickets) => {
   const params = new URLSearchParams();
   if (dueAt) params.append("dueAt", dueAt);
@@ -50,10 +50,8 @@ export const useGetTickets = ({
   if (ticketPriority) params.append("ticketPriority", ticketPriority);
   if (assignedContributorId)
     params.append("assignedContributorId", assignedContributorId);
-  if(creatorId)
-    params.append("creatorId", creatorId);
-  if(featureId)
-  params.append("featureId", featureId)
+  if (creatorId) params.append("creatorId", creatorId);
+  if (featureId) params.append("featureId", featureId);
 
   return useQuery<TTicket[], Error>({
     queryKey: [
@@ -66,7 +64,7 @@ export const useGetTickets = ({
       dueAt,
       assignedContributorId,
       verifierId,
-      creatorId
+      creatorId,
     ],
     queryFn: async () =>
       (await GetRequest(`/projects/${projectId}/tickets?${params.toString()}`))

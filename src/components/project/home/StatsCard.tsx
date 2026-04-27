@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
+import { IconType } from "react-icons";
 
 export default function StatCard({
   title,
@@ -9,7 +10,7 @@ export default function StatCard({
 }: {
   title: string;
   value: number;
-  icon: any;
+  icon: IconType;
   href?: string;
 }) {
   const content = (

@@ -95,7 +95,7 @@ export const UpdateFeatureForm = ({
               required
             />
 
-            <Separator className="mt-6"/>
+            <Separator className="mt-6" />
             <div className="flex items-center justify-between p-2  gap-4">
               <CardDescription className="text-foreground">
                 This operation will delete the feature and all associated data
@@ -110,7 +110,6 @@ export const UpdateFeatureForm = ({
               </Button>
             </div>
           </CardContent>
-
         </Card>
       </form>
     </Form>

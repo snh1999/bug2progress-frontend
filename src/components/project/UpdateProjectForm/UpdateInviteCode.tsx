@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { copyToClipboard } from "@/lib/utils";
 
 type TUpdateProjectForm = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form: UseFormReturn<TUpdateProjectDto, any, TUpdateProjectDto>;
   id: string;
 };

@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { API_URL } from "@/app.constants";
 import { FormInput } from "@/components/common/form/FormComponent/FormInput";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

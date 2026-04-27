@@ -113,11 +113,7 @@ export const UpdateProjectForm = ({
                 This operation will delete the project and all of its associated
                 data.
               </CardDescription>
-              <Button
-                variant="destructive"
-                type="button"
-                onClick={onDelete}
-              >
+              <Button variant="destructive" type="button" onClick={onDelete}>
                 Delete Project
               </Button>
             </div>

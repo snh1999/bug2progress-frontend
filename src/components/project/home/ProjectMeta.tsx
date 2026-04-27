@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TProject } from "@/api/projects/projects.types";
 import { Separator } from "@/components/ui/separator";
 
-export default function ProjectMeta({project}: {project: TProject}) {
+export default function ProjectMeta({ project }: { project: TProject }) {
   return (
     <Card>
       <CardHeader>
@@ -23,19 +23,19 @@ export default function ProjectMeta({project}: {project: TProject}) {
         <div className="flex justify-between">
           <span className="text-muted-foreground">URL ID</span>
           <span className="text-muted-foreground">
-                  {project.urlid || "None"}
-                </span>
+            {project.urlid || "None"}
+          </span>
         </div>
         <Separator />
         <div className="flex justify-between">
           <span className="text-muted-foreground">Last Updated</span>
           <span>
-                  {project.updatedAt
-                    ? new Date(project.updatedAt).toLocaleDateString()
-                    : "N/A"}
-                </span>
+            {project.updatedAt
+              ? new Date(project.updatedAt).toLocaleDateString()
+              : "N/A"}
+          </span>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

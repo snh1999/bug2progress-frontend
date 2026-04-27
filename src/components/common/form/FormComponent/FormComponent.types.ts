@@ -4,6 +4,7 @@ export type TFormComponentProps = {
   name: string;
   label?: string;
   placeholder?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control?: Control<any>;
   required?: boolean;
   disabled?: boolean;

@@ -3,7 +3,7 @@
 import { RegisterCard } from "@/components/auth/RegisterCard/RegisterCard";
 
 const RegisterPage = () => {
-	return <RegisterCard />;
+  return <RegisterCard />;
 };
 
 export default RegisterPage;

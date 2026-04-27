@@ -29,7 +29,7 @@ export const useUpdateFeatureForm = ({
     defaultValues: {
       ...defaultValues,
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Feature updated");
       if (onSuccess) onSuccess();
     },

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BASE_URL } from "@/app.constants";
 import { getBearerToken } from "@/components/auth/auth.actions";
 import { useQuery } from "@tanstack/react-query";

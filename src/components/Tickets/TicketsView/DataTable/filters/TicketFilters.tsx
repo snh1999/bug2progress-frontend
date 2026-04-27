@@ -34,7 +34,7 @@ interface TicketFiltersProps {
   hideFeatureFilter?: boolean;
 }
 
-export const TicketFilters = ({hideFeatureFilter}: TicketFiltersProps) => {
+export const TicketFilters = ({ hideFeatureFilter }: TicketFiltersProps) => {
   const projectId = useProjectId();
   const router = useRouter();
   const pathName = usePathname();
@@ -50,20 +50,20 @@ export const TicketFilters = ({hideFeatureFilter}: TicketFiltersProps) => {
     data: contributors,
     error: contributorsError,
     isLoading: isLoadingMembers,
-  } = useGetProjectContributors({id: projectId});
+  } = useGetProjectContributors({ id: projectId });
 
   const featureOptions = features?.map((project) => ({
     value: project.id,
     label: project.title,
   }));
 
-  const [{featureId, dueAt}, setFilters] = useTicketFilters();
+  const [{ featureId, dueAt }, setFilters] = useTicketFilters();
 
   const onFeatureChange = (value: string) => {
-    setFilters({featureId: value === "all" ? null : (value as string)});
+    setFilters({ featureId: value === "all" ? null : (value as string) });
   };
 
-  if (isLoadingProjects || isLoadingMembers) return <LoadingComponent/>;
+  if (isLoadingProjects || isLoadingMembers) return <LoadingComponent />;
   if (contributorsError) {
     toast.error(contributorsError.message);
     return null;
@@ -82,7 +82,7 @@ export const TicketFilters = ({hideFeatureFilter}: TicketFiltersProps) => {
           variant="outline"
           className="text-red-800 dark:text-red-400"
         >
-          <RxCross2 className="size-4"/>
+          <RxCross2 className="size-4" />
           Clear
         </Button>
       )}
@@ -92,14 +92,14 @@ export const TicketFilters = ({hideFeatureFilter}: TicketFiltersProps) => {
         className="h-8 w-full lg:w-auto"
         value={dueAt ? new Date(dueAt) : undefined}
         onChange={(date) => {
-          setFilters({dueAt: date ? date.toISOString() : null});
+          setFilters({ dueAt: date ? date.toISOString() : null });
         }}
       />
 
-      <TicketStatusFilter/>
-      <TicketTypeFilter/>
-      <TicketPriorityFilter/>
-      {contributors && <ContributorFilters contributors={contributors}/>}
+      <TicketStatusFilter />
+      <TicketTypeFilter />
+      <TicketPriorityFilter />
+      {contributors && <ContributorFilters contributors={contributors} />}
 
       {!hideFeatureFilter && (
         <Select
@@ -108,13 +108,13 @@ export const TicketFilters = ({hideFeatureFilter}: TicketFiltersProps) => {
         >
           <SelectTrigger className="w-full lg:w-auto h-8">
             <div className="flex items-center pr-2">
-              <FolderIcon className="size-4 mr-2"/>
-              <SelectValue placeholder="Features"/>
+              <FolderIcon className="size-4 mr-2" />
+              <SelectValue placeholder="Features" />
             </div>
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
-            <SelectSeparator/>
+            <SelectSeparator />
             {featureOptions?.map((project) => (
               <SelectItem key={project.value} value={project.value}>
                 {project.label}
@@ -128,7 +128,7 @@ export const TicketFilters = ({hideFeatureFilter}: TicketFiltersProps) => {
 };
 
 function TicketStatusFilter() {
-  const [{ticketStatus}, setFilters] = useTicketFilters();
+  const [{ ticketStatus }, setFilters] = useTicketFilters();
   return (
     <Select
       value={ticketStatus ?? ""}
@@ -140,13 +140,13 @@ function TicketStatusFilter() {
     >
       <SelectTrigger className="w-full lg:w-auto h-8">
         <div className="flex items-center pr-2">
-          <GrInProgress className="size-4 mr-2"/>
-          <SelectValue placeholder="Status"/>
+          <GrInProgress className="size-4 mr-2" />
+          <SelectValue placeholder="Status" />
         </div>
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="all">All</SelectItem>
-        <SelectSeparator/>
+        <SelectSeparator />
         {Object.values(ETicketStatus).map((status) => (
           <SelectItem key={status} value={status}>
             {convertSnakeCaseToTitleCase(status)}
@@ -158,7 +158,7 @@ function TicketStatusFilter() {
 }
 
 function TicketTypeFilter() {
-  const [{ticketType}, setFilters] = useTicketFilters();
+  const [{ ticketType }, setFilters] = useTicketFilters();
   return (
     <Select
       value={ticketType ?? ""}
@@ -170,13 +170,13 @@ function TicketTypeFilter() {
     >
       <SelectTrigger className="w-full lg:w-auto h-8">
         <div className="flex items-center pr-2">
-          <FaListOl className="size-4 mr-2"/>
-          <SelectValue placeholder="Type"/>
+          <FaListOl className="size-4 mr-2" />
+          <SelectValue placeholder="Type" />
         </div>
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="all">All</SelectItem>
-        <SelectSeparator/>
+        <SelectSeparator />
         {Object.values(ETicketType).map((type) => (
           <SelectItem key={type} value={type}>
             {convertSnakeCaseToTitleCase(type)}
@@ -188,7 +188,7 @@ function TicketTypeFilter() {
 }
 
 function TicketPriorityFilter() {
-  const [{ticketPriority}, setFilters] = useTicketFilters();
+  const [{ ticketPriority }, setFilters] = useTicketFilters();
   return (
     <Select
       value={ticketPriority ?? ""}
@@ -200,13 +200,13 @@ function TicketPriorityFilter() {
     >
       <SelectTrigger className="w-full lg:w-auto h-8">
         <div className="flex items-center pr-2">
-          <FcHighPriority className="size-4 mr-2"/>
-          <SelectValue placeholder="Priority"/>
+          <FcHighPriority className="size-4 mr-2" />
+          <SelectValue placeholder="Priority" />
         </div>
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="all">All</SelectItem>
-        <SelectSeparator/>
+        <SelectSeparator />
         {Object.values(ETicketPriority).map((type) => (
           <SelectItem key={type} value={type}>
             {convertSnakeCaseToTitleCase(type)}
@@ -217,10 +217,14 @@ function TicketPriorityFilter() {
   );
 }
 
-function UserFilters({contributors, selectValue, Icon}: {
+function UserFilters({
+  contributors,
+  selectValue,
+  Icon,
+}: {
   contributors: TProjectContributorWithUser[];
-  selectValue: string |null;
-  Icon: IconType
+  selectValue: string | null;
+  Icon: IconType;
 }) {
   const contributorOptions = contributors.map((member) => ({
     value: member.userId,
@@ -228,8 +232,7 @@ function UserFilters({contributors, selectValue, Icon}: {
     displayLabel: member.user.profile.name,
   }));
 
-  const [_, setFilters] =
-    useTicketFilters();
+  const [_, setFilters] = useTicketFilters();
 
   if (contributors.length === 0) {
     return null;
@@ -247,17 +250,18 @@ function UserFilters({contributors, selectValue, Icon}: {
       >
         <SelectTrigger className="w-full lg:w-auto h-8">
           <div className="flex items-center pr-2">
-            <Icon className="size-4 mr-2"/>
+            <Icon className="size-4 mr-2" />
             <SelectValue placeholder="Assignees">
               {selectValue
-                ? contributorOptions.find(c => c.value === selectValue)?.displayLabel
+                ? contributorOptions.find((c) => c.value === selectValue)
+                    ?.displayLabel
                 : "Assignees"}
             </SelectValue>
           </div>
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="all">All</SelectItem>
-          <SelectSeparator/>
+          <SelectSeparator />
           {contributorOptions.map((contributor) => (
             <SelectItem key={contributor.value} value={contributor.value}>
               {contributor.label}
@@ -266,7 +270,7 @@ function UserFilters({contributors, selectValue, Icon}: {
         </SelectContent>
       </Select>
     </>
-  )
+  );
 }
 
 function ContributorFilters({
@@ -274,8 +278,7 @@ function ContributorFilters({
 }: {
   contributors: TProjectContributorWithUser[];
 }) {
-  const [{verifierId, creatorId, assignedContributorId}] =
-    useTicketFilters();
+  const [{ verifierId, creatorId, assignedContributorId }] = useTicketFilters();
 
   if (contributors.length === 0) {
     return null;
@@ -283,9 +286,21 @@ function ContributorFilters({
 
   return (
     <>
-      <UserFilters contributors={contributors} selectValue={assignedContributorId} Icon={GrUserWorker}/>
-      <UserFilters contributors={contributors} selectValue={creatorId} Icon={UserIcon}/>
-      <UserFilters contributors={contributors} selectValue={verifierId} Icon={MdVerifiedUser}/>
+      <UserFilters
+        contributors={contributors}
+        selectValue={assignedContributorId}
+        Icon={GrUserWorker}
+      />
+      <UserFilters
+        contributors={contributors}
+        selectValue={creatorId}
+        Icon={UserIcon}
+      />
+      <UserFilters
+        contributors={contributors}
+        selectValue={verifierId}
+        Icon={MdVerifiedUser}
+      />
     </>
   );
 }

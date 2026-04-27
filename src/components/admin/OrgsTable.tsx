@@ -1,8 +1,9 @@
 import { ColumnDef } from "@tanstack/react-table";
 import AdminTables from "./AdminTables";
 import { useGetAdminOrganizations } from "@/api/admin/admin";
+import { AdminOrganization } from "@/api/admin/admin.types";
 
-const organizationColumns: ColumnDef<any>[] = [
+const organizationColumns: ColumnDef<AdminOrganization>[] = [
   {
     accessorKey: "name",
     header: "Name",

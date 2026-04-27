@@ -29,6 +29,7 @@ export const useRegisterForm = () => {
       router.push(LOGIN_PATH);
       toast.success("Registered successfully, redirecting to login page");
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onError: (error: any) => toast.error(error),
   });
 };

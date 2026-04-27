@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  useGetAdminFeatures,
-  useGetAdminOrganizations,
-  useGetAdminPosts,
-  useGetAdminProjects,
-  useGetAdminStats,
-  useGetAdminTickets,
-  useGetAdminUsers,
-} from "@/api/admin/admin";
+import { useGetAdminStats } from "@/api/admin/admin";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import LogoutButton from "@/components/common/LogoutButton";

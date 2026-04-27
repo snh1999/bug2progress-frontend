@@ -2,8 +2,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "../ui/badge";
 import AdminTables from "./AdminTables";
 import { useGetAdminUsers } from "@/api/admin/admin";
+import { AdminUser } from "@/api/admin/admin.types";
 
-const userColumns: ColumnDef<any>[] = [
+const userColumns: ColumnDef<AdminUser>[] = [
   {
     accessorKey: "email",
     header: "Email",

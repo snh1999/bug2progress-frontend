@@ -1,4 +1,5 @@
 import { jwtVerify } from "jose";
+import { toast } from "sonner";
 
 export async function verifyJwtToken(token: string) {
   const secret = new TextEncoder().encode(
@@ -8,9 +9,10 @@ export async function verifyJwtToken(token: string) {
   try {
     const { payload } = await jwtVerify(token, secret);
     return payload;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error(error);
-    console.error(
+    toast.error(
       error?.response?.data?.message ??
         error?.message ??
         "Failed to verify token",

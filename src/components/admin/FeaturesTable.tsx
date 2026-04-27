@@ -2,8 +2,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "../ui/badge";
 import AdminTables from "./AdminTables";
 import { useGetAdminFeatures } from "@/api/admin/admin";
+import { AdminFeature } from "@/api/admin/admin.types";
 
-const featureColumns: ColumnDef<any>[] = [
+const featureColumns: ColumnDef<AdminFeature>[] = [
   {
     accessorKey: "title",
     header: "Title",
@@ -37,11 +38,12 @@ const featureColumns: ColumnDef<any>[] = [
 
 export default function FeaturesTable() {
   const { data: features, isLoading } = useGetAdminFeatures();
+
   return (
     <>
       <AdminTables
         columns={featureColumns}
-        data={features || []}
+        data={features ?? []}
         isLoading={isLoading}
       />
     </>

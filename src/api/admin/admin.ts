@@ -18,42 +18,42 @@ export const useGetAdminStats = () =>
   });
 
 export const useGetAdminUsers = () =>
-  useQuery<AdminUser>({
+  useQuery<AdminUser[]>({
     queryKey: ["admin", "users"],
     queryFn: async () => GetRequest("/admin/users"),
     staleTime: 5 * 60 * 1000,
   });
 
 export const useGetAdminOrganizations = () =>
-  useQuery<AdminOrganization>({
+  useQuery<AdminOrganization[]>({
     queryKey: ["admin", "organizations"],
     queryFn: async () => GetRequest("/admin/organizations"),
     staleTime: 5 * 60 * 1000,
   });
 
 export const useGetAdminProjects = () =>
-  useQuery<AdminProject>({
+  useQuery<AdminProject[]>({
     queryKey: ["admin", "projects"],
     queryFn: async () => GetRequest("/admin/projects"),
     staleTime: 5 * 60 * 1000,
   });
 
 export const useGetAdminTickets = () =>
-  useQuery<AdminTicket>({
+  useQuery<AdminTicket[]>({
     queryKey: ["admin", "tickets"],
     queryFn: async () => GetRequest("/admin/tickets"),
     staleTime: 5 * 60 * 1000,
   });
 
 export const useGetAdminFeatures = () =>
-  useQuery<AdminFeature>({
+  useQuery<AdminFeature[]>({
     queryKey: ["admin", "features"],
     queryFn: async () => GetRequest("/admin/features"),
     staleTime: 5 * 60 * 1000,
   });
 
 export const useGetAdminPosts = () =>
-  useQuery<AdminPost>({
+  useQuery<AdminPost[]>({
     queryKey: ["admin", "posts"],
     queryFn: async () => GetRequest("/admin/posts"),
     staleTime: 5 * 60 * 1000,

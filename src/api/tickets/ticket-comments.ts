@@ -9,14 +9,13 @@ import { toast } from "sonner";
 import {
   TUpdateTicketCommentDto,
   TTicketComment,
-  TCreateTicketCommentDto
+  TCreateTicketCommentDto,
 } from "@/api/tickets/tickets.types";
 
 export const useGetTicketComments = (ticketId: string) =>
   useQuery<TTicketComment[], Error>({
     queryKey: ["ticketComments", ticketId],
-    queryFn: async () =>
-      (await GetRequest(`/ticket/comment/${ticketId}`)).data,
+    queryFn: async () => (await GetRequest(`/ticket/comment/${ticketId}`)).data,
     enabled: !!ticketId,
   });
 
@@ -24,7 +23,9 @@ export const useCreateTicketComment = () => {
   const queryClient = useQueryClient();
   return useMutation<TTicketComment, Error, TCreateTicketCommentDto>({
     mutationFn: async ({ ticketId, text }) => {
-      const response = await PostRequest(`/ticket/comment/${ticketId}`, { text });
+      const response = await PostRequest(`/ticket/comment/${ticketId}`, {
+        text,
+      });
       return response.data;
     },
     onSuccess: (_, { ticketId }) =>
@@ -36,7 +37,9 @@ export const useUpdateTicketComment = () => {
   const queryClient = useQueryClient();
   return useMutation<TTicketComment, Error, TUpdateTicketCommentDto>({
     mutationFn: async ({ commentId, text }) => {
-      const response = await PatchRequest(`/ticket/comment/${commentId}`, { text });
+      const response = await PatchRequest(`/ticket/comment/${commentId}`, {
+        text,
+      });
       return response.data;
     },
     onSuccess: (_, { ticketId }) =>

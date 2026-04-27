@@ -46,7 +46,7 @@ export const TicketBreadcrumbs = ({ ticket, project }: Props) => {
         disabled={isPending}
         className="ml-auto mb-3"
         variant="destructive"
-        >
+      >
         <TrashIcon className="size-4 lg:mr-2" />
         Delete
       </Button>

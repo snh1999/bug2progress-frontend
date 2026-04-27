@@ -2,8 +2,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "../ui/badge";
 import AdminTables from "./AdminTables";
 import { useGetAdminTickets } from "@/api/admin/admin";
+import { AdminTicket } from "@/api/admin/admin.types";
 
-const ticketColumns: ColumnDef<any>[] = [
+const ticketColumns: ColumnDef<AdminTicket>[] = [
   {
     accessorKey: "title",
     header: "Title",

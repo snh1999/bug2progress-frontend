@@ -1,8 +1,6 @@
 import { useGetProjectContributors } from "@/api/projects/projectContributors";
 import type { EProjectRole } from "@/api/projects/projects.types";
-import { CardItem } from "@/components/common/dataView/CardList/CardItem";
 import LoadingComponent from "@/components/common/LoadingComponent";
-import { ContributorMenu } from "@/components/contributors/ContributorMenu";
 import { useProjectId } from "@/hooks/useProjectId";
 import { convertSnakeCaseToTitleCase } from "@/lib/utils";
 import UserCard from "@/components/Tickets/TicketsView/DataTable/contributors/Usercard";
@@ -20,14 +18,6 @@ const ContributorList = ({ role }: TContributorListProps) => {
 
   if (isLoading || !data) return <LoadingComponent />;
 
-  const cardListData = data.map(({ user, role }) => ({
-    title: user.profile.name,
-    summary: "@" + user.profile.username,
-    id: user.id,
-    bottomBarInformation: role,
-    childComponent: <ContributorMenu userId={user.id} />,
-  }));
-
   if (data.length === 0) {
     return null;
   }
@@ -42,7 +32,7 @@ const ContributorList = ({ role }: TContributorListProps) => {
 
       <div className="grid grid-cols-2 lg:grid-cols-3 pt-4">
         {data.map((item) => (
-          <UserCard user={item.user} key={item.userId}  />
+          <UserCard user={item.user} key={item.userId} />
         ))}
       </div>
     </div>

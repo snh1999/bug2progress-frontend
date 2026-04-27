@@ -12,38 +12,37 @@ interface TicketListProps {
   data: TTicket[];
 }
 
-export const TicketList = ({data}: TicketListProps) => {
+export const TicketList = ({ data }: TicketListProps) => {
   const projectId = useProjectId();
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="text-lg flex items-center gap-2">
-          <Ticket className="w-5 h-5"/>
+          <Ticket className="w-5 h-5" />
           Recent Tickets
         </CardTitle>
         <div className="flex gap-1 items-center">
-          <CreateTicketButton/>
+          <CreateTicketButton />
           <Link href={`/projects/${projectId}/tickets`}>
             <Button variant="ghost" size="sm" className="gap-1">
               View all
-              <ExternalLink className="w-3 h-3"/>
+              <ExternalLink className="w-3 h-3" />
             </Button>
           </Link>
         </div>
-
       </CardHeader>
       <CardContent>
         {data.length === 0 ? (
           <p className="text-muted-foreground text-sm">No tickets yet.</p>
         ) : (
           <div className="space-y-0.5">
-            {data.map((ticket: any) => (
+            {data.map((ticket) => (
               <div
                 key={ticket.id}
                 className="flex items-center justify-between p-3 rounded-lg hover:bg-accent transition-colors cursor-pointer"
               >
                 <div className="flex items-center gap-3">
-                  <TicketStatus status={ticket.ticketStatus}/>
+                  <TicketStatus status={ticket.ticketStatus} />
                   <span className="text-sm font-medium">{ticket.title}</span>
                 </div>
                 <span className="text-xs text-muted-foreground">

@@ -8,10 +8,9 @@ import {
 import { FeatureItem } from "@/components/features/FeatureItem";
 import { FeatureCard } from "@/components/features/FeatureCard";
 
-
 export function TicketViewFeatureHover({
   feature,
-  compact
+  compact,
 }: {
   feature?: TFeature;
   compact?: boolean;
@@ -21,10 +20,7 @@ export function TicketViewFeatureHover({
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <Button
-          variant="ghost"
-          className="flex items-center gap-2 truncate"
-        >
+        <Button variant="ghost" className="flex items-center gap-2 truncate">
           <FeatureItem feature={feature} compact={compact} />
         </Button>
       </HoverCardTrigger>

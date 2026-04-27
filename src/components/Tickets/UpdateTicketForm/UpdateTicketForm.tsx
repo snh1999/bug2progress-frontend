@@ -164,7 +164,7 @@ export const UpdateTicketForm = ({
           </CardContent>
           {onDelete && (
             <CardContent className="w-full p-7 pt-0 space-y-5 gap-3">
-              <Separator className="mt-4"/>
+              <Separator className="mt-4" />
               <div className="flex items-center justify-between gap-3">
                 <CardDescription className="text-foreground">
                   This operation will delete the ticket and all associated data

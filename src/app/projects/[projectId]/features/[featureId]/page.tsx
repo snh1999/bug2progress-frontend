@@ -8,7 +8,7 @@ import LoadingComponent from "@/components/common/LoadingComponent";
 import { TicketsView } from "@/components/Tickets/TicketsView/TicketsView";
 import FeatureDetails from "@/components/features/FeatureDetails";
 
-export default function FeaturePage () {
+export default function FeaturePage() {
   const projectId = useProjectId();
   const featureId = useFeatureId();
 
@@ -23,14 +23,14 @@ export default function FeaturePage () {
   }
 
   if (!feature || isLoading) {
-    return <LoadingComponent/>;
+    return <LoadingComponent />;
   }
 
   return (
     <div>
-      <FeatureDetails projectId={projectId} feature={feature}/>
+      <FeatureDetails projectId={projectId} feature={feature} />
 
-      <TicketsView hideFeatureFilter/>
+      <TicketsView hideFeatureFilter />
     </div>
   );
-};
+}
